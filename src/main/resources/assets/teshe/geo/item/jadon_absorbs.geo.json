@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.杰顿吸收",
+				"identifier": "geometry.teshe.jadon_absorbs",
 				"texture_width": 64,
 				"texture_height": 64,
 				"visible_bounds_width": 3,
