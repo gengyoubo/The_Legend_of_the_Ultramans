@@ -36,5 +36,9 @@
   "item.teshe.king_joe_crystal": "King Joe Crystal",
   "item.teshe.king_joe_smasher": "King Joe Smasher",
   "item.teshe.smdrtk_multi_function_pistol.tooltip": "Right-click to fire a high-energy pulse",
-  "itemGroup.teshe.items": "Teshe"
+  "itemGroup.teshe.items": "Teshe",
+  "entity.teshe.chicken": "Chicken",
+  "entity.teshe.guardian_elder": "Elder Guardian",
+  "item.teshe.chicken_spawn_egg": "Chicken Spawn Egg",
+  "item.teshe.guardian_elder_spawn_egg": "Elder Guardian Spawn Egg"
 }

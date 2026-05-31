@@ -1,9 +1,11 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -54,6 +56,14 @@ public final class ModItems
     public static final RegistryObject<Item> STARLIGHT_CRYSTAL = registerModelItem("starlight_crystal");
     public static final RegistryObject<Item> KING_JOE_CRYSTAL = registerModelItem("king_joe_crystal");
     public static final RegistryObject<Item> KING_JOE_SMASHER = registerModelItem("king_joe_smasher");
+    public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
+            "chicken_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
+    );
+    public static final RegistryObject<Item> GUARDIAN_ELDER_SPAWN_EGG = ITEMS.register(
+            "guardian_elder_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.GUARDIAN_ELDER, 0x5E756C, 0xE1D09B, new Item.Properties())
+    );
 
     public static final List<RegistryObject<Item>> MODEL_ITEMS = List.of(
             SMDRTK_MULTI_FUNCTION_PISTOL,
@@ -91,7 +101,9 @@ public final class ModItems
             BLANK_CRYSTAL,
             STARLIGHT_CRYSTAL,
             KING_JOE_CRYSTAL,
-            KING_JOE_SMASHER
+            KING_JOE_SMASHER,
+            CHICKEN_SPAWN_EGG,
+            GUARDIAN_ELDER_SPAWN_EGG
     );
 
     private ModItems()
@@ -105,6 +117,6 @@ public final class ModItems
 
     private static RegistryObject<Item> registerModelItem(String name)
     {
-        return ITEMS.register(name, () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+        return ITEMS.register(name, () -> new GeckoModelItem(name, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     }
 }

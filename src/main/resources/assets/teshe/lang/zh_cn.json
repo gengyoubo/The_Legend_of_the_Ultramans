@@ -36,5 +36,9 @@
   "item.teshe.king_joe_crystal": "金古桥珀晶",
   "item.teshe.king_joe_smasher": "金古桥粉碎",
   "item.teshe.smdrtk_multi_function_pistol.tooltip": "右键发射高能脉冲",
-  "itemGroup.teshe.items": "特摄"
+  "itemGroup.teshe.items": "特摄",
+  "entity.teshe.chicken": "?",
+  "entity.teshe.guardian_elder": "?????",
+  "item.teshe.chicken_spawn_egg": "????",
+  "item.teshe.guardian_elder_spawn_egg": "????????"
 }

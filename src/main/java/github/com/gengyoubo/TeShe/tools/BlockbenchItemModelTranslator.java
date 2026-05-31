@@ -34,7 +34,7 @@ public final class BlockbenchItemModelTranslator
 
         Path input = Path.of(args[0]);
         Path output = Path.of(args[1]);
-        String textureRef = args[2];
+        String textureRef = sanitizeResourceReference(args[2]);
 
         JsonObject source = GSON.fromJson(Files.readString(input, StandardCharsets.UTF_8), JsonObject.class);
         JsonObject translated = translate(source, textureRef);
@@ -117,6 +117,33 @@ public final class BlockbenchItemModelTranslator
             textures.addProperty(String.valueOf(i), i == 0 ? textureRef : textureRef + "_" + i);
         }
         return textures;
+    }
+
+    private static String sanitizeResourceReference(String reference)
+    {
+        int namespaceSeparator = reference.indexOf(':');
+        if (namespaceSeparator < 0) {
+            return sanitizeResourcePath(reference);
+        }
+
+        String namespace = sanitizeResourcePath(reference.substring(0, namespaceSeparator));
+        String path = sanitizeResourcePath(reference.substring(namespaceSeparator + 1));
+        return namespace + ":" + path;
+    }
+
+    private static String sanitizeResourcePath(String path)
+    {
+        String lowered = path.toLowerCase(Locale.ROOT).replace('\\', '/');
+        StringBuilder sanitized = new StringBuilder();
+        for (int i = 0; i < lowered.length(); i++) {
+            char c = lowered.charAt(i);
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '.' || c == '_' || c == '-' || c == '/') {
+                sanitized.append(c);
+            } else {
+                sanitized.append('_');
+            }
+        }
+        return sanitized.toString();
     }
 
     private static String convertTextureReference(JsonObject sourceFace)

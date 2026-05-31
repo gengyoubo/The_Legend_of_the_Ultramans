@@ -12,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
@@ -26,7 +25,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class SmdrtkMultiFunctionPistolItem extends Item
+public class SmdrtkMultiFunctionPistolItem extends GeckoModelItem
 {
     private static final float DAMAGE = 8.0F;
     private static final double RANGE = 48.0D;
@@ -35,7 +34,7 @@ public class SmdrtkMultiFunctionPistolItem extends Item
 
     public SmdrtkMultiFunctionPistolItem(Properties properties)
     {
-        super(properties);
+        super("smdrtk_multi_function_pistol", properties);
     }
 
     @Override
