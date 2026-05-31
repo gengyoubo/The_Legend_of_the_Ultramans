@@ -48,12 +48,14 @@ public final class BlockbenchItemModelTranslator
     {
         boolean blockbenchProject = source.has("meta") && source.has("resolution");
         double textureWidth = getTextureWidth(source, blockbenchProject);
-        double uvScale = textureWidth / 16.0D;
+        double textureHeight = getTextureHeight(source, blockbenchProject);
+        double uvScaleX = textureWidth / 16.0D;
+        double uvScaleY = textureHeight / 16.0D;
         PositionTransform positionTransform = createPositionTransform(source, blockbenchProject);
 
         JsonObject target = new JsonObject();
         target.addProperty("credit", "Translated from Blockbench by BlockbenchItemModelTranslator");
-        target.add("texture_size", array(256.0D, 256.0D));
+        target.add("texture_size", array(textureWidth, textureHeight));
 
         JsonObject textures = convertTextures(source, textureRef);
         textures.addProperty("particle", textureRef);
@@ -76,7 +78,7 @@ public final class BlockbenchItemModelTranslator
                 converted.add("rotation", rotation);
             }
 
-            converted.add("faces", convertFaces(cube.getAsJsonObject("faces"), blockbenchProject, uvScale));
+            converted.add("faces", convertFaces(cube.getAsJsonObject("faces"), blockbenchProject, uvScaleX, uvScaleY));
             elements.add(converted);
         }
         target.add("elements", elements);
@@ -84,14 +86,14 @@ public final class BlockbenchItemModelTranslator
         return target;
     }
 
-    private static JsonObject convertFaces(JsonObject sourceFaces, boolean blockbenchProject, double uvScale)
+    private static JsonObject convertFaces(JsonObject sourceFaces, boolean blockbenchProject, double uvScaleX, double uvScaleY)
     {
         JsonObject faces = new JsonObject();
         for (Map.Entry<String, JsonElement> entry : sourceFaces.entrySet()) {
             JsonObject sourceFace = entry.getValue().getAsJsonObject();
             JsonObject face = new JsonObject();
             if (sourceFace.has("uv")) {
-                face.add("uv", convertUv(sourceFace.getAsJsonArray("uv"), blockbenchProject, uvScale));
+                face.add("uv", convertUv(sourceFace.getAsJsonArray("uv"), blockbenchProject, uvScaleX, uvScaleY));
             }
             if (sourceFace.has("rotation")) {
                 face.add("rotation", sourceFace.get("rotation"));
@@ -264,17 +266,44 @@ public final class BlockbenchItemModelTranslator
         return value;
     }
 
-    private static JsonArray convertUv(JsonArray source, boolean blockbenchProject, double uvScale)
+    private static JsonArray convertUv(JsonArray source, boolean blockbenchProject, double uvScaleX, double uvScaleY)
     {
         if (!blockbenchProject) {
-            return copyArray(source);
+            return fixZeroSizeUv(copyArray(source), 1.0D / 16.0D, 1.0D / 16.0D);
         }
 
-        JsonArray uv = new JsonArray();
-        for (JsonElement value : source) {
-            uv.add(round(value.getAsDouble() / uvScale));
+        JsonArray uv = array(
+                value(source, 0) / uvScaleX,
+                value(source, 1) / uvScaleY,
+                value(source, 2) / uvScaleX,
+                value(source, 3) / uvScaleY
+        );
+        return fixZeroSizeUv(uv, 1.0D / uvScaleX, 1.0D / uvScaleY);
+    }
+
+    private static JsonArray fixZeroSizeUv(JsonArray uv, double minWidth, double minHeight)
+    {
+        double u1 = value(uv, 0);
+        double v1 = value(uv, 1);
+        double u2 = value(uv, 2);
+        double v2 = value(uv, 3);
+
+        if (Math.abs(u2 - u1) < EPSILON) {
+            u2 = expandUvEnd(u1, minWidth);
         }
-        return uv;
+        if (Math.abs(v2 - v1) < EPSILON) {
+            v2 = expandUvEnd(v1, minHeight);
+        }
+
+        return array(u1, v1, u2, v2);
+    }
+
+    private static double expandUvEnd(double start, double amount)
+    {
+        if (start + amount <= 16.0D) {
+            return start + amount;
+        }
+        return start - amount;
     }
 
     private static double getTextureWidth(JsonObject source, boolean blockbenchProject)
@@ -287,6 +316,20 @@ public final class BlockbenchItemModelTranslator
         }
         if (source.has("texture_size")) {
             return value(source.getAsJsonArray("texture_size"), 0);
+        }
+        return 256.0D;
+    }
+
+    private static double getTextureHeight(JsonObject source, boolean blockbenchProject)
+    {
+        if (blockbenchProject && source.has("resolution")) {
+            JsonObject resolution = source.getAsJsonObject("resolution");
+            if (resolution.has("height")) {
+                return resolution.get("height").getAsDouble();
+            }
+        }
+        if (source.has("texture_size")) {
+            return value(source.getAsJsonArray("texture_size"), 1);
         }
         return 256.0D;
     }
