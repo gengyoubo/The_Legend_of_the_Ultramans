@@ -25,6 +25,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.CHICKEN, "chicken", 0.3F);
         registerRenderer(event, ModEntityTypes.GUARDIAN_ELDER, "guardian_elder", 0.8F);
         registerRenderer(event, ModEntityTypes.ALLAY, "allay", 0.3F);
+        registerRenderer(event, ModEntityTypes.ANIMATED_METEOR_BLAZMET, "animated_meteor_blazmet", 0.7F);
         registerRenderer(event, ModEntityTypes.AXOLOTL_LUCY, "axolotl_lucy", 0.3F);
         registerRenderer(event, ModEntityTypes.BABARU_ALIEN, "babaru_alien", 0.8F);
         registerRenderer(event, ModEntityTypes.BATTLE_MECH, "battle_mech", 0.8F);
@@ -38,8 +39,16 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.CERBERUS, "cerberus", 0.7F);
         registerRenderer(event, ModEntityTypes.CAT, "cat", 0.4F);
         registerRenderer(event, ModEntityTypes.COW, "cow", 0.5F);
+        registerRenderer(event, ModEntityTypes.COSMIC_BULLIBARD, "cosmic_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING, "crystallize_black_king", 0.8F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZEBLACKKING, "crystallizeblackking", 0.8F);
+        registerRenderer(event, ModEntityTypes.DARK_SOUL_GESPIKET, "dark_soul_gespiket", 0.8F);
+        registerRenderer(event, ModEntityTypes.DIAMOND_ULTRAMAN_BASIC, "diamond_ultraman_basic", 0.8F);
+        registerRenderer(event, ModEntityTypes.DIAMOND_ULTRAMAN_RUIN_FLOWER_DEMON, "diamond_ultraman_ruin_flower_demon", 0.8F);
+        registerRenderer(event, ModEntityTypes.DIAMOND_ULTRAMAN_SATAN_DEMON_KING, "diamond_ultraman_satan_demon_king", 0.8F);
+        registerRenderer(event, ModEntityTypes.DIAMOND_ULTRAMAN_SATAN_RITUAL, "diamond_ultraman_satan_ritual", 0.8F);
+        registerRenderer(event, ModEntityTypes.DIAMOND_ULTRAMAN_SECOND, "diamond_ultraman_second", 0.8F);
+        registerRenderer(event, ModEntityTypes.EMBER_GUARDIAN, "ember_guardian", 0.8F);
         registerRenderer(event, ModEntityTypes.ENDERMAN, "enderman", 0.5F);
         registerRenderer(event, ModEntityTypes.FOX, "fox", 0.4F);
         registerRenderer(event, ModEntityTypes.GHAST, "ghast", 1.2F);
@@ -49,6 +58,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM, "lebic_demon_form", 0.8F);
         registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", 0.8F);
         registerRenderer(event, ModEntityTypes.MOYINGLONG, "moyinglong", 1.2F);
+        registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD, "modified_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.NAKELIANS, "nakelians", 0.7F);
         registerRenderer(event, ModEntityTypes.PHANTOM, "phantom", 0.5F);
         registerRenderer(event, ModEntityTypes.PIG, "pig", 0.5F);
@@ -58,6 +68,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.RINGUA_IGONOTA, "ringua_igonota", 0.8F);
         registerRenderer(event, ModEntityTypes.RUIN_CHIMERA, "ruin_chimera", 1.0F);
         registerRenderer(event, ModEntityTypes.RUIN_ANTONLA, "ruin_antonla", 0.8F);
+        registerRenderer(event, ModEntityTypes.SATAN_HAND, "satan_hand", 0.7F);
         registerRenderer(event, ModEntityTypes.SOUL_OF_MOUNTAINS, "soul_of_mountains", 0.8F);
         registerRenderer(event, ModEntityTypes.SPECIAL_EX_ELEKING, "special_ex_eleking", 0.8F);
         registerRenderer(event, ModEntityTypes.YOUZHUSHOU, "youzhushou", 0.7F);
