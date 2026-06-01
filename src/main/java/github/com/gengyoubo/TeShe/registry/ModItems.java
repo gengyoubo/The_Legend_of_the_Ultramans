@@ -2,11 +2,14 @@ package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.item.GeckoModelItem;
+import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
+import github.com.gengyoubo.TeShe.item.GeckoSwordItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,17 +29,17 @@ public final class ModItems
     public static final RegistryObject<Item> SMDRTK_SUIT = registerModelItem("smdrtk_suit");
     public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = registerModelItem("smdrtk_energy_smg");
     public static final RegistryObject<Item> SMDRTK_ENERGY_RIFLE = registerModelItem("smdrtk_energy_rifle");
-    public static final RegistryObject<Item> COURAGE_CUTTER = registerModelItem("courage_cutter");
-    public static final RegistryObject<Item> COURAGE_CUTTER_INCOMPLETE = registerModelItem("courage_cutter_incomplete");
-    public static final RegistryObject<Item> KE_E_BO_JUDGEMENT_BLADE = registerModelItem("ke_e_bo_judgement_blade");
+    public static final RegistryObject<Item> COURAGE_CUTTER = registerSwordItem("courage_cutter");
+    public static final RegistryObject<Item> COURAGE_CUTTER_INCOMPLETE = registerSwordItem("courage_cutter_incomplete");
+    public static final RegistryObject<Item> KE_E_BO_JUDGEMENT_BLADE = registerSwordItem("ke_e_bo_judgement_blade");
     public static final RegistryObject<Item> KE_E_BO_CRYSTAL = registerModelItem("ke_e_bo_crystal");
-    public static final RegistryObject<Item> RAZOR_DEMAGA_CUTTER = registerModelItem("razor_demaga_cutter");
+    public static final RegistryObject<Item> RAZOR_DEMAGA_CUTTER = registerSwordItem("razor_demaga_cutter");
     public static final RegistryObject<Item> RAZOR_DEMAGA_CRYSTAL = registerModelItem("razor_demaga_crystal");
-    public static final RegistryObject<Item> GOMORA_LANCE = registerModelItem("gomora_lance");
+    public static final RegistryObject<Item> GOMORA_LANCE = registerSwordItem("gomora_lance");
     public static final RegistryObject<Item> BASIC_CRYSTAL = registerModelItem("basic_crystal");
     public static final RegistryObject<Item> RIDGE_GOMORA_CRYSTAL = registerModelItem("ridge_gomora_crystal");
-    public static final RegistryObject<Item> BULLIBARD_RIPPER_RIGHT = registerModelItem("bullibard_ripper_right");
-    public static final RegistryObject<Item> BULLIBARD_RIPPER_LEFT = registerModelItem("bullibard_ripper_left");
+    public static final RegistryObject<Item> BULLIBARD_RIPPER_RIGHT = registerSwordItem("bullibard_ripper_right");
+    public static final RegistryObject<Item> BULLIBARD_RIPPER_LEFT = registerSwordItem("bullibard_ripper_left");
     public static final RegistryObject<Item> BOOSTER_CUTTER_ALPHA = registerModelItem("booster_cutter_alpha");
     public static final RegistryObject<Item> BOOSTER_CUTTER_BETA = registerModelItem("booster_cutter_beta");
     public static final RegistryObject<Item> BOOSTER_RIPPER = registerModelItem("booster_ripper");
@@ -44,23 +47,22 @@ public final class ModItems
     public static final RegistryObject<Item> BLACK_KING_CRYSTAL = registerModelItem("black_king_crystal");
     public static final RegistryObject<Item> DIAMOND_CRYSTAL_SMASHER = registerModelItem("diamond_crystal_smasher");
     public static final RegistryObject<Item> TRUE_DIAMOND_CRYSTAL_SMASHER = registerModelItem("true_diamond_crystal_smasher");
-    public static final RegistryObject<Item> PROPULSION_CUTTER = registerModelItem("propulsion_cutter");
-    public static final RegistryObject<Item> PROPULSOR_SOUL = registerModelItem("propulsor_soul");
+    public static final RegistryObject<Item> PROPULSION_CUTTER = registerSwordItem("propulsion_cutter");
+    public static final RegistryObject<Item> PROPULSOR_SOUL = registerSwordItem("propulsor_soul");
     public static final RegistryObject<Item> RIPPER_CRYSTAL = registerModelItem("ripper_crystal");
     public static final RegistryObject<Item> MODIFIED_BULLIBARD_CRYSTAL = registerModelItem("modified_bullibard_crystal");
-    public static final RegistryObject<Item> NEBULA_RING_ENERGY_BLADE = registerModelItem("nebula_ring_energy_blade");
-    public static final RegistryObject<Item> ZETTON_ABSORBER = registerModelItem("zetton_absorber");
+    public static final RegistryObject<Item> NEBULA_RING_ENERGY_BLADE = registerSwordItem("nebula_ring_energy_blade");
+    public static final RegistryObject<Item> ZETTON_ABSORBER = registerShieldItem("zetton_absorber");
     public static final RegistryObject<Item> ZETTON_CRYSTAL = registerModelItem("zetton_crystal");
     public static final RegistryObject<Item> HYPER_CRYSTAL = registerModelItem("hyper_crystal");
     public static final RegistryObject<Item> RUIN_EX_ELEKING_CRYSTAL = registerModelItem("ruin_ex_eleking_crystal");
     public static final RegistryObject<Item> BLANK_CRYSTAL = registerModelItem("blank_crystal");
     public static final RegistryObject<Item> STARLIGHT_CRYSTAL = registerModelItem("starlight_crystal");
     public static final RegistryObject<Item> KING_JOE_CRYSTAL = registerModelItem("king_joe_crystal");
-    public static final RegistryObject<Item> KING_JOE_SMASHER = registerModelItem("king_joe_smasher");
-    public static final RegistryObject<Item> BLACK_KING_SLAUGHTER = registerModelItem("black_king_slaughter");
+    public static final RegistryObject<Item> KING_JOE_SMASHER = registerSwordItem("king_joe_smasher");
+    public static final RegistryObject<Item> BLACK_KING_SLAUGHTER = registerSwordItem("black_king_slaughter");
     public static final RegistryObject<Item> CAMORRA = registerModelItem("camorra");
-    public static final RegistryObject<Item> DEVOURER_RUIN = registerModelItem("devourer_ruin");
-    public static final RegistryObject<Item> JADON_ABSORBS = registerModelItem("jadon_absorbs");
+    public static final RegistryObject<Item> DEVOURER_RUIN = registerSwordItem("devourer_ruin");
     public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
             "chicken_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
@@ -158,7 +160,6 @@ public final class ModItems
             BLACK_KING_SLAUGHTER,
             CAMORRA,
             DEVOURER_RUIN,
-            JADON_ABSORBS,
             CHICKEN_SPAWN_EGG,
             GUARDIAN_ELDER_SPAWN_EGG,
             ALLAY_SPAWN_EGG,
@@ -224,6 +225,16 @@ public final class ModItems
     private static RegistryObject<Item> registerModelItem(String name)
     {
         return ITEMS.register(name, () -> new GeckoModelItem(name, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    }
+
+    private static RegistryObject<Item> registerSwordItem(String name)
+    {
+        return ITEMS.register(name, () -> new GeckoSwordItem(name, Tiers.DIAMOND, 3, -2.4F, new Item.Properties().rarity(Rarity.UNCOMMON)));
+    }
+
+    private static RegistryObject<Item> registerShieldItem(String name)
+    {
+        return ITEMS.register(name, () -> new GeckoShieldItem(name, new Item.Properties().durability(336).rarity(Rarity.UNCOMMON)));
     }
 
     private static RegistryObject<Item> registerSpawnEgg(
