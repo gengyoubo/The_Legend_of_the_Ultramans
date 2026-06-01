@@ -46,7 +46,6 @@ public final class ModItems
     public static final RegistryObject<Item> TRUE_DIAMOND_CRYSTAL_SMASHER = registerModelItem("true_diamond_crystal_smasher");
     public static final RegistryObject<Item> PROPULSION_CUTTER = registerModelItem("propulsion_cutter");
     public static final RegistryObject<Item> PROPULSOR_SOUL = registerModelItem("propulsor_soul");
-    public static final RegistryObject<Item> SATAN_HAND = registerModelItem("satan_hand");
     public static final RegistryObject<Item> RIPPER_CRYSTAL = registerModelItem("ripper_crystal");
     public static final RegistryObject<Item> MODIFIED_BULLIBARD_CRYSTAL = registerModelItem("modified_bullibard_crystal");
     public static final RegistryObject<Item> NEBULA_RING_ENERGY_BLADE = registerModelItem("nebula_ring_energy_blade");
@@ -62,9 +61,6 @@ public final class ModItems
     public static final RegistryObject<Item> CAMORRA = registerModelItem("camorra");
     public static final RegistryObject<Item> DEVOURER_RUIN = registerModelItem("devourer_ruin");
     public static final RegistryObject<Item> JADON_ABSORBS = registerModelItem("jadon_absorbs");
-    public static final RegistryObject<Item> LANCE = registerModelItem("lance");
-    public static final RegistryObject<Item> TXAR = registerModelItem("txar");
-    public static final RegistryObject<Item> TXSMG = registerModelItem("txsmg");
     public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
             "chicken_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
@@ -148,7 +144,6 @@ public final class ModItems
             TRUE_DIAMOND_CRYSTAL_SMASHER,
             PROPULSION_CUTTER,
             PROPULSOR_SOUL,
-            SATAN_HAND,
             RIPPER_CRYSTAL,
             MODIFIED_BULLIBARD_CRYSTAL,
             NEBULA_RING_ENERGY_BLADE,
@@ -164,9 +159,6 @@ public final class ModItems
             CAMORRA,
             DEVOURER_RUIN,
             JADON_ABSORBS,
-            LANCE,
-            TXAR,
-            TXSMG,
             CHICKEN_SPAWN_EGG,
             GUARDIAN_ELDER_SPAWN_EGG,
             ALLAY_SPAWN_EGG,
