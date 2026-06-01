@@ -1,4 +1,4 @@
-{
+﻿{
 	"format_version": "1.21.110",
 	"minecraft:geometry": [
 		{
@@ -6,9 +6,9 @@
 				"identifier": "geometry.teshe.booster_cutter_alpha",
 				"texture_width": 128,
 				"texture_height": 128,
-				"visible_bounds_width": 2,
-				"visible_bounds_height": 2,
-				"visible_bounds_offset": [0, 0, 0]
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
 			},
 			"bones": [
 				{

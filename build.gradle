@@ -123,7 +123,7 @@ tasks.register('convertBbmodelsToGecko', JavaExec) {
     mainClass = 'github.com.gengyoubo.TeShe.tools.BlockbenchGeoModelTranslator'
     args '--batch',
             file('bbmodel/item_model_map.json').absolutePath,
-            file('bbmodel').absolutePath,
+            file('bbmodel/item').absolutePath,
             file('src/main/resources/assets/teshe/geo/item').absolutePath,
             file('src/main/resources/assets/teshe/models/item').absolutePath,
             file('src/main/resources/assets/teshe/animations/item').absolutePath,
