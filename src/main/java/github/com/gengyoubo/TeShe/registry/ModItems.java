@@ -1,12 +1,15 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.item.GeckoArmorItem;
 import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
 import github.com.gengyoubo.TeShe.item.GeckoSwordItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
@@ -26,7 +29,10 @@ public final class ModItems
             "smdrtk_multi_function_pistol",
             () -> new SmdrtkMultiFunctionPistolItem(new Item.Properties().stacksTo(1).durability(320).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> SMDRTK_SUIT = registerModelItem("smdrtk_suit");
+    public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", ArmorItem.Type.HELMET);
+    public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", ArmorItem.Type.CHESTPLATE);
+    public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", ArmorItem.Type.LEGGINGS);
+    public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", ArmorItem.Type.BOOTS);
     public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = registerModelItem("smdrtk_energy_smg");
     public static final RegistryObject<Item> SMDRTK_ENERGY_RIFLE = registerModelItem("smdrtk_energy_rifle");
     public static final RegistryObject<Item> COURAGE_CUTTER = registerSwordItem("courage_cutter");
@@ -107,7 +113,10 @@ public final class ModItems
     public static final RegistryObject<Item> ZOMBIE_SPAWN_EGG = registerSpawnEgg("zombie_spawn_egg", ModEntityTypes.ZOMBIE, 0x536B45, 0x7B5E45);
 
     public static final List<RegistryObject<Item>> MODEL_ITEMS = List.of(
-            SMDRTK_SUIT,
+            SMDRTK_HELMET,
+            SMDRTK_CHESTPLATE,
+            SMDRTK_LEGGINGS,
+            SMDRTK_BOOTS,
             SMDRTK_MULTI_FUNCTION_PISTOL,
             SMDRTK_ENERGY_SMG,
             SMDRTK_ENERGY_RIFLE,
@@ -200,6 +209,16 @@ public final class ModItems
     private static RegistryObject<Item> registerModelItem(String name)
     {
         return ITEMS.register(name, () -> new GeckoModelItem(name, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    }
+
+    private static RegistryObject<Item> registerArmorItem(String name, ArmorItem.Type type)
+    {
+        return ITEMS.register(name, () -> new GeckoArmorItem(
+                "smdrtk_suit",
+                ArmorMaterials.DIAMOND,
+                type,
+                new Item.Properties().rarity(Rarity.RARE)
+        ));
     }
 
     private static RegistryObject<Item> registerSwordItem(String name)
