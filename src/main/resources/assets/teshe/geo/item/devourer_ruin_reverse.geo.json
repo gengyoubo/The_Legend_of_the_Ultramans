@@ -6,14 +6,14 @@
 				"identifier": "geometry.teshe.devourer_ruin_reverse",
 				"texture_width": 128,
 				"texture_height": 128,
-				"visible_bounds_width": 3,
-				"visible_bounds_height": 4.5,
-				"visible_bounds_offset": [0, 1.75, 0]
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
 			},
 			"bones": [
 				{
 					"name": "bone",
-					"pivot": [0, 1, 0]
+					"pivot": [-0.04904, 16.16747, 0]
 				},
 				{
 					"name": "bone5",

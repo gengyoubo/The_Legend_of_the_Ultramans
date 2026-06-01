@@ -1,9 +1,9 @@
-{
+﻿{
 	"format_version": "1.21.110",
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.unknown",
+				"identifier": "geometry.teshe.ke_e_bo_judgement_blade",
 				"texture_width": 128,
 				"texture_height": 128,
 				"visible_bounds_width": 3,

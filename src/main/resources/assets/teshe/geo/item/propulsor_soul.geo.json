@@ -1,12 +1,12 @@
-{
+﻿{
 	"format_version": "1.21.110",
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.unknown",
+				"identifier": "geometry.teshe.propulsor_soul",
 				"texture_width": 256,
 				"texture_height": 256,
-				"visible_bounds_width": 2,
+				"visible_bounds_width": 3,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
 			},
