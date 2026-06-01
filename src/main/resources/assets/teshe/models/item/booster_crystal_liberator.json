@@ -1,3 +1,114 @@
 ﻿{
-  "parent": "builtin/entity"
+    "credit":  "Made with Blockbench",
+    "parent":  "builtin/entity",
+    "texture_size":  [
+                         64,
+                         64
+                     ],
+    "display":  {
+                    "thirdperson_righthand":  {
+                                                  "rotation":  [
+                                                                   0,
+                                                                   0,
+                                                                   -90
+                                                               ],
+                                                  "translation":  [
+                                                                      0,
+                                                                      -2,
+                                                                      0
+                                                                  ],
+                                                  "scale":  [
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                              },
+                    "thirdperson_lefthand":  {
+                                                 "rotation":  [
+                                                                  0,
+                                                                  0,
+                                                                  -90
+                                                              ],
+                                                 "translation":  [
+                                                                     0,
+                                                                     -2,
+                                                                     0
+                                                                 ],
+                                                 "scale":  [
+                                                               1,
+                                                               1,
+                                                               1
+                                                           ]
+                                             },
+                    "firstperson_righthand":  {
+                                                  "translation":  [
+                                                                      -0.5,
+                                                                      0.25,
+                                                                      0
+                                                                  ],
+                                                  "scale":  [
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                              },
+                    "firstperson_lefthand":  {
+                                                 "translation":  [
+                                                                     -0.25,
+                                                                     0.25,
+                                                                     0
+                                                                 ],
+                                                 "scale":  [
+                                                               1,
+                                                               1,
+                                                               1
+                                                           ]
+                                             },
+                    "ground":  {
+                                   "translation":  [
+                                                       2,
+                                                       0,
+                                                       -1.5
+                                                   ],
+                                   "scale":  [
+                                                 1,
+                                                 1,
+                                                 1
+                                             ]
+                               },
+                    "gui":  {
+                                "rotation":  [
+                                                 -125,
+                                                 58.210000000000036,
+                                                 164.75
+                                             ],
+                                "translation":  [
+                                                    -4,
+                                                    -6,
+                                                    0
+                                                ],
+                                "scale":  [
+                                              2,
+                                              2,
+                                              2
+                                          ]
+                            },
+                    "fixed":  {
+                                  "rotation":  [
+                                                   90,
+                                                   0,
+                                                   -180
+                                               ],
+                                  "translation":  [
+                                                      0,
+                                                      7,
+                                                      5.25
+                                                  ],
+                                  "scale":  [
+                                                2,
+                                                2,
+                                                2
+                                            ]
+                              }
+                }
 }
