@@ -32,8 +32,13 @@ public final class ModEntityTypes
     );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> BATTLE_MECH = registerGeoMob("battle_mech", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> BLAZE = registerGeoMob("blaze", 0.6F, 1.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> AXOLOTL_LUCY = registerGeoMob("axolotl_lucy", 0.75F, 0.42F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> BABARU_ALIEN = registerGeoMob("babaru_alien", 0.9F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_BASIC = registerGeoMob("booster_ultraman_basic", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_COURAGE_BURNING = registerGeoMob("booster_ultraman_courage_burning", 0.9F, 2.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_HYPER = registerGeoMob("booster_ultraman_hyper", 0.9F, 2.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED = registerGeoMob("booster_ultraman_hyper_cerberus_armed", 0.9F, 2.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED = registerGeoMob("booster_ultraman_hyper_yuluan_armed", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> BOOSTER_ULTRAMAN_STARLIGHT_BURST = registerGeoMob("booster_ultraman_starlight_burst", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CERBERUS = registerGeoMob("cerberus", 1.4F, 1.4F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING = registerGeoMob("crystallize_black_king", 1.4F, 2.6F);
@@ -46,7 +51,10 @@ public final class ModEntityTypes
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LERBIS_NEMESIS_THE_SIDEKICK = registerGeoMob("lerbis_nemesis_the_sidekick", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MOYINGLONG = registerGeoMob("moyinglong", 4.0F, 4.0F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> NAKELIANS = registerGeoMob("nakelians", 0.9F, 2.2F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> RAZOR_DEMAGA = registerGeoMob("razor_demaga", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RINGUA_IGONOTA = registerGeoMob("ringua_igonota", 1.2F, 2.6F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_CHIMERA = registerGeoMob("ruin_chimera", 1.8F, 2.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> SPECIAL_EX_ELEKING = registerGeoMob("special_ex_eleking", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> YOUZHUSHOU = registerGeoMob("youzhushou", 1.0F, 2.0F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> ZOMBIE = registerGeoMob("zombie", 0.6F, 1.95F);
 

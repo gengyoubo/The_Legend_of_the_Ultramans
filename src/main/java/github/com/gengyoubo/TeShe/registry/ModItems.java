@@ -73,8 +73,13 @@ public final class ModItems
     );
     public static final RegistryObject<Item> BATTLE_MECH_SPAWN_EGG = registerSpawnEgg("battle_mech_spawn_egg", ModEntityTypes.BATTLE_MECH, 0x4D5965, 0xE74C3C);
     public static final RegistryObject<Item> BLAZE_SPAWN_EGG = registerSpawnEgg("blaze_spawn_egg", ModEntityTypes.BLAZE, 0xF6B33F, 0x5B3216);
+    public static final RegistryObject<Item> AXOLOTL_LUCY_SPAWN_EGG = registerSpawnEgg("axolotl_lucy_spawn_egg", ModEntityTypes.AXOLOTL_LUCY, 0xF2B8C6, 0x8A5C78);
+    public static final RegistryObject<Item> BABARU_ALIEN_SPAWN_EGG = registerSpawnEgg("babaru_alien_spawn_egg", ModEntityTypes.BABARU_ALIEN, 0x444048, 0xB4A072);
     public static final RegistryObject<Item> BOOSTER_ULTRAMAN_BASIC_SPAWN_EGG = registerSpawnEgg("booster_ultraman_basic_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_BASIC, 0xC9D0D8, 0xD84A34);
     public static final RegistryObject<Item> BOOSTER_ULTRAMAN_COURAGE_BURNING_SPAWN_EGG = registerSpawnEgg("booster_ultraman_courage_burning_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_COURAGE_BURNING, 0xD95032, 0xF0C050);
+    public static final RegistryObject<Item> BOOSTER_ULTRAMAN_HYPER_SPAWN_EGG = registerSpawnEgg("booster_ultraman_hyper_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_HYPER, 0xC9D0D8, 0x5DADE2);
+    public static final RegistryObject<Item> BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED_SPAWN_EGG = registerSpawnEgg("booster_ultraman_hyper_cerberus_armed_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED, 0x36313A, 0xD3543C);
+    public static final RegistryObject<Item> BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED_SPAWN_EGG = registerSpawnEgg("booster_ultraman_hyper_yuluan_armed_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED, 0x36313A, 0x5DADE2);
     public static final RegistryObject<Item> BOOSTER_ULTRAMAN_STARLIGHT_BURST_SPAWN_EGG = registerSpawnEgg("booster_ultraman_starlight_burst_spawn_egg", ModEntityTypes.BOOSTER_ULTRAMAN_STARLIGHT_BURST, 0xD7E7FF, 0x3F78C5);
     public static final RegistryObject<Item> CERBERUS_SPAWN_EGG = registerSpawnEgg("cerberus_spawn_egg", ModEntityTypes.CERBERUS, 0x2C2B32, 0xC0703A);
     public static final RegistryObject<Item> CRYSTALLIZE_BLACK_KING_SPAWN_EGG = registerSpawnEgg("crystallize_black_king_spawn_egg", ModEntityTypes.CRYSTALLIZE_BLACK_KING, 0x2B2431, 0xA5D8FF);
@@ -87,7 +92,10 @@ public final class ModItems
     public static final RegistryObject<Item> LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG = registerSpawnEgg("lerbis_nemesis_the_sidekick_spawn_egg", ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, 0x2C2C35, 0x7DD7D2);
     public static final RegistryObject<Item> MOYINGLONG_SPAWN_EGG = registerSpawnEgg("moyinglong_spawn_egg", ModEntityTypes.MOYINGLONG, 0x1D2028, 0x6E87AA);
     public static final RegistryObject<Item> NAKELIANS_SPAWN_EGG = registerSpawnEgg("nakelians_spawn_egg", ModEntityTypes.NAKELIANS, 0x726F67, 0xDDC57B);
+    public static final RegistryObject<Item> RAZOR_DEMAGA_SPAWN_EGG = registerSpawnEgg("razor_demaga_spawn_egg", ModEntityTypes.RAZOR_DEMAGA, 0x4B3645, 0xD4584B);
     public static final RegistryObject<Item> RINGUA_IGONOTA_SPAWN_EGG = registerSpawnEgg("ringua_igonota_spawn_egg", ModEntityTypes.RINGUA_IGONOTA, 0x3B3152, 0xB890FF);
+    public static final RegistryObject<Item> RUIN_CHIMERA_SPAWN_EGG = registerSpawnEgg("ruin_chimera_spawn_egg", ModEntityTypes.RUIN_CHIMERA, 0x34252B, 0xD84A34);
+    public static final RegistryObject<Item> SPECIAL_EX_ELEKING_SPAWN_EGG = registerSpawnEgg("special_ex_eleking_spawn_egg", ModEntityTypes.SPECIAL_EX_ELEKING, 0xB7C057, 0x2F2C33);
     public static final RegistryObject<Item> YOUZHUSHOU_SPAWN_EGG = registerSpawnEgg("youzhushou_spawn_egg", ModEntityTypes.YOUZHUSHOU, 0x4B5660, 0x9DC85A);
     public static final RegistryObject<Item> ZOMBIE_SPAWN_EGG = registerSpawnEgg("zombie_spawn_egg", ModEntityTypes.ZOMBIE, 0x536B45, 0x7B5E45);
 
@@ -137,8 +145,13 @@ public final class ModItems
             GUARDIAN_ELDER_SPAWN_EGG,
             BATTLE_MECH_SPAWN_EGG,
             BLAZE_SPAWN_EGG,
+            AXOLOTL_LUCY_SPAWN_EGG,
+            BABARU_ALIEN_SPAWN_EGG,
             BOOSTER_ULTRAMAN_BASIC_SPAWN_EGG,
             BOOSTER_ULTRAMAN_COURAGE_BURNING_SPAWN_EGG,
+            BOOSTER_ULTRAMAN_HYPER_SPAWN_EGG,
+            BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED_SPAWN_EGG,
+            BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED_SPAWN_EGG,
             BOOSTER_ULTRAMAN_STARLIGHT_BURST_SPAWN_EGG,
             CERBERUS_SPAWN_EGG,
             CRYSTALLIZE_BLACK_KING_SPAWN_EGG,
@@ -151,7 +164,10 @@ public final class ModItems
             LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG,
             MOYINGLONG_SPAWN_EGG,
             NAKELIANS_SPAWN_EGG,
+            RAZOR_DEMAGA_SPAWN_EGG,
             RINGUA_IGONOTA_SPAWN_EGG,
+            RUIN_CHIMERA_SPAWN_EGG,
+            SPECIAL_EX_ELEKING_SPAWN_EGG,
             YOUZHUSHOU_SPAWN_EGG,
             ZOMBIE_SPAWN_EGG
     );

@@ -23,10 +23,15 @@ public final class ClientModEvents
     {
         registerRenderer(event, ModEntityTypes.CHICKEN, "chicken", 0.3F);
         registerRenderer(event, ModEntityTypes.GUARDIAN_ELDER, "guardian_elder", 0.8F);
+        registerRenderer(event, ModEntityTypes.AXOLOTL_LUCY, "axolotl_lucy", 0.3F);
+        registerRenderer(event, ModEntityTypes.BABARU_ALIEN, "babaru_alien", 0.8F);
         registerRenderer(event, ModEntityTypes.BATTLE_MECH, "battle_mech", 0.8F);
         registerRenderer(event, ModEntityTypes.BLAZE, "blaze", 0.5F);
         registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_BASIC, "booster_ultraman_basic", 0.8F);
         registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_COURAGE_BURNING, "booster_ultraman_courage_burning", 0.8F);
+        registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER, "booster_ultraman_hyper", 0.8F);
+        registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED, "booster_ultraman_hyper_cerberus_armed", 0.8F);
+        registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED, "booster_ultraman_hyper_yuluan_armed", 0.8F);
         registerRenderer(event, ModEntityTypes.BOOSTER_ULTRAMAN_STARLIGHT_BURST, "booster_ultraman_starlight_burst", 0.8F);
         registerRenderer(event, ModEntityTypes.CERBERUS, "cerberus", 0.7F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING, "crystallize_black_king", 0.8F);
@@ -39,7 +44,10 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", 0.8F);
         registerRenderer(event, ModEntityTypes.MOYINGLONG, "moyinglong", 1.2F);
         registerRenderer(event, ModEntityTypes.NAKELIANS, "nakelians", 0.7F);
+        registerRenderer(event, ModEntityTypes.RAZOR_DEMAGA, "razor_demaga", 0.8F);
         registerRenderer(event, ModEntityTypes.RINGUA_IGONOTA, "ringua_igonota", 0.8F);
+        registerRenderer(event, ModEntityTypes.RUIN_CHIMERA, "ruin_chimera", 1.0F);
+        registerRenderer(event, ModEntityTypes.SPECIAL_EX_ELEKING, "special_ex_eleking", 0.8F);
         registerRenderer(event, ModEntityTypes.YOUZHUSHOU, "youzhushou", 0.7F);
         registerRenderer(event, ModEntityTypes.ZOMBIE, "zombie", 0.5F);
     }

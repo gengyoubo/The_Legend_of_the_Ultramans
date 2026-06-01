@@ -29,10 +29,15 @@ public final class ModEntityAttributes
                 .add(Attributes.ATTACK_DAMAGE, 8.0D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .build());
+        registerGenericAttributes(event, ModEntityTypes.AXOLOTL_LUCY);
+        registerGenericAttributes(event, ModEntityTypes.BABARU_ALIEN);
         registerGenericAttributes(event, ModEntityTypes.BATTLE_MECH);
         registerGenericAttributes(event, ModEntityTypes.BLAZE);
         registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_BASIC);
         registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_COURAGE_BURNING);
+        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER);
+        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED);
+        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED);
         registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_STARLIGHT_BURST);
         registerGenericAttributes(event, ModEntityTypes.CERBERUS);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);
@@ -45,7 +50,10 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK);
         registerGenericAttributes(event, ModEntityTypes.MOYINGLONG);
         registerGenericAttributes(event, ModEntityTypes.NAKELIANS);
+        registerGenericAttributes(event, ModEntityTypes.RAZOR_DEMAGA);
         registerGenericAttributes(event, ModEntityTypes.RINGUA_IGONOTA);
+        registerGenericAttributes(event, ModEntityTypes.RUIN_CHIMERA);
+        registerGenericAttributes(event, ModEntityTypes.SPECIAL_EX_ELEKING);
         registerGenericAttributes(event, ModEntityTypes.YOUZHUSHOU);
         registerGenericAttributes(event, ModEntityTypes.ZOMBIE);
     }
