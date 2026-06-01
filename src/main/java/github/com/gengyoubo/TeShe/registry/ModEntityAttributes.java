@@ -44,15 +44,8 @@ public final class ModEntityAttributes
         event.put(ModEntityTypes.ALLAY.get(), Allay.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.ANIMATED_METEOR_BLAZMET);
         registerGenericAttributes(event, ModEntityTypes.AXOLOTL_LUCY);
-        registerGenericAttributes(event, ModEntityTypes.BABARU_ALIEN);
         registerGenericAttributes(event, ModEntityTypes.BATTLE_MECH);
         event.put(ModEntityTypes.BLAZE.get(), Blaze.createAttributes().build());
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_BASIC);
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_COURAGE_BURNING);
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER);
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_CERBERUS_ARMED);
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_HYPER_YULUAN_ARMED);
-        registerGenericAttributes(event, ModEntityTypes.BOOSTER_ULTRAMAN_STARLIGHT_BURST);
         registerGenericAttributes(event, ModEntityTypes.CERBERUS);
         event.put(ModEntityTypes.CAT.get(), Cat.createAttributes().build());
         event.put(ModEntityTypes.COW.get(), Cow.createAttributes().build());
@@ -60,23 +53,16 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING);
         registerGenericAttributes(event, ModEntityTypes.DARK_SOUL_GESPIKET);
-        registerGenericAttributes(event, ModEntityTypes.DIAMOND_ULTRAMAN_BASIC);
-        registerGenericAttributes(event, ModEntityTypes.DIAMOND_ULTRAMAN_RUIN_FLOWER_DEMON);
-        registerGenericAttributes(event, ModEntityTypes.DIAMOND_ULTRAMAN_SATAN_DEMON_KING);
-        registerGenericAttributes(event, ModEntityTypes.DIAMOND_ULTRAMAN_SATAN_RITUAL);
-        registerGenericAttributes(event, ModEntityTypes.DIAMOND_ULTRAMAN_SECOND);
         registerGenericAttributes(event, ModEntityTypes.EMBER_GUARDIAN);
         event.put(ModEntityTypes.ENDERMAN.get(), EnderMan.createAttributes().build());
         event.put(ModEntityTypes.FOX.get(), Fox.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.GHAST);
         event.put(ModEntityTypes.GUARDIAN.get(), Guardian.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.HADES_ZAGI);
-        registerGenericAttributes(event, ModEntityTypes.JIEDUN_NANO_GOLD_ANCIENT_BRIDGE_FUSION);
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM);
         registerGenericAttributes(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK);
         registerGenericAttributes(event, ModEntityTypes.MOYINGLONG);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD);
-        registerGenericAttributes(event, ModEntityTypes.NAKELIANS);
         event.put(ModEntityTypes.PHANTOM.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
