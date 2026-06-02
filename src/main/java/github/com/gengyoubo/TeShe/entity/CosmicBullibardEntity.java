@@ -1,12 +1,17 @@
 package github.com.gengyoubo.TeShe.entity;
 
+import github.com.gengyoubo.TeShe.registry.ModItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -20,9 +25,14 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -39,6 +49,11 @@ import software.bernie.geckolib.core.object.PlayState;
 
 public class CosmicBullibardEntity extends GenericTesheGeoMob
 {
+    public static final int NORMAL_VARIANT = 0;
+    public static final int BOSS_VARIANT = 1;
+    public static final double NORMAL_MAX_HEALTH = 500.0D;
+    public static final double BOSS_MAX_HEALTH = 5000.0D;
+
     private static final int BEAM_SEGMENTS = 20;
     private static final int BEAM_TICKS_PER_SEGMENT = 1;
     private static final float BEAM_DAMAGE = 10.0F;
@@ -62,7 +77,9 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private static final double FLIGHT_CHASE_SPEED = 0.9D;
     private static final int FLIGHT_HIT_COOLDOWN_TICKS = 40;
     private static final int ATTACK_ANIMATION_TICKS = 15;
+    private static final float BULLIBARD_FEATHER_DROP_CHANCE = 0.4F;
     private static final EntityDataAccessor<Integer> ATTACK_TICKS = SynchedEntityData.defineId(CosmicBullibardEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> SPECIAL_INDIVIDUAL = SynchedEntityData.defineId(CosmicBullibardEntity.class, EntityDataSerializers.INT);
     private static final DustParticleOptions WHITE_BEAM_HIT_PARTICLE = new DustParticleOptions(new Vector3f(1.0F, 1.0F, 1.0F), 2.5F);
     private static final DustParticleOptions BLUE_BEAM_HIT_PARTICLE = new DustParticleOptions(new Vector3f(0.25F, 0.55F, 1.0F), 2.5F);
     private static final RawAnimation FLY = RawAnimation.begin().thenLoop("fly");
@@ -82,6 +99,11 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private LivingEntity dashTarget;
     private LivingEntity activeBeamTarget;
     private boolean activeBeamStartsBlue;
+    private final ServerBossEvent bossInfo = new ServerBossEvent(
+            Component.empty(),
+            BossEvent.BossBarColor.BLUE,
+            BossEvent.BossBarOverlay.PROGRESS
+    );
 
     public CosmicBullibardEntity(EntityType<? extends PathfinderMob> entityType, Level level)
     {
@@ -105,6 +127,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     {
         super.defineSynchedData();
         entityData.define(ATTACK_TICKS, 0);
+        entityData.define(SPECIAL_INDIVIDUAL, NORMAL_VARIANT);
     }
 
     @Override
@@ -119,6 +142,8 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         if (level().isClientSide()) {
             return;
         }
+
+        updateBossInfo();
 
         if (beamCooldown > 0) {
             beamCooldown--;
@@ -204,9 +229,22 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     }
 
     @Override
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit)
+    {
+        super.dropCustomDeathLoot(source, looting, recentlyHit);
+
+        dropStack(resolveDropItem("thip", "plasma_crystal", ModItems.PLASMA_CRYSTAL.get()), 3 + random.nextInt(2));
+        dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), random.nextInt(3));
+        if (random.nextFloat() < BULLIBARD_FEATHER_DROP_CHANCE) {
+            dropStack(ModItems.BULLIBARD_FEATHER.get(), 1);
+        }
+    }
+
+    @Override
     public void addAdditionalSaveData(CompoundTag tag)
     {
         super.addAdditionalSaveData(tag);
+        tag.putInt("SpecialIndividual", getSpecialIndividual());
         tag.putInt("MeleeHitsTaken", meleeHitsTaken);
         tag.putBoolean("ProjectileReflectionBroken", projectileReflectionBroken);
         tag.putInt("ReflectionDisableTicks", reflectionDisableTicks);
@@ -215,10 +253,39 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     @Override
     public void readAdditionalSaveData(CompoundTag tag)
     {
+        int specialIndividual = tag.getInt("SpecialIndividual");
+        setSpecialIndividual(specialIndividual);
         super.readAdditionalSaveData(tag);
+        setSpecialIndividual(specialIndividual);
         meleeHitsTaken = tag.getInt("MeleeHitsTaken");
         projectileReflectionBroken = tag.getBoolean("ProjectileReflectionBroken");
         reflectionDisableTicks = tag.getInt("ReflectionDisableTicks");
+    }
+
+    @Override
+    public Component getDisplayName()
+    {
+        if (isBossVariant()) {
+            return Component.translatable("entity.teshe.cosmic_bullibard.boss");
+        }
+
+        return super.getDisplayName();
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer player)
+    {
+        super.startSeenByPlayer(player);
+        if (isBossVariant()) {
+            bossInfo.addPlayer(player);
+        }
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer player)
+    {
+        super.stopSeenByPlayer(player);
+        bossInfo.removePlayer(player);
     }
 
     @Override
@@ -244,6 +311,58 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     public boolean isFlying()
     {
         return sustainedFlightMode || dashTicks > 0 || (!onGround() && !isInWaterOrBubble());
+    }
+
+    public void setSpecialIndividual(int specialIndividual)
+    {
+        boolean wasFullHealth = getHealth() >= getMaxHealth();
+        entityData.set(SPECIAL_INDIVIDUAL, specialIndividual);
+        updateVariantMaxHealth(wasFullHealth);
+        if (isBossVariant()) {
+            setPersistenceRequired();
+            bossInfo.setName(getDisplayName());
+        } else {
+            bossInfo.removeAllPlayers();
+        }
+    }
+
+    public int getSpecialIndividual()
+    {
+        return entityData.get(SPECIAL_INDIVIDUAL);
+    }
+
+    public boolean isBossVariant()
+    {
+        return getSpecialIndividual() == BOSS_VARIANT;
+    }
+
+    private void updateVariantMaxHealth(boolean healToFull)
+    {
+        AttributeInstance maxHealth = getAttribute(Attributes.MAX_HEALTH);
+        if (maxHealth == null) {
+            return;
+        }
+
+        double targetMaxHealth = isBossVariant() ? BOSS_MAX_HEALTH : NORMAL_MAX_HEALTH;
+        if (maxHealth.getBaseValue() != targetMaxHealth) {
+            maxHealth.setBaseValue(targetMaxHealth);
+        }
+
+        if (healToFull) {
+            setHealth(getMaxHealth());
+        } else if (getHealth() > getMaxHealth()) {
+            setHealth(getMaxHealth());
+        }
+    }
+
+    private void updateBossInfo()
+    {
+        if (!isBossVariant()) {
+            return;
+        }
+
+        bossInfo.setName(getDisplayName());
+        bossInfo.setProgress(getHealth() / getMaxHealth());
     }
 
     private void reflectNearbyProjectiles()
@@ -588,6 +707,21 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         String typeName = key == null ? "" : key.getPath();
         String className = projectile.getClass().getName().toLowerCase();
         return containsBeamName(typeName) || containsBeamName(className);
+    }
+
+    private Item resolveDropItem(String namespace, String path, Item fallback)
+    {
+        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(namespace, path));
+        return item == null || item == Items.AIR ? fallback : item;
+    }
+
+    private void dropStack(Item item, int count)
+    {
+        if (count <= 0 || item == Items.AIR) {
+            return;
+        }
+
+        spawnAtLocation(new ItemStack(item, count));
     }
 
     private boolean containsBeamName(String name)

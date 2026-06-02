@@ -1,0 +1,21 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "plains",
+    "badlands",
+    "eroded_badlands",
+    "wooded_badlands",
+    "beach",
+    "snowy_beach",
+    "frozen_river",
+    "river",
+    "windswept_gravelly_hills",
+    "windswept_hills"
+  ],
+  "spawners": {
+    "type": "thip:bemular",
+    "weight": 60,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

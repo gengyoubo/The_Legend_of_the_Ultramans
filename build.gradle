@@ -130,3 +130,16 @@ tasks.register('convertBbmodelsToGecko', JavaExec) {
             file('src/main/resources/assets/teshe/textures/item').absolutePath,
             mod_id
 }
+
+tasks.register('testBossBarPngSplit', JavaExec) {
+    group = 'teshe'
+    description = 'Manually analyze whether a boss bar PNG can be split into decoration and moving bar segments.'
+    dependsOn 'testClasses'
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'github.com.gengyoubo.TeShe.tools.BossBarPngSplitTest'
+    systemProperty 'bossBarColumnThreshold', findProperty('bossBarColumnThreshold') ?: '0'
+    args (findProperty('bossBarPng') ?: file('src/main/resources/assets/teshe/textures/gui/boss_bar/img.png').absolutePath)
+}

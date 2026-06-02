@@ -1,6 +1,7 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.item.CosmicBullibardBossSpawnEggItem;
 import github.com.gengyoubo.TeShe.item.GeckoArmorItem;
 import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
@@ -73,6 +74,9 @@ public final class ModItems
     public static final RegistryObject<Item> BLACK_KING_SLAUGHTER = registerSwordItem("black_king_slaughter");
     public static final RegistryObject<Item> CAMORRA = registerModelItem("camorra");
     public static final RegistryObject<Item> DEVOURER_RUIN = registerSwordItem("devourer_ruin");
+    public static final RegistryObject<Item> PLASMA_CRYSTAL = registerSimpleItem("plasma_crystal", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
     public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
             "chicken_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
@@ -90,6 +94,10 @@ public final class ModItems
     public static final RegistryObject<Item> CAT_SPAWN_EGG = registerSpawnEgg("cat_spawn_egg", ModEntityTypes.CAT, 0xA37B5B, 0xE7C9A9);
     public static final RegistryObject<Item> COW_SPAWN_EGG = registerSpawnEgg("cow_spawn_egg", ModEntityTypes.COW, 0x443626, 0xD8C4A8);
     public static final RegistryObject<Item> COSMIC_BULLIBARD_SPAWN_EGG = registerSpawnEgg("cosmic_bullibard_spawn_egg", ModEntityTypes.COSMIC_BULLIBARD, 0x242B42, 0xA8D8FF);
+    public static final RegistryObject<Item> COSMIC_BULLIBARD_BOSS_SPAWN_EGG = ITEMS.register(
+            "cosmic_bullibard_boss_spawn_egg",
+            () -> new CosmicBullibardBossSpawnEggItem(new Item.Properties().rarity(Rarity.UNCOMMON))
+    );
     public static final RegistryObject<Item> CRYSTALLIZE_BLACK_KING_SPAWN_EGG = registerSpawnEgg("crystallize_black_king_spawn_egg", ModEntityTypes.CRYSTALLIZE_BLACK_KING, 0x2B2431, 0xA5D8FF);
     public static final RegistryObject<Item> CRYSTALLIZEBLACKKING_SPAWN_EGG = registerSpawnEgg("crystallizeblackking_spawn_egg", ModEntityTypes.CRYSTALLIZEBLACKKING, 0x2B2431, 0x8FD6E8);
     public static final RegistryObject<Item> DARK_SOUL_GESPIKET_SPAWN_EGG = registerSpawnEgg("dark_soul_gespiket_spawn_egg", ModEntityTypes.DARK_SOUL_GESPIKET, 0x1F1B28, 0x8B5BD6);
@@ -161,6 +169,7 @@ public final class ModItems
             STARLIGHT_CRYSTAL,
             KING_JOE_CRYSTAL,
             CAMORRA,
+            BULLIBARD_FEATHER,
 
             ALLAY_SPAWN_EGG,
             BLAZE_SPAWN_EGG,
@@ -184,6 +193,7 @@ public final class ModItems
             BATTLE_MECH_SPAWN_EGG,
             CERBERUS_SPAWN_EGG,
             COSMIC_BULLIBARD_SPAWN_EGG,
+            COSMIC_BULLIBARD_BOSS_SPAWN_EGG,
             CRYSTALLIZE_BLACK_KING_SPAWN_EGG,
             CRYSTALLIZEBLACKKING_SPAWN_EGG,
             DARK_SOUL_GESPIKET_SPAWN_EGG,
@@ -235,6 +245,11 @@ public final class ModItems
     private static RegistryObject<Item> registerShieldItem(String name)
     {
         return ITEMS.register(name, () -> new GeckoShieldItem(name, new Item.Properties().durability(336).rarity(Rarity.UNCOMMON)));
+    }
+
+    private static RegistryObject<Item> registerSimpleItem(String name, Rarity rarity)
+    {
+        return ITEMS.register(name, () -> new Item(new Item.Properties().rarity(rarity)));
     }
 
     private static RegistryObject<Item> registerSpawnEgg(
