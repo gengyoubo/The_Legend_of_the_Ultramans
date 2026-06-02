@@ -1,6 +1,5 @@
 package github.com.gengyoubo.TeShe.entity;
 
-import github.com.gengyoubo.TeShe.registry.ModParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -8,7 +7,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -28,7 +26,10 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.thip.entity.projectile.LargeProjectile;
+import net.thip.init.THIPModEntities;
 import net.thip.init.THIPModEffects;
+import net.thip.network.Skill;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Vector3f;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -43,6 +44,10 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private static final float BEAM_DAMAGE = 10.0F;
     private static final int BEAM_COOLDOWN_TICKS = 80;
     private static final double BEAM_RANGE = 32.0D;
+    private static final float BEAM_PROJECTILE_SPEED = 1.0F;
+    private static final String BULLIBARD_BEAM_FORWARD = "spark_to_sparkblue";
+    private static final String BULLIBARD_BEAM_REVERSE = "sparkblue_to_spark";
+    private static final String BULLIBARD_BEAM_ABILITY = "PaleHeatWave";
     private static final float DASH_DAMAGE = 100.0F;
     private static final int DASH_COOLDOWN_TICKS = 120;
     private static final int DASH_MAX_TICKS = 18;
@@ -76,9 +81,6 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private boolean sustainedFlightMode;
     private LivingEntity dashTarget;
     private LivingEntity activeBeamTarget;
-    private Vec3 activeBeamStart;
-    private Vec3 activeBeamStep;
-    private SimpleParticleType activeBeamParticle;
     private boolean activeBeamStartsBlue;
 
     public CosmicBullibardEntity(EntityType<? extends PathfinderMob> entityType, Level level)
@@ -310,10 +312,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
 
         faceTarget(target);
         activeBeamTarget = target;
-        activeBeamStart = start;
-        activeBeamStep = direction.normalize().scale(distance / BEAM_SEGMENTS);
         activeBeamStartsBlue = random.nextBoolean();
-        activeBeamParticle = activeBeamStartsBlue ? ModParticleTypes.SPARKBLUE_TO_SPARK.get() : ModParticleTypes.SPARK_TO_SPARKBLUE.get();
         activeBeamSegment = 0;
         activeBeamMoveDelay = 0;
         startAttackAnimation();
@@ -331,33 +330,54 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
             return;
         }
 
+        startAttackAnimation();
         faceTarget(activeBeamTarget);
         if (activeBeamMoveDelay > 0) {
             activeBeamMoveDelay--;
             return;
         }
 
+        spawnFreezingBeamProjectile(serverLevel, activeBeamTarget);
         activeBeamSegment++;
         activeBeamMoveDelay = BEAM_TICKS_PER_SEGMENT - 1;
-        Vec3 particlePos = activeBeamStart.add(activeBeamStep.scale(activeBeamSegment));
-        serverLevel.sendParticles(activeBeamParticle, particlePos.x, particlePos.y, particlePos.z, 1, 0.02D, 0.02D, 0.02D, 0.0D);
-        if (activeBeamTarget.getBoundingBox().inflate(0.25D).contains(particlePos)) {
-            hurtWithNoInvulnerability(activeBeamTarget, BEAM_DAMAGE);
-            applyCold(activeBeamTarget);
-            spawnBeamHitParticles(serverLevel, activeBeamTarget);
-        }
-
         if (activeBeamSegment >= BEAM_SEGMENTS) {
             stopFreezingBeam();
         }
     }
 
+    @SuppressWarnings("unchecked")
+    private void spawnFreezingBeamProjectile(ServerLevel serverLevel, LivingEntity target)
+    {
+        Vec3 start = new Vec3(getX(), getEyeY() - 0.1D, getZ());
+        Vec3 end = new Vec3(target.getX(), target.getEyeY(), target.getZ());
+        Vec3 direction = end.subtract(start);
+        if (direction.lengthSqr() <= 0.01D) {
+            return;
+        }
+
+        String beamName = activeBeamStartsBlue ? BULLIBARD_BEAM_REVERSE : BULLIBARD_BEAM_FORWARD;
+        LargeProjectile projectile = Skill.spawnCustomProjectile(
+                (EntityType<LargeProjectile>)THIPModEntities.LARGE.get(),
+                serverLevel,
+                this,
+                BEAM_DAMAGE,
+                1,
+                (byte)0,
+                largeProjectile -> {
+                    largeProjectile.getEntityData().set(LargeProjectile.ABILITY, BULLIBARD_BEAM_ABILITY);
+                    largeProjectile.getEntityData().set(LargeProjectile.BEAM, beamName);
+                    largeProjectile.getEntityData().set(LargeProjectile.BANG, true);
+                }
+        );
+        projectile.setPos(start.x, start.y, start.z);
+        Vec3 normalizedDirection = direction.normalize();
+        projectile.shoot(normalizedDirection.x, normalizedDirection.y, normalizedDirection.z, BEAM_PROJECTILE_SPEED, 0.0F);
+        serverLevel.addFreshEntity(projectile);
+    }
+
     private void stopFreezingBeam()
     {
         activeBeamTarget = null;
-        activeBeamStart = null;
-        activeBeamStep = null;
-        activeBeamParticle = null;
         activeBeamStartsBlue = false;
         activeBeamSegment = 0;
         activeBeamMoveDelay = 0;
@@ -482,26 +502,47 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         return entityData.get(ATTACK_TICKS);
     }
 
-    private void applyCold(LivingEntity target)
+    private static void applyCold(LivingEntity target)
     {
         target.setTicksFrozen(Math.max(target.getTicksFrozen(), target.getTicksRequiredToFreeze() + 80));
-        target.addEffect(new MobEffectInstance(THIPModEffects.FROZEN.get(), 100, 0), this);
+        target.addEffect(new MobEffectInstance(THIPModEffects.FROZEN.get(), 100, 0));
     }
 
-    private void spawnBeamHitParticles(ServerLevel serverLevel, LivingEntity target)
+    public static void handleBullibardBeamHit(ServerLevel serverLevel, LargeProjectile projectile, LivingEntity target)
+    {
+        String beamName = projectile.getEntityData().get(LargeProjectile.BEAM);
+        if (!isBullibardBeam(beamName)) {
+            return;
+        }
+
+        applyCold(target);
+        spawnBeamHitParticles(serverLevel, target, isBullibardBeamFrameBlue(beamName, projectile.tickCount));
+    }
+
+    public static boolean isBullibardBeamProjectile(LargeProjectile projectile)
+    {
+        return isBullibardBeam(projectile.getEntityData().get(LargeProjectile.BEAM));
+    }
+
+    private static void spawnBeamHitParticles(ServerLevel serverLevel, LivingEntity target, boolean blue)
     {
         double x = target.getX();
         double y = target.getY() + target.getBbHeight() * 0.55D;
         double z = target.getZ();
-        DustParticleOptions colorParticle = isCurrentBeamFrameBlue() ? BLUE_BEAM_HIT_PARTICLE : WHITE_BEAM_HIT_PARTICLE;
+        DustParticleOptions colorParticle = blue ? BLUE_BEAM_HIT_PARTICLE : WHITE_BEAM_HIT_PARTICLE;
         serverLevel.sendParticles(colorParticle, x, y, z, 16, 0.55D, 0.6D, 0.55D, 0.04D);
     }
 
-    private boolean isCurrentBeamFrameBlue()
+    private static boolean isBullibardBeam(String beamName)
     {
-        int frame = Math.min(7, (activeBeamSegment - 1) * 8 / BEAM_SEGMENTS);
+        return BULLIBARD_BEAM_FORWARD.equals(beamName) || BULLIBARD_BEAM_REVERSE.equals(beamName);
+    }
+
+    private static boolean isBullibardBeamFrameBlue(String beamName, int tickCount)
+    {
+        int frame = Math.min(7, tickCount * 8 / 8);
         boolean firstHalf = frame < 4;
-        return activeBeamStartsBlue ? firstHalf : !firstHalf;
+        return BULLIBARD_BEAM_REVERSE.equals(beamName) ? firstHalf : !firstHalf;
     }
 
     private void faceTarget(LivingEntity target)
