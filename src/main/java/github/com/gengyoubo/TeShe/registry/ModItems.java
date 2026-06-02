@@ -76,7 +76,9 @@ public final class ModItems
     public static final RegistryObject<Item> DEVOURER_RUIN = registerSwordItem("devourer_ruin");
     public static final RegistryObject<Item> PLASMA_CRYSTAL = registerSimpleItem("plasma_crystal", Rarity.UNCOMMON);
     public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> PLASMA_CORE = registerSimpleItem("plasma_core", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> BULLIBARD_FEATHER_STORY = registerSimpleItem("bullibard_feather_story", Rarity.RARE);
     public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
             "chicken_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
@@ -170,6 +172,7 @@ public final class ModItems
             KING_JOE_CRYSTAL,
             CAMORRA,
             BULLIBARD_FEATHER,
+            BULLIBARD_FEATHER_STORY,
 
             ALLAY_SPAWN_EGG,
             BLAZE_SPAWN_EGG,

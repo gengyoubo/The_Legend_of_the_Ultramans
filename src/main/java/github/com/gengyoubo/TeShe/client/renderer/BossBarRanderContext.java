@@ -1,4 +1,4 @@
-package github.com.gengyoubo.TeShe.client.bossbar;
+package github.com.gengyoubo.TeShe.client.renderer;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;

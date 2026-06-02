@@ -233,6 +233,16 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
 
+        if (isBossVariant()) {
+            dropStack(Items.NETHERITE_INGOT, 10);
+            dropStack(Items.IRON_BLOCK, 5);
+            dropStack(resolveDropItem("thip", "plasma_core", ModItems.PLASMA_CORE.get()), 4);
+            dropStack(Items.GOLD_BLOCK, 2);
+            dropStack(Items.ICE, 16);
+            dropStack(ModItems.BULLIBARD_FEATHER_STORY.get(), 1);
+            return;
+        }
+
         dropStack(resolveDropItem("thip", "plasma_crystal", ModItems.PLASMA_CRYSTAL.get()), 3 + random.nextInt(2));
         dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), random.nextInt(3));
         if (random.nextFloat() < BULLIBARD_FEATHER_DROP_CHANCE) {

@@ -1,7 +1,7 @@
 package github.com.gengyoubo.TeShe.client;
 
 import github.com.gengyoubo.TeShe.TE;
-import github.com.gengyoubo.TeShe.client.bossbar.BossBarRanderContext;
+import github.com.gengyoubo.TeShe.client.renderer.BossBarRanderContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
