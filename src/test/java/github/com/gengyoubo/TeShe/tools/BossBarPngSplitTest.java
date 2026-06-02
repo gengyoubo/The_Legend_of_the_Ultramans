@@ -27,14 +27,17 @@ public final class BossBarPngSplitTest
                 ? new File(args[1])
                 : new File(file.getParentFile(), stripPngExtension(file.getName()) + "_split");
         cleanOutputDirectory(outputDir);
-        Rect topSegment = findTopSegment(image);
-        writeTopSegment(image, topSegment, outputDir);
+        List<Rect> rowSegments = findRowSeparatedSegments(image);
+        writeRowSegments(image, rowSegments, outputDir);
 
         System.out.println("PNG: " + file.getAbsolutePath());
         System.out.println("size: " + image.getWidth() + "x" + image.getHeight());
         System.out.println("column threshold: " + columnThreshold);
         System.out.println("output: " + outputDir.getAbsolutePath());
-        System.out.println("top segment: " + topSegment);
+        System.out.println("row segments: " + rowSegments.size());
+        for (int i = 0; i < rowSegments.size(); i++) {
+            System.out.println("  row #" + (i + 1) + " " + rowSegments.get(i));
+        }
         System.out.println("segments: " + segments.size());
         for (int i = 0; i < segments.size(); i++) {
             Rect segment = segments.get(i);
@@ -58,46 +61,67 @@ public final class BossBarPngSplitTest
                 + ", y=" + (frame.centerY() - decoration.y - bar.height / 2));
     }
 
-    private static Rect findTopSegment(BufferedImage image)
+    private static List<Rect> findRowSeparatedSegments(BufferedImage image)
     {
-        int firstEmptyY = image.getHeight() - 1;
-        for (int y = 0; y < image.getHeight(); y++) {
-            if (countVisiblePixelsInRow(image, y) == 0) {
-                firstEmptyY = y;
+        List<Rect> rowSegments = new ArrayList<>();
+        int y = 0;
+
+        while (y < image.getHeight()) {
+            while (y < image.getHeight() && countVisiblePixelsInRow(image, y) == 0) {
+                y++;
+            }
+
+            if (y >= image.getHeight()) {
                 break;
             }
-        }
 
-        int maxX = -1;
-        for (int y = 0; y <= firstEmptyY; y++) {
-            for (int x = 0; x < image.getWidth(); x++) {
-                if (hasVisiblePixel(image, x, y)) {
-                    maxX = Math.max(maxX, x);
+            int startY = y;
+            int endY = image.getHeight() - 1;
+            for (; y < image.getHeight(); y++) {
+                if (countVisiblePixelsInRow(image, y) == 0) {
+                    endY = y;
+                    break;
                 }
             }
+
+            int maxX = -1;
+            for (int scanY = startY; scanY <= endY; scanY++) {
+                for (int x = 0; x < image.getWidth(); x++) {
+                    if (hasVisiblePixel(image, x, scanY)) {
+                        maxX = Math.max(maxX, x);
+                    }
+                }
+            }
+
+            if (maxX >= 0) {
+                rowSegments.add(new Rect(0, startY, maxX + 1, endY - startY + 1));
+            }
+
+            y = endY + 1;
         }
 
-        if (maxX < 0) {
-            return new Rect(0, 0, 1, 1);
-        }
-
-        return new Rect(0, 0, maxX + 1, firstEmptyY + 1);
+        return rowSegments;
     }
 
-    private static void writeTopSegment(BufferedImage image, Rect segment, File outputDir) throws IOException
+    private static void writeRowSegments(BufferedImage image, List<Rect> segments, File outputDir) throws IOException
     {
         if (!outputDir.exists() && !outputDir.mkdirs()) {
             throw new IOException("Unable to create output directory: " + outputDir.getAbsolutePath());
         }
 
-        BufferedImage segmentImage = new BufferedImage(segment.width, segment.height, BufferedImage.TYPE_INT_ARGB);
-        for (int y = 0; y < segment.height; y++) {
-            for (int x = 0; x < segment.width; x++) {
-                segmentImage.setRGB(x, y, image.getRGB(segment.x + x, segment.y + y));
+        for (int i = 0; i < segments.size(); i++) {
+            Rect segment = segments.get(i);
+            BufferedImage segmentImage = new BufferedImage(segment.width, segment.height, BufferedImage.TYPE_INT_ARGB);
+            for (int y = 0; y < segment.height; y++) {
+                for (int x = 0; x < segment.width; x++) {
+                    segmentImage.setRGB(x, y, image.getRGB(segment.x + x, segment.y + y));
+                }
             }
-        }
 
-        ImageIO.write(segmentImage, "PNG", new File(outputDir, "segment_01_top.png"));
+            String role = i == 0 ? "top" : i == 1 ? "bar" : "extra";
+            File segmentFile = new File(outputDir, String.format("segment_%02d_%s.png", i + 1, role));
+            ImageIO.write(segmentImage, "PNG", segmentFile);
+        }
     }
 
     private static void cleanOutputDirectory(File outputDir) throws IOException
