@@ -29,6 +29,10 @@ public final class BossBarPngSplitTest
         cleanOutputDirectory(outputDir);
         List<Rect> rowSegments = findRowSeparatedSegments(image);
         writeRowSegments(image, rowSegments, outputDir);
+        Anchor anchor = rowSegments.size() > 1 ? findBarAnchor(image, rowSegments.get(0)) : null;
+        if (anchor != null) {
+            writeOverlayPreview(image, rowSegments.get(0), rowSegments.get(1), anchor, outputDir);
+        }
 
         System.out.println("PNG: " + file.getAbsolutePath());
         System.out.println("size: " + image.getWidth() + "x" + image.getHeight());
@@ -37,6 +41,10 @@ public final class BossBarPngSplitTest
         System.out.println("row segments: " + rowSegments.size());
         for (int i = 0; i < rowSegments.size(); i++) {
             System.out.println("  row #" + (i + 1) + " " + rowSegments.get(i));
+        }
+        if (anchor != null) {
+            System.out.println("bar anchor: " + anchor);
+            System.out.println("overlay: segment_03_overlay_preview.png");
         }
         System.out.println("segments: " + segments.size());
         for (int i = 0; i < segments.size(); i++) {
@@ -121,6 +129,48 @@ public final class BossBarPngSplitTest
             String role = i == 0 ? "top" : i == 1 ? "bar" : "extra";
             File segmentFile = new File(outputDir, String.format("segment_%02d_%s.png", i + 1, role));
             ImageIO.write(segmentImage, "PNG", segmentFile);
+        }
+    }
+
+    private static Anchor findBarAnchor(BufferedImage image, Rect decoration)
+    {
+        int y = decoration.y + 11;
+        if (y + 1 >= decoration.y + decoration.height) {
+            return null;
+        }
+
+        for (int x = decoration.x; x < decoration.x + decoration.width - 1; x++) {
+            if (hasVisiblePixel(image, x, y)
+                    && hasVisiblePixel(image, x + 1, y)
+                    && hasVisiblePixel(image, x, y + 1)
+                    && !hasVisiblePixel(image, x + 1, y + 1)) {
+                return new Anchor(x, y, x + 1, y + 1);
+            }
+        }
+
+        return null;
+    }
+
+    private static void writeOverlayPreview(BufferedImage image, Rect decoration, Rect bar, Anchor anchor, File outputDir) throws IOException
+    {
+        int previewWidth = Math.max(decoration.width, anchor.targetX - decoration.x + bar.width);
+        int previewHeight = Math.max(decoration.height, anchor.targetY - decoration.y + bar.height);
+        BufferedImage preview = new BufferedImage(previewWidth, previewHeight, BufferedImage.TYPE_INT_ARGB);
+
+        drawRect(image, preview, bar, anchor.targetX - decoration.x, anchor.targetY - decoration.y);
+        drawRect(image, preview, decoration, 0, 0);
+        ImageIO.write(preview, "PNG", new File(outputDir, "segment_03_overlay_preview.png"));
+    }
+
+    private static void drawRect(BufferedImage source, BufferedImage target, Rect rect, int targetX, int targetY)
+    {
+        for (int y = 0; y < rect.height; y++) {
+            for (int x = 0; x < rect.width; x++) {
+                int argb = source.getRGB(rect.x + x, rect.y + y);
+                if (((argb >>> 24) & 0xFF) != 0) {
+                    target.setRGB(targetX + x, targetY + y, argb);
+                }
+            }
         }
     }
 
@@ -318,6 +368,28 @@ public final class BossBarPngSplitTest
         public String toString()
         {
             return "x=" + x + ", y=" + y + ", w=" + width + ", h=" + height;
+        }
+    }
+
+    private static final class Anchor
+    {
+        private final int patternX;
+        private final int patternY;
+        private final int targetX;
+        private final int targetY;
+
+        private Anchor(int patternX, int patternY, int targetX, int targetY)
+        {
+            this.patternX = patternX;
+            this.patternY = patternY;
+            this.targetX = targetX;
+            this.targetY = targetY;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "pattern=(" + patternX + "," + patternY + "), target=(" + targetX + "," + targetY + ")";
         }
     }
 }

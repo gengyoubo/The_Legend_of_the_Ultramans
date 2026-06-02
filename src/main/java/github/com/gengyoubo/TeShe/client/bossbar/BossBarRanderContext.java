@@ -33,13 +33,9 @@ public final class BossBarRanderContext
 
         RenderSystem.enableBlend();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        drawRect(graphics, currentLayout.decoration, decorationX, decorationY, currentLayout.textureWidth, currentLayout.textureHeight);
-
         if (currentLayout.bar != null) {
-            int frameCenterX = decorationX + currentLayout.frame.centerX() - currentLayout.decoration.u;
-            int frameCenterY = decorationY + currentLayout.frame.centerY() - currentLayout.decoration.v;
-            int barX = frameCenterX - currentLayout.bar.width / 2;
-            int barY = frameCenterY - currentLayout.bar.height / 2;
+            int barX = decorationX + currentLayout.barAnchor.u - currentLayout.decoration.u;
+            int barY = decorationY + currentLayout.barAnchor.v - currentLayout.decoration.v;
             int filledWidth = Mth.ceil(Mth.clamp(progress, 0.0F, 1.0F) * currentLayout.bar.width);
             if (filledWidth > 0) {
                 graphics.blit(
@@ -55,12 +51,13 @@ public final class BossBarRanderContext
                 );
             }
         }
+        drawRect(graphics, currentLayout.decoration, decorationX, decorationY, currentLayout.textureWidth, currentLayout.textureHeight);
 
         RenderSystem.disableBlend();
 
         int titleX = screenWidth / 2 - font.width(name) / 2;
         graphics.drawString(font, name, titleX, y - 9, 0xFFFFFF);
-        return currentLayout.decoration.height + 2;
+        return currentLayout.renderHeight + 2;
     }
 
     public boolean isSeparable() throws IOException
@@ -98,120 +95,91 @@ public final class BossBarRanderContext
                 .orElseThrow(() -> new IOException("Missing boss bar texture: " + texture));
         try (InputStream inputStream = resource.open();
              NativeImage image = NativeImage.read(inputStream)) {
-            List<TextureRect> segments = findNonEmptyColumnSegments(image);
+            List<TextureRect> segments = findRowSeparatedSegments(image);
             if (segments.isEmpty()) {
                 throw new IOException("Boss bar texture has no visible pixels: " + texture);
             }
 
             TextureRect decoration = segments.get(0);
             TextureRect bar = segments.size() > 1 ? segments.get(1) : null;
-            TextureRect frame = findFrameRect(image, decoration);
-            return new Layout(image.getWidth(), image.getHeight(), decoration, frame, bar);
+            TexturePoint barAnchor = bar == null ? null : findBarAnchor(image, decoration);
+            int renderHeight = decoration.height;
+            if (bar != null && barAnchor != null) {
+                renderHeight = Math.max(renderHeight, barAnchor.v - decoration.v + bar.height);
+            }
+            return new Layout(image.getWidth(), image.getHeight(), decoration, bar, barAnchor, renderHeight);
         }
     }
 
-    private static List<TextureRect> findNonEmptyColumnSegments(NativeImage image)
+    private static List<TextureRect> findRowSeparatedSegments(NativeImage image)
     {
         List<TextureRect> segments = new ArrayList<>();
-        boolean inSegment = false;
-        int startX = 0;
+        int y = 0;
 
-        for (int x = 0; x < image.getWidth(); x++) {
-            boolean hasVisiblePixel = hasVisiblePixelInColumn(image, x);
-            if (hasVisiblePixel && !inSegment) {
-                startX = x;
-                inSegment = true;
+        while (y < image.getHeight()) {
+            while (y < image.getHeight() && countVisiblePixelsInRow(image, y) == 0) {
+                y++;
+            }
+            if (y >= image.getHeight()) {
+                break;
             }
 
-            if ((!hasVisiblePixel || x == image.getWidth() - 1) && inSegment) {
-                int endX = hasVisiblePixel && x == image.getWidth() - 1 ? x : x - 1;
-                segments.add(boundsForColumns(image, startX, endX));
-                inSegment = false;
+            int startY = y;
+            int endY = image.getHeight() - 1;
+            for (; y < image.getHeight(); y++) {
+                if (countVisiblePixelsInRow(image, y) == 0) {
+                    endY = y;
+                    break;
+                }
             }
+
+            int maxX = -1;
+            for (int scanY = startY; scanY <= endY; scanY++) {
+                for (int x = 0; x < image.getWidth(); x++) {
+                    if (hasVisiblePixel(image, x, scanY)) {
+                        maxX = Math.max(maxX, x);
+                    }
+                }
+            }
+            if (maxX >= 0) {
+                segments.add(new TextureRect(0, startY, maxX + 1, endY - startY + 1));
+            }
+
+            y = endY + 1;
         }
 
         return segments;
     }
 
-    private static TextureRect findFrameRect(NativeImage image, TextureRect decoration)
+    private static TexturePoint findBarAnchor(NativeImage image, TextureRect decoration) throws IOException
     {
-        int threshold = Math.max(8, decoration.width / 4);
-        TextureRect best = null;
-        int bestRunLength = 0;
+        int y = decoration.v + 11;
+        if (y + 1 >= decoration.v + decoration.height) {
+            throw new IOException("Boss bar decoration is too short to locate bar anchor");
+        }
 
-        for (int y = decoration.v; y < decoration.v + decoration.height; y++) {
-            int runStart = -1;
-            for (int x = decoration.u; x < decoration.u + decoration.width; x++) {
-                boolean visible = hasVisiblePixel(image, x, y);
-                if (visible && runStart < 0) {
-                    runStart = x;
-                }
-
-                if ((!visible || x == decoration.u + decoration.width - 1) && runStart >= 0) {
-                    int runEnd = visible && x == decoration.u + decoration.width - 1 ? x : x - 1;
-                    int runLength = runEnd - runStart + 1;
-                    if (runLength >= threshold && runLength > bestRunLength) {
-                        best = new TextureRect(runStart, y, runLength, 1);
-                        bestRunLength = runLength;
-                    }
-                    runStart = -1;
-                }
+        for (int x = decoration.u; x < decoration.u + decoration.width - 1; x++) {
+            if (hasVisiblePixel(image, x, y)
+                    && hasVisiblePixel(image, x + 1, y)
+                    && hasVisiblePixel(image, x, y + 1)
+                    && !hasVisiblePixel(image, x + 1, y + 1)) {
+                return new TexturePoint(x + 1, y + 1);
             }
         }
 
-        if (best == null) {
-            return decoration;
-        }
-
-        int frameMinX = best.u;
-        int frameMaxX = best.u + best.width - 1;
-        int frameMinY = best.v;
-        int frameMaxY = best.v;
-
-        for (int y = decoration.v; y < decoration.v + decoration.height; y++) {
-            int rowMinX = Integer.MAX_VALUE;
-            int rowMaxX = Integer.MIN_VALUE;
-            for (int x = frameMinX; x <= frameMaxX; x++) {
-                if (hasVisiblePixel(image, x, y)) {
-                    rowMinX = Math.min(rowMinX, x);
-                    rowMaxX = Math.max(rowMaxX, x);
-                }
-            }
-
-            if (rowMinX <= rowMaxX && rowMinX <= frameMaxX && rowMaxX >= frameMinX) {
-                frameMinY = Math.min(frameMinY, y);
-                frameMaxY = Math.max(frameMaxY, y);
-            }
-        }
-
-        return new TextureRect(frameMinX, frameMinY, frameMaxX - frameMinX + 1, frameMaxY - frameMinY + 1);
+        throw new IOException("Unable to locate boss bar anchor in texture");
     }
 
-    private static TextureRect boundsForColumns(NativeImage image, int startX, int endX)
+    private static int countVisiblePixelsInRow(NativeImage image, int y)
     {
-        int minY = image.getHeight();
-        int maxY = -1;
-        for (int x = startX; x <= endX; x++) {
-            for (int y = 0; y < image.getHeight(); y++) {
-                if (hasVisiblePixel(image, x, y)) {
-                    minY = Math.min(minY, y);
-                    maxY = Math.max(maxY, y);
-                }
-            }
-        }
-
-        return new TextureRect(startX, minY, endX - startX + 1, maxY - minY + 1);
-    }
-
-    private static boolean hasVisiblePixelInColumn(NativeImage image, int x)
-    {
-        for (int y = 0; y < image.getHeight(); y++) {
+        int count = 0;
+        for (int x = 0; x < image.getWidth(); x++) {
             if (hasVisiblePixel(image, x, y)) {
-                return true;
+                count++;
             }
         }
 
-        return false;
+        return count;
     }
 
     private static boolean hasVisiblePixel(NativeImage image, int x, int y)
@@ -224,16 +192,18 @@ public final class BossBarRanderContext
         private final int textureWidth;
         private final int textureHeight;
         private final TextureRect decoration;
-        private final TextureRect frame;
         private final TextureRect bar;
+        private final TexturePoint barAnchor;
+        private final int renderHeight;
 
-        private Layout(int textureWidth, int textureHeight, TextureRect decoration, TextureRect frame, TextureRect bar)
+        private Layout(int textureWidth, int textureHeight, TextureRect decoration, TextureRect bar, TexturePoint barAnchor, int renderHeight)
         {
             this.textureWidth = textureWidth;
             this.textureHeight = textureHeight;
             this.decoration = decoration;
-            this.frame = frame;
             this.bar = bar;
+            this.barAnchor = barAnchor;
+            this.renderHeight = renderHeight;
         }
     }
 
@@ -251,15 +221,17 @@ public final class BossBarRanderContext
             this.width = width;
             this.height = height;
         }
+    }
 
-        private int centerX()
-        {
-            return u + width / 2;
-        }
+    private static final class TexturePoint
+    {
+        private final int u;
+        private final int v;
 
-        private int centerY()
+        private TexturePoint(int u, int v)
         {
-            return v + height / 2;
+            this.u = u;
+            this.v = v;
         }
     }
 }
