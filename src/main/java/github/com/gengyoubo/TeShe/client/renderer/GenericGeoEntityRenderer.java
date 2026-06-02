@@ -12,8 +12,14 @@ public class GenericGeoEntityRenderer<T extends Entity & GeoAnimatable> extends 
 {
     public GenericGeoEntityRenderer(EntityRendererProvider.Context context, String modelName, float shadowRadius)
     {
+        this(context, modelName, "empty", shadowRadius);
+    }
+
+    public GenericGeoEntityRenderer(EntityRendererProvider.Context context, String modelName, String animationsName, float shadowRadius)
+    {
         super(context, new DefaultedEntityGeoModel<T>(new ResourceLocation(TE.MODID, modelName))
-                .withAltAnimations(new ResourceLocation(TE.MODID, "empty")));
+                .withAltAnimations(new ResourceLocation(TE.MODID, animationsName)));
         this.shadowRadius = shadowRadius;
     }
+
 }

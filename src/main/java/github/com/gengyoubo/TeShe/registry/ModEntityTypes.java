@@ -1,6 +1,7 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import github.com.gengyoubo.TeShe.entity.GenericTesheGeoMob;
 import github.com.gengyoubo.TeShe.entity.GuardianElderEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueAllayEntity;
@@ -75,11 +76,17 @@ public final class ModEntityTypes
                     .clientTrackingRange(10)
                     .build(TE.MODID + ":cow")
     );
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> COSMIC_BULLIBARD = registerGeoMob("cosmic_bullibard", 1.0F, 1.6F);
+    public static final RegistryObject<EntityType<CosmicBullibardEntity>> COSMIC_BULLIBARD = ENTITY_TYPES.register(
+            "cosmic_bullibard",
+            () -> EntityType.Builder.of(CosmicBullibardEntity::new, MobCategory.MONSTER)
+                    .sized(1.0F, 1.6F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":cosmic_bullibard")
+    );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING = registerGeoMob("crystallize_black_king", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZEBLACKKING = registerGeoMob("crystallizeblackking", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> DARK_SOUL_GESPIKET = registerGeoMob("dark_soul_gespiket", 1.4F, 2.2F);
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> EMBER_GUARDIAN = registerGeoMob("ember_guardian", 1.2F, 2.2F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> EMBER_GUARDIAN = registerAnimatedGeoMob("ember_guardian", 1.2F, 2.2F, "pose1");
     public static final RegistryObject<EntityType<PlagueEndermanEntity>> ENDERMAN = ENTITY_TYPES.register(
             "enderman",
             () -> EntityType.Builder.of(PlagueEndermanEntity::new, MobCategory.MONSTER)
@@ -102,11 +109,11 @@ public final class ModEntityTypes
                     .clientTrackingRange(10)
                     .build(TE.MODID + ":guardian")
     );
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> HADES_ZAGI = registerGeoMob("hades_zagi", 0.9F, 2.8F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> HADES_ZAGI = registerAnimatedGeoMob("hades_zagi", 0.9F, 2.8F, "nova.animation");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LEBIC_DEMON_FORM = registerGeoMob("lebic_demon_form", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LERBIS_NEMESIS_THE_SIDEKICK = registerGeoMob("lerbis_nemesis_the_sidekick", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MOYINGLONG = registerGeoMob("moyinglong", 4.0F, 4.0F);
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD = registerGeoMob("modified_bullibard", 1.0F, 1.6F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD = registerAnimatedGeoMob("modified_bullibard", 1.0F, 1.6F, "fly");
     public static final RegistryObject<EntityType<PlaguePhantomEntity>> PHANTOM = ENTITY_TYPES.register(
             "phantom",
             () -> EntityType.Builder.of(PlaguePhantomEntity::new, MobCategory.MONSTER)
@@ -138,7 +145,7 @@ public final class ModEntityTypes
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RAZOR_DEMAGA = registerGeoMob("razor_demaga", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RINGUA_IGONOTA = registerGeoMob("ringua_igonota", 1.2F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_CHIMERA = registerGeoMob("ruin_chimera", 1.8F, 2.8F);
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_ANTONLA = registerGeoMob("ruin_antonla", 1.4F, 2.6F);
+    public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_ANTONLA = registerAnimatedGeoMob("ruin_antonla", 1.4F, 2.6F, "\u884c\u8d70");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SATAN_HAND = registerGeoMob("satan_hand", 1.0F, 2.0F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SOUL_OF_MOUNTAINS = registerGeoMob("soul_of_mountains", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SPECIAL_EX_ELEKING = registerGeoMob("special_ex_eleking", 1.4F, 2.6F);
@@ -165,6 +172,17 @@ public final class ModEntityTypes
         return ENTITY_TYPES.register(
                 name,
                 () -> EntityType.Builder.<GenericTesheGeoMob>of((type, level) -> new GenericTesheGeoMob(type, level, name), MobCategory.MONSTER)
+                        .sized(width, height)
+                        .clientTrackingRange(10)
+                        .build(TE.MODID + ":" + name)
+        );
+    }
+
+    private static RegistryObject<EntityType<GenericTesheGeoMob>> registerAnimatedGeoMob(String name, float width, float height, String defaultAnimationName)
+    {
+        return ENTITY_TYPES.register(
+                name,
+                () -> EntityType.Builder.<GenericTesheGeoMob>of((type, level) -> new GenericTesheGeoMob(type, level, name, name, defaultAnimationName), MobCategory.MONSTER)
                         .sized(width, height)
                         .clientTrackingRange(10)
                         .build(TE.MODID + ":" + name)

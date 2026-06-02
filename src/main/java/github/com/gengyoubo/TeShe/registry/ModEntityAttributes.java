@@ -49,7 +49,13 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.CERBERUS);
         event.put(ModEntityTypes.CAT.get(), Cat.createAttributes().build());
         event.put(ModEntityTypes.COW.get(), Cow.createAttributes().build());
-        registerGenericAttributes(event, ModEntityTypes.COSMIC_BULLIBARD);
+        event.put(ModEntityTypes.COSMIC_BULLIBARD.get(), Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 500.0D)
+                .add(Attributes.ARMOR, 20.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.28D)
+                .add(Attributes.ATTACK_DAMAGE, 40.0D)
+                .add(Attributes.FOLLOW_RANGE, 40.0D)
+                .build());
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING);
         registerGenericAttributes(event, ModEntityTypes.DARK_SOUL_GESPIKET);

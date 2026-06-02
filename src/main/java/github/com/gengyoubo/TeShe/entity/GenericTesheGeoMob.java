@@ -10,4 +10,9 @@ public class GenericTesheGeoMob extends TesheGeoMob
     {
         super(entityType, level, geckoModelName);
     }
+
+    public GenericTesheGeoMob(EntityType<? extends PathfinderMob> entityType, Level level, String geckoModelName, String geckoAnimationsName, String defaultAnimationName)
+    {
+        super(entityType, level, geckoModelName, geckoAnimationsName, defaultAnimationName);
+    }
 }

@@ -5,6 +5,7 @@ import github.com.gengyoubo.TeShe.item.GeckoArmorItem;
 import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
 import github.com.gengyoubo.TeShe.item.GeckoSwordItem;
+import github.com.gengyoubo.TeShe.item.HatredStickItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -25,6 +26,10 @@ public final class ModItems
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TE.MODID);
 
+    public static final RegistryObject<Item> HATRED_STICK = ITEMS.register(
+            "hatred_stick",
+            () -> new HatredStickItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON))
+    );
     public static final RegistryObject<Item> SMDRTK_MULTI_FUNCTION_PISTOL = ITEMS.register(
             "smdrtk_multi_function_pistol",
             () -> new SmdrtkMultiFunctionPistolItem(new Item.Properties().stacksTo(1).durability(320).rarity(Rarity.RARE))
@@ -113,6 +118,7 @@ public final class ModItems
     public static final RegistryObject<Item> ZOMBIE_SPAWN_EGG = registerSpawnEgg("zombie_spawn_egg", ModEntityTypes.ZOMBIE, 0x536B45, 0x7B5E45);
 
     public static final List<RegistryObject<Item>> MODEL_ITEMS = List.of(
+            HATRED_STICK,
             SMDRTK_HELMET,
             SMDRTK_CHESTPLATE,
             SMDRTK_LEGGINGS,
