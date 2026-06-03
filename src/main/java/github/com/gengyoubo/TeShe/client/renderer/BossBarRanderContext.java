@@ -153,9 +153,23 @@ public final class BossBarRanderContext
 
     private static TexturePoint findBarAnchor(NativeImage image, TextureRect decoration) throws IOException
     {
-        int y = decoration.v + 11;
-        if (y + 1 >= decoration.v + decoration.height) {
-            throw new IOException("Boss bar decoration is too short to locate bar anchor");
+        TexturePoint absoluteAnchor = findBarAnchorAtY(image, decoration, 11);
+        if (absoluteAnchor != null) {
+            return absoluteAnchor;
+        }
+
+        TexturePoint relativeAnchor = findBarAnchorAtY(image, decoration, decoration.v + 11);
+        if (relativeAnchor != null) {
+            return relativeAnchor;
+        }
+
+        throw new IOException("Unable to locate boss bar anchor in texture");
+    }
+
+    private static TexturePoint findBarAnchorAtY(NativeImage image, TextureRect decoration, int y)
+    {
+        if (y < decoration.v || y + 1 >= decoration.v + decoration.height) {
+            return null;
         }
 
         for (int x = decoration.u; x < decoration.u + decoration.width - 1; x++) {
@@ -167,7 +181,7 @@ public final class BossBarRanderContext
             }
         }
 
-        throw new IOException("Unable to locate boss bar anchor in texture");
+        return null;
     }
 
     private static int countVisiblePixelsInRow(NativeImage image, int y)

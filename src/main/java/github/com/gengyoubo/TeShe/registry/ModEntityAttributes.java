@@ -57,8 +57,11 @@ public final class ModEntityAttributes
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .build());
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);
+        registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING_BOSS);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING);
+        registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING_BOSS);
         registerGenericAttributes(event, ModEntityTypes.DARK_SOUL_GESPIKET);
+        registerGenericAttributes(event, ModEntityTypes.DARK_SOUL_GESPIKET_BOSS);
         registerGenericAttributes(event, ModEntityTypes.EMBER_GUARDIAN);
         event.put(ModEntityTypes.ENDERMAN.get(), EnderMan.createAttributes().build());
         event.put(ModEntityTypes.FOX.get(), Fox.createAttributes().build());
@@ -66,9 +69,11 @@ public final class ModEntityAttributes
         event.put(ModEntityTypes.GUARDIAN.get(), Guardian.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.HADES_ZAGI);
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM);
+        registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS);
         registerGenericAttributes(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK);
         registerGenericAttributes(event, ModEntityTypes.MOYINGLONG);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD);
+        registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS);
         event.put(ModEntityTypes.PHANTOM.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D)
@@ -76,10 +81,14 @@ public final class ModEntityAttributes
         event.put(ModEntityTypes.PIG.get(), Pig.createAttributes().build());
         event.put(ModEntityTypes.PIGLIN.get(), Piglin.createAttributes().build());
         event.put(ModEntityTypes.PIGLIN_BRUTE.get(), PiglinBrute.createAttributes().build());
+        registerGenericAttributes(event, ModEntityTypes.ANIMATED_METEOR_BLAZMET_BOSS);
         registerGenericAttributes(event, ModEntityTypes.RAZOR_DEMAGA);
+        registerGenericAttributes(event, ModEntityTypes.RAZOR_DEMAGA_BOSS);
         registerGenericAttributes(event, ModEntityTypes.RINGUA_IGONOTA);
+        registerGenericAttributes(event, ModEntityTypes.RINGUA_IGONOTA_BOSS);
         registerGenericAttributes(event, ModEntityTypes.RUIN_CHIMERA);
         registerGenericAttributes(event, ModEntityTypes.RUIN_ANTONLA);
+        registerGenericAttributes(event, ModEntityTypes.RUIN_ANTONLA_BOSS);
         registerGenericAttributes(event, ModEntityTypes.SATAN_HAND);
         registerGenericAttributes(event, ModEntityTypes.SOUL_OF_MOUNTAINS);
         registerGenericAttributes(event, ModEntityTypes.SPECIAL_EX_ELEKING);

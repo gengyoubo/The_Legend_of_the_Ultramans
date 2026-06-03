@@ -89,6 +89,7 @@ public final class ModItems
     );
     public static final RegistryObject<Item> ALLAY_SPAWN_EGG = registerSpawnEgg("allay_spawn_egg", ModEntityTypes.ALLAY, 0x59B6D8, 0xF3E8C4);
     public static final RegistryObject<Item> ANIMATED_METEOR_BLAZMET_SPAWN_EGG = registerSpawnEgg("animated_meteor_blazmet_spawn_egg", ModEntityTypes.ANIMATED_METEOR_BLAZMET, 0x6C5548, 0xD87845);
+    public static final RegistryObject<Item> ANIMATED_METEOR_BLAZMET_BOSS_SPAWN_EGG = registerSpawnEgg("animated_meteor_blazmet_boss_spawn_egg", ModEntityTypes.ANIMATED_METEOR_BLAZMET_BOSS, 0x2D2523, 0xD87845);
     public static final RegistryObject<Item> BATTLE_MECH_SPAWN_EGG = registerSpawnEgg("battle_mech_spawn_egg", ModEntityTypes.BATTLE_MECH, 0x4D5965, 0xE74C3C);
     public static final RegistryObject<Item> BLAZE_SPAWN_EGG = registerSpawnEgg("blaze_spawn_egg", ModEntityTypes.BLAZE, 0xF6B33F, 0x5B3216);
     public static final RegistryObject<Item> AXOLOTL_LUCY_SPAWN_EGG = registerSpawnEgg("axolotl_lucy_spawn_egg", ModEntityTypes.AXOLOTL_LUCY, 0xF2B8C6, 0x8A5C78);
@@ -101,8 +102,11 @@ public final class ModItems
             () -> new CosmicBullibardBossSpawnEggItem(new Item.Properties().rarity(Rarity.UNCOMMON))
     );
     public static final RegistryObject<Item> CRYSTALLIZE_BLACK_KING_SPAWN_EGG = registerSpawnEgg("crystallize_black_king_spawn_egg", ModEntityTypes.CRYSTALLIZE_BLACK_KING, 0x2B2431, 0xA5D8FF);
+    public static final RegistryObject<Item> CRYSTALLIZE_BLACK_KING_BOSS_SPAWN_EGG = registerSpawnEgg("crystallize_black_king_boss_spawn_egg", ModEntityTypes.CRYSTALLIZE_BLACK_KING_BOSS, 0x18141D, 0xA5D8FF);
     public static final RegistryObject<Item> CRYSTALLIZEBLACKKING_SPAWN_EGG = registerSpawnEgg("crystallizeblackking_spawn_egg", ModEntityTypes.CRYSTALLIZEBLACKKING, 0x2B2431, 0x8FD6E8);
+    public static final RegistryObject<Item> CRYSTALLIZEBLACKKING_BOSS_SPAWN_EGG = registerSpawnEgg("crystallizeblackking_boss_spawn_egg", ModEntityTypes.CRYSTALLIZEBLACKKING_BOSS, 0x18141D, 0x8FD6E8);
     public static final RegistryObject<Item> DARK_SOUL_GESPIKET_SPAWN_EGG = registerSpawnEgg("dark_soul_gespiket_spawn_egg", ModEntityTypes.DARK_SOUL_GESPIKET, 0x1F1B28, 0x8B5BD6);
+    public static final RegistryObject<Item> DARK_SOUL_GESPIKET_BOSS_SPAWN_EGG = registerSpawnEgg("dark_soul_gespiket_boss_spawn_egg", ModEntityTypes.DARK_SOUL_GESPIKET_BOSS, 0x100E16, 0x8B5BD6);
     public static final RegistryObject<Item> EMBER_GUARDIAN_SPAWN_EGG = registerSpawnEgg("ember_guardian_spawn_egg", ModEntityTypes.EMBER_GUARDIAN, 0x402820, 0xF08A3A);
     public static final RegistryObject<Item> ENDERMAN_SPAWN_EGG = registerSpawnEgg("enderman_spawn_egg", ModEntityTypes.ENDERMAN, 0x161616, 0xB05CFF);
     public static final RegistryObject<Item> FOX_SPAWN_EGG = registerSpawnEgg("fox_spawn_egg", ModEntityTypes.FOX, 0xD9822B, 0xF0E2C5);
@@ -110,17 +114,22 @@ public final class ModItems
     public static final RegistryObject<Item> GUARDIAN_SPAWN_EGG = registerSpawnEgg("guardian_spawn_egg", ModEntityTypes.GUARDIAN, 0x5E756C, 0xE1D09B);
     public static final RegistryObject<Item> HADES_ZAGI_SPAWN_EGG = registerSpawnEgg("hades_zagi_spawn_egg", ModEntityTypes.HADES_ZAGI, 0x171820, 0xC7354A);
     public static final RegistryObject<Item> LEBIC_DEMON_FORM_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM, 0x29212B, 0x7C6CCF);
+    public static final RegistryObject<Item> LEBIC_DEMON_FORM_BOSS_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_boss_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM_BOSS, 0x151018, 0x7C6CCF);
     public static final RegistryObject<Item> LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG = registerSpawnEgg("lerbis_nemesis_the_sidekick_spawn_egg", ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, 0x2C2C35, 0x7DD7D2);
     public static final RegistryObject<Item> MOYINGLONG_SPAWN_EGG = registerSpawnEgg("moyinglong_spawn_egg", ModEntityTypes.MOYINGLONG, 0x1D2028, 0x6E87AA);
     public static final RegistryObject<Item> MODIFIED_BULLIBARD_SPAWN_EGG = registerSpawnEgg("modified_bullibard_spawn_egg", ModEntityTypes.MODIFIED_BULLIBARD, 0x343640, 0xD86C4D);
+    public static final RegistryObject<Item> MODIFIED_BULLIBARD_BOSS_SPAWN_EGG = registerSpawnEgg("modified_bullibard_boss_spawn_egg", ModEntityTypes.MODIFIED_BULLIBARD_BOSS, 0x17191F, 0xD86C4D);
     public static final RegistryObject<Item> PHANTOM_SPAWN_EGG = registerSpawnEgg("phantom_spawn_egg", ModEntityTypes.PHANTOM, 0x5B6175, 0xA7B3D8);
     public static final RegistryObject<Item> PIG_SPAWN_EGG = registerSpawnEgg("pig_spawn_egg", ModEntityTypes.PIG, 0xF2A5B6, 0x6F4C4C);
     public static final RegistryObject<Item> PIGLIN_SPAWN_EGG = registerSpawnEgg("piglin_spawn_egg", ModEntityTypes.PIGLIN, 0xC78C69, 0x3F2D2B);
     public static final RegistryObject<Item> PIGLIN_BRUTE_SPAWN_EGG = registerSpawnEgg("piglin_brute_spawn_egg", ModEntityTypes.PIGLIN_BRUTE, 0x6B4B3B, 0xD6B471);
     public static final RegistryObject<Item> RAZOR_DEMAGA_SPAWN_EGG = registerSpawnEgg("razor_demaga_spawn_egg", ModEntityTypes.RAZOR_DEMAGA, 0x4B3645, 0xD4584B);
+    public static final RegistryObject<Item> RAZOR_DEMAGA_BOSS_SPAWN_EGG = registerSpawnEgg("razor_demaga_boss_spawn_egg", ModEntityTypes.RAZOR_DEMAGA_BOSS, 0x261A22, 0xD4584B);
     public static final RegistryObject<Item> RINGUA_IGONOTA_SPAWN_EGG = registerSpawnEgg("ringua_igonota_spawn_egg", ModEntityTypes.RINGUA_IGONOTA, 0x3B3152, 0xB890FF);
+    public static final RegistryObject<Item> RINGUA_IGONOTA_BOSS_SPAWN_EGG = registerSpawnEgg("ringua_igonota_boss_spawn_egg", ModEntityTypes.RINGUA_IGONOTA_BOSS, 0x1D172A, 0xB890FF);
     public static final RegistryObject<Item> RUIN_CHIMERA_SPAWN_EGG = registerSpawnEgg("ruin_chimera_spawn_egg", ModEntityTypes.RUIN_CHIMERA, 0x34252B, 0xD84A34);
     public static final RegistryObject<Item> RUIN_ANTONLA_SPAWN_EGG = registerSpawnEgg("ruin_antonla_spawn_egg", ModEntityTypes.RUIN_ANTONLA, 0xA77D4E, 0x533927);
+    public static final RegistryObject<Item> RUIN_ANTONLA_BOSS_SPAWN_EGG = registerSpawnEgg("ruin_antonla_boss_spawn_egg", ModEntityTypes.RUIN_ANTONLA_BOSS, 0x4A2F1E, 0xD6A265);
     public static final RegistryObject<Item> SATAN_HAND_SPAWN_EGG = registerSpawnEgg("satan_hand_spawn_egg", ModEntityTypes.SATAN_HAND, 0x342222, 0xC83C3C);
     public static final RegistryObject<Item> SOUL_OF_MOUNTAINS_SPAWN_EGG = registerSpawnEgg("soul_of_mountains_spawn_egg", ModEntityTypes.SOUL_OF_MOUNTAINS, 0x59636B, 0xE0C36F);
     public static final RegistryObject<Item> SPECIAL_EX_ELEKING_SPAWN_EGG = registerSpawnEgg("special_ex_eleking_spawn_egg", ModEntityTypes.SPECIAL_EX_ELEKING, 0xB7C057, 0x2F2C33);
@@ -193,23 +202,32 @@ public final class ModItems
             GHAST_SPAWN_EGG,
 
             ANIMATED_METEOR_BLAZMET_SPAWN_EGG,
+            ANIMATED_METEOR_BLAZMET_BOSS_SPAWN_EGG,
             BATTLE_MECH_SPAWN_EGG,
             CERBERUS_SPAWN_EGG,
             COSMIC_BULLIBARD_SPAWN_EGG,
             COSMIC_BULLIBARD_BOSS_SPAWN_EGG,
             CRYSTALLIZE_BLACK_KING_SPAWN_EGG,
+            CRYSTALLIZE_BLACK_KING_BOSS_SPAWN_EGG,
             CRYSTALLIZEBLACKKING_SPAWN_EGG,
+            CRYSTALLIZEBLACKKING_BOSS_SPAWN_EGG,
             DARK_SOUL_GESPIKET_SPAWN_EGG,
+            DARK_SOUL_GESPIKET_BOSS_SPAWN_EGG,
             EMBER_GUARDIAN_SPAWN_EGG,
             HADES_ZAGI_SPAWN_EGG,
             LEBIC_DEMON_FORM_SPAWN_EGG,
+            LEBIC_DEMON_FORM_BOSS_SPAWN_EGG,
             LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG,
             MOYINGLONG_SPAWN_EGG,
             MODIFIED_BULLIBARD_SPAWN_EGG,
+            MODIFIED_BULLIBARD_BOSS_SPAWN_EGG,
             RAZOR_DEMAGA_SPAWN_EGG,
+            RAZOR_DEMAGA_BOSS_SPAWN_EGG,
             RINGUA_IGONOTA_SPAWN_EGG,
+            RINGUA_IGONOTA_BOSS_SPAWN_EGG,
             RUIN_CHIMERA_SPAWN_EGG,
             RUIN_ANTONLA_SPAWN_EGG,
+            RUIN_ANTONLA_BOSS_SPAWN_EGG,
             SATAN_HAND_SPAWN_EGG,
             SOUL_OF_MOUNTAINS_SPAWN_EGG,
             SPECIAL_EX_ELEKING_SPAWN_EGG,

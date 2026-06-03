@@ -15,7 +15,7 @@ public final class BossBarPngSplitTest
 
     public static void main(String[] args) throws IOException
     {
-        File file = new File(args.length > 0 ? args[0] : "src/main/resources/assets/teshe/textures/gui/boss_bar/img.png");
+        File file = new File(args.length > 0 ? args[0] : "src/main/resources/assets/teshe/textures/gui/boss_bar/cosmic_bullibard_boss.png");
         int columnThreshold = Integer.getInteger("bossBarColumnThreshold", 0);
         BufferedImage image = ImageIO.read(file);
         if (image == null) {
