@@ -76,9 +76,26 @@ public final class ModItems
     public static final RegistryObject<Item> DEVOURER_RUIN = registerSwordItem("devourer_ruin");
     public static final RegistryObject<Item> PLASMA_CRYSTAL = registerSimpleItem("plasma_crystal", Rarity.UNCOMMON);
     public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
-    public static final RegistryObject<Item> PLASMA_CORE = registerSimpleItem("plasma_core", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER_STORY = registerSimpleItem("bullibard_feather_story", Rarity.RARE);
+    public static final RegistryObject<Item> EVENT_FAREWELL = registerEventItem("event_farewell");
+    public static final RegistryObject<Item> EVENT_APOCALYPSE_WAR = registerEventItem("event_apocalypse_war");
+    public static final RegistryObject<Item> EVENT_APOCALYPSE_DEATH = registerEventItem("event_apocalypse_death");
+    public static final RegistryObject<Item> EVENT_CHIMERA = registerEventItem("event_chimera");
+    public static final RegistryObject<Item> EVENT_SISTER_AND_SINNER = registerEventItem("event_sister_and_sinner");
+    public static final RegistryObject<Item> EVENT_SOUL_OF_MOUNTAINS = registerEventItem("event_soul_of_mountains");
+    public static final RegistryObject<Item> EVENT_BULLIBARD = registerEventItem("event_bullibard");
+    public static final RegistryObject<Item> EVENT_WEAPON_OF_HOPE = registerEventItem("event_weapon_of_hope");
+    public static final RegistryObject<Item> EVENT_MUTATED_DEMON = registerEventItem("event_mutated_demon");
+    public static final RegistryObject<Item> EVENT_DEMON_LAKE = registerEventItem("event_demon_lake");
+    public static final RegistryObject<Item> EVENT_DEMON_METEOR = registerEventItem("event_demon_meteor");
+    public static final RegistryObject<Item> EVENT_UNKNOWN_THING = registerEventItem("event_unknown_thing");
+    public static final RegistryObject<Item> EVENT_DIMENSIONAL_CHALLENGER = registerEventItem("event_dimensional_challenger");
+    public static final RegistryObject<Item> EVENT_SOUL_ROAR_PRELUDE = registerEventItem("event_soul_roar_prelude");
+    public static final RegistryObject<Item> EVENT_SOUL_ROAR = registerEventItem("event_soul_roar");
+    public static final RegistryObject<Item> EVENT_STARRY_RADIANCE = registerEventItem("event_starry_radiance");
+    public static final RegistryObject<Item> EVENT_ABDUCTION = registerEventItem("event_abduction");
+    public static final RegistryObject<Item> EVENT_GREEDY_CITY = registerEventItem("event_greedy_city");
     public static final RegistryObject<Item> CHICKEN_SPAWN_EGG = ITEMS.register(
             "chicken_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.CHICKEN, 0xFFF0B5, 0xD84A34, new Item.Properties())
@@ -180,6 +197,24 @@ public final class ModItems
             STARLIGHT_CRYSTAL,
             KING_JOE_CRYSTAL,
             CAMORRA,
+            EVENT_FAREWELL,
+            EVENT_APOCALYPSE_WAR,
+            EVENT_APOCALYPSE_DEATH,
+            EVENT_CHIMERA,
+            EVENT_SISTER_AND_SINNER,
+            EVENT_SOUL_OF_MOUNTAINS,
+            EVENT_BULLIBARD,
+            EVENT_WEAPON_OF_HOPE,
+            EVENT_MUTATED_DEMON,
+            EVENT_DEMON_LAKE,
+            EVENT_DEMON_METEOR,
+            EVENT_UNKNOWN_THING,
+            EVENT_DIMENSIONAL_CHALLENGER,
+            EVENT_SOUL_ROAR_PRELUDE,
+            EVENT_SOUL_ROAR,
+            EVENT_STARRY_RADIANCE,
+            EVENT_ABDUCTION,
+            EVENT_GREEDY_CITY,
             BULLIBARD_FEATHER,
             BULLIBARD_FEATHER_STORY,
 
@@ -271,6 +306,11 @@ public final class ModItems
     private static RegistryObject<Item> registerSimpleItem(String name, Rarity rarity)
     {
         return ITEMS.register(name, () -> new Item(new Item.Properties().rarity(rarity)));
+    }
+
+    private static RegistryObject<Item> registerEventItem(String name)
+    {
+        return ITEMS.register(name, () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     }
 
     private static RegistryObject<Item> registerSpawnEgg(

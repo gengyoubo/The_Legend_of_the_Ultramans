@@ -236,7 +236,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         if (isBossVariant()) {
             dropStack(Items.NETHERITE_INGOT, 10);
             dropStack(Items.IRON_BLOCK, 5);
-            dropStack(resolveDropItem("thip", "plasma_core", ModItems.PLASMA_CORE.get()), 4);
+            dropStack(resolveDropItem("thip", "plasma_core", Items.AIR), 4);
             dropStack(Items.GOLD_BLOCK, 2);
             dropStack(Items.ICE, 16);
             dropStack(ModItems.BULLIBARD_FEATHER_STORY.get(), 1);

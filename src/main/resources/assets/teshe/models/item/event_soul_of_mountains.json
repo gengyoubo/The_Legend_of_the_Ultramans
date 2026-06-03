@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "teshe:item/event/event_soul_of_mountains"
+  }
+}
