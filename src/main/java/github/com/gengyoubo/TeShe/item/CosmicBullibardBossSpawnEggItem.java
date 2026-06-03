@@ -18,7 +18,7 @@ public class CosmicBullibardBossSpawnEggItem extends ForgeSpawnEggItem
 {
     public CosmicBullibardBossSpawnEggItem(Properties properties)
     {
-        super(ModEntityTypes.COSMIC_BULLIBARD, 0x102742, 0x5EC8FF, properties);
+        super(ModEntityTypes.COSMIC_BULLIBARD, 0x242B42, 0xA8D8FF, properties);
     }
 
     @Override
