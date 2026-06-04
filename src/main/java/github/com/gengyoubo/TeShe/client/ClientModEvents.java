@@ -37,7 +37,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.CAT, "cat", 0.4F);
         registerRenderer(event, ModEntityTypes.COW, "cow", 0.5F);
         registerRenderer(event, ModEntityTypes.COSMIC_BULLIBARD, "cosmic_bullibard", "cosmic_bullibard", 0.6F);
-        registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING, "crystallize_black_king", 0.8F);
+        registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING, "crystallize_black_king", "general", 0.8F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING_BOSS, "crystallize_black_king", 0.8F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZEBLACKKING, "crystallizeblackking", 0.8F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZEBLACKKING_BOSS, "crystallizeblackking", 0.8F);

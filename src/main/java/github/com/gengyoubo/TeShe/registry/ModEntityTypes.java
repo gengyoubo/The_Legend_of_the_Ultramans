@@ -2,6 +2,7 @@ package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
+import github.com.gengyoubo.TeShe.entity.CrystallizeBlackKingEntity;
 import github.com.gengyoubo.TeShe.entity.GenericTesheGeoMob;
 import github.com.gengyoubo.TeShe.entity.GuardianElderEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
@@ -87,7 +88,13 @@ public final class ModEntityTypes
                     .clientTrackingRange(10)
                     .build(TE.MODID + ":bullibard")
     );
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING = registerGeoMob("crystallize_black_king", 1.4F, 2.6F);
+    public static final RegistryObject<EntityType<CrystallizeBlackKingEntity>> CRYSTALLIZE_BLACK_KING = ENTITY_TYPES.register(
+            "crystallize_black_king",
+            () -> EntityType.Builder.of(CrystallizeBlackKingEntity::new, MobCategory.MONSTER)
+                    .sized(1.4F, 2.6F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":crystallize_black_king")
+    );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING_BOSS =
             registerGeoMobBoss("crystallize_black_king_boss", "crystallize_black_king", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZEBLACKKING = registerGeoMob("crystallizeblackking", 1.4F, 2.6F);

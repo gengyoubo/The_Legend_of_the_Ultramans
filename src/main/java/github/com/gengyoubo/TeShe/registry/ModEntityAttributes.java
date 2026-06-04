@@ -2,6 +2,7 @@ package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
+import github.com.gengyoubo.TeShe.entity.CrystallizeBlackKingEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
 import net.minecraft.world.entity.EntityType;
@@ -59,7 +60,13 @@ public final class ModEntityAttributes
                 .add(Attributes.ATTACK_DAMAGE, CosmicBullibardEntity.NORMAL_ATTACK_DAMAGE)
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .build());
-        registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);
+        event.put(ModEntityTypes.CRYSTALLIZE_BLACK_KING.get(), Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, CrystallizeBlackKingEntity.MAX_HEALTH)
+                .add(Attributes.ARMOR, CrystallizeBlackKingEntity.ARMOR)
+                .add(Attributes.MOVEMENT_SPEED, CrystallizeBlackKingEntity.MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, CrystallizeBlackKingEntity.ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, 32.0D)
+                .build());
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING_BOSS);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING);
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZEBLACKKING_BOSS);
