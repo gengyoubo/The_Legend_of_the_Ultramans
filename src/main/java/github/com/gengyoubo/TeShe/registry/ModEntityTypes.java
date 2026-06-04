@@ -4,6 +4,8 @@ import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import github.com.gengyoubo.TeShe.entity.GenericTesheGeoMob;
 import github.com.gengyoubo.TeShe.entity.GuardianElderEntity;
+import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
+import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueAllayEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueBlazeEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueCatEntity;
@@ -121,7 +123,20 @@ public final class ModEntityTypes
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LEBIC_DEMON_FORM = registerGeoMob("lebic_demon_form", 0.9F, 2.8F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LEBIC_DEMON_FORM_BOSS =
             registerGeoMobBoss("lebic_demon_form_boss", "lebic_demon_form", 0.9F, 2.8F);
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> LERBIS_NEMESIS_THE_SIDEKICK = registerGeoMob("lerbis_nemesis_the_sidekick", 0.9F, 2.8F);
+    public static final RegistryObject<EntityType<LerbisNemesisSidekickEntity>> LERBIS_NEMESIS_THE_SIDEKICK = ENTITY_TYPES.register(
+            "lerbis_nemesis_the_sidekick",
+            () -> EntityType.Builder.of(LerbisNemesisSidekickEntity::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.8F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":lerbis_nemesis_the_sidekick")
+    );
+    public static final RegistryObject<EntityType<LerbisNemesisLeaderEntity>> LERBIS_NEMESIS_THE_LEADER = ENTITY_TYPES.register(
+            "lerbis_nemesis_the_leader",
+            () -> EntityType.Builder.of(LerbisNemesisLeaderEntity::new, MobCategory.MONSTER)
+                    .sized(0.9F, 2.8F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":lerbis_nemesis_the_leader")
+    );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MOYINGLONG = registerGeoMob("moyinglong", 4.0F, 4.0F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD = registerAnimatedGeoMob("modified_bullibard", 1.0F, 1.6F, "fly");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD_BOSS =
@@ -198,9 +213,14 @@ public final class ModEntityTypes
 
     private static RegistryObject<EntityType<GenericTesheGeoMob>> registerAnimatedGeoMob(String name, float width, float height, String defaultAnimationName)
     {
+        return registerAnimatedGeoMob(name, name, width, height, defaultAnimationName);
+    }
+
+    private static RegistryObject<EntityType<GenericTesheGeoMob>> registerAnimatedGeoMob(String name, String animationsName, float width, float height, String defaultAnimationName)
+    {
         return ENTITY_TYPES.register(
                 name,
-                () -> EntityType.Builder.<GenericTesheGeoMob>of((type, level) -> new GenericTesheGeoMob(type, level, name, name, defaultAnimationName), MobCategory.MONSTER)
+                () -> EntityType.Builder.<GenericTesheGeoMob>of((type, level) -> new GenericTesheGeoMob(type, level, name, animationsName, defaultAnimationName), MobCategory.MONSTER)
                         .sized(width, height)
                         .clientTrackingRange(10)
                         .build(TE.MODID + ":" + name)

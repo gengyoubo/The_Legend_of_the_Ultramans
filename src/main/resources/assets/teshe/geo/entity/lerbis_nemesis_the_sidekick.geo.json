@@ -1455,7 +1455,7 @@
 				{
 					"name": "left_leg",
 					"parent": "group",
-					"pivot": [1.52, 9, 1.30632]
+					"pivot": [1.52, 13, 1.30632]
 				},
 				{
 					"name": "left_leg2",
@@ -1521,7 +1521,7 @@
 				{
 					"name": "right_leg",
 					"parent": "group",
-					"pivot": [-1.52, 9, 1.30632]
+					"pivot": [-1.52, 13, 1.30632]
 				},
 				{
 					"name": "right_leg2",

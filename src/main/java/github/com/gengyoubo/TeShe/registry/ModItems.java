@@ -44,7 +44,6 @@ public final class ModItems
     public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", "mdrtk_leggings", SmdrtkArmorMaterial.LEGGINGS, ArmorItem.Type.LEGGINGS);
     public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", "mdrtk_boots", SmdrtkArmorMaterial.BOOTS, ArmorItem.Type.BOOTS);
     public static final RegistryObject<Item> SMDRTK_TEAM_LOGO = registerSimpleItem("smdrtk_team_logo", Rarity.UNCOMMON);
-    public static final RegistryObject<Item> SPACIUM_SUBSTANCE = registerSimpleItem("spacium_substance", Rarity.UNCOMMON);
     public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = ITEMS.register(
             "smdrtk_energy_smg",
             () -> new SmdrtkGunItem("smdrtk_energy_smg", SmdrtkGunItem.GunKind.SMG, new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
@@ -156,6 +155,7 @@ public final class ModItems
     public static final RegistryObject<Item> LEBIC_DEMON_FORM_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM, 0x29212B, 0x7C6CCF);
     public static final RegistryObject<Item> LEBIC_DEMON_FORM_BOSS_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_boss_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM_BOSS, 0x29212B, 0x7C6CCF);
     public static final RegistryObject<Item> LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG = registerSpawnEgg("lerbis_nemesis_the_sidekick_spawn_egg", ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, 0x2C2C35, 0x7DD7D2);
+    public static final RegistryObject<Item> LERBIS_NEMESIS_THE_LEADER_SPAWN_EGG = registerSpawnEgg("lerbis_nemesis_the_leader_spawn_egg", ModEntityTypes.LERBIS_NEMESIS_THE_LEADER, 0x2C1A24, 0xE13B33);
     public static final RegistryObject<Item> MOYINGLONG_SPAWN_EGG = registerSpawnEgg("moyinglong_spawn_egg", ModEntityTypes.MOYINGLONG, 0x1D2028, 0x6E87AA);
     public static final RegistryObject<Item> MODIFIED_BULLIBARD_SPAWN_EGG = registerSpawnEgg("modified_bullibard_spawn_egg", ModEntityTypes.MODIFIED_BULLIBARD, 0x343640, 0xD86C4D);
     public static final RegistryObject<Item> MODIFIED_BULLIBARD_BOSS_SPAWN_EGG = registerSpawnEgg("modified_bullibard_boss_spawn_egg", ModEntityTypes.MODIFIED_BULLIBARD_BOSS, 0x343640, 0xD86C4D);
@@ -183,7 +183,6 @@ public final class ModItems
             SMDRTK_LEGGINGS,
             SMDRTK_BOOTS,
             SMDRTK_TEAM_LOGO,
-            SPACIUM_SUBSTANCE,
             SMDRTK_MULTI_FUNCTION_PISTOL,
             SMDRTK_ENERGY_SMG,
             SMDRTK_ENERGY_RIFLE,
@@ -280,6 +279,7 @@ public final class ModItems
             LEBIC_DEMON_FORM_SPAWN_EGG,
             LEBIC_DEMON_FORM_BOSS_SPAWN_EGG,
             LERBIS_NEMESIS_THE_SIDEKICK_SPAWN_EGG,
+            LERBIS_NEMESIS_THE_LEADER_SPAWN_EGG,
             MOYINGLONG_SPAWN_EGG,
             MODIFIED_BULLIBARD_SPAWN_EGG,
             MODIFIED_BULLIBARD_BOSS_SPAWN_EGG,

@@ -2,6 +2,8 @@ package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
+import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
+import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -71,7 +73,20 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.HADES_ZAGI);
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM);
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS);
-        registerGenericAttributes(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK);
+        event.put(ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK.get(), Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, LerbisNemesisSidekickEntity.MAX_HEALTH)
+                .add(Attributes.ARMOR, LerbisNemesisSidekickEntity.ARMOR)
+                .add(Attributes.MOVEMENT_SPEED, LerbisNemesisSidekickEntity.MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, LerbisNemesisSidekickEntity.ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, 32.0D)
+                .build());
+        event.put(ModEntityTypes.LERBIS_NEMESIS_THE_LEADER.get(), Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, LerbisNemesisLeaderEntity.MAX_HEALTH)
+                .add(Attributes.ARMOR, LerbisNemesisLeaderEntity.ARMOR)
+                .add(Attributes.MOVEMENT_SPEED, LerbisNemesisLeaderEntity.MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, LerbisNemesisLeaderEntity.ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, 32.0D)
+                .build());
         registerGenericAttributes(event, ModEntityTypes.MOYINGLONG);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS);

@@ -32,6 +32,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.thip.init.THIPModEffects;
+import net.thip.init.THIPModItems;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
@@ -368,7 +369,7 @@ public class SmdrtkGunItem extends GeckoModelItem
             if (stack.is(Items.REDSTONE)) {
                 return REDSTONE;
             }
-            if (stack.is(ModItems.SPACIUM_SUBSTANCE.get())) {
+            if (stack.is(THIPModItems.SPACIUM_SUBSTANCE.get())) {
                 return SPACIUM;
             }
             if (gunKind != GunKind.PISTOL) {

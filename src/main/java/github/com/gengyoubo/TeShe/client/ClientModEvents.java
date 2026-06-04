@@ -51,7 +51,8 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.HADES_ZAGI, "hades_zagi", "hades_zagi", 0.8F);
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM, "lebic_demon_form", 0.8F);
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS, "lebic_demon_form", 0.8F);
-        registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", 0.8F);
+        registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", "general", 0.8F);
+        registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_LEADER, "lerbis_nemesis_the_leader", "general", 0.8F);
         registerRenderer(event, ModEntityTypes.MOYINGLONG, "moyinglong", 1.2F);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD, "modified_bullibard", "modified_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS, "modified_bullibard", "modified_bullibard", 0.6F);
