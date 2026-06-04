@@ -36,9 +36,9 @@ public final class ModItems
             () -> new SmdrtkMultiFunctionPistolItem(new Item.Properties().stacksTo(1).durability(320).rarity(Rarity.RARE))
     );
     public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", "mdrtk_helmet", ArmorItem.Type.HELMET);
-    public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", ArmorItem.Type.CHESTPLATE);
-    public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", ArmorItem.Type.LEGGINGS);
-    public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", ArmorItem.Type.BOOTS);
+    public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", "mdrtk_chestplate", ArmorItem.Type.CHESTPLATE);
+    public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", "mdrtk_leggings", ArmorItem.Type.LEGGINGS);
+    public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", "mdrtk_boots", ArmorItem.Type.BOOTS);
     public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = registerModelItem("smdrtk_energy_smg");
     public static final RegistryObject<Item> SMDRTK_ENERGY_RIFLE = registerModelItem("smdrtk_energy_rifle");
     public static final RegistryObject<Item> COURAGE_CUTTER = registerSwordItem("courage_cutter");
