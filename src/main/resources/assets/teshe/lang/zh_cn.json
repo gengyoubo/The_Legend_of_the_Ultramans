@@ -48,8 +48,6 @@
   "item.teshe.devourer_ruin": "噬权者·破灭",
   "item.teshe.monster_soul": "怪兽灵魂",
   "item.teshe.star_flower_seed": "星花之种",
-  "item.teshe.plasma_crystal": "等离子晶体",
-  "item.teshe.plasma_core_fragments": "等离子核心碎片",
   "item.teshe.event_farewell": "告别",
   "item.teshe.event_apocalypse_war": "天启-战争",
   "item.teshe.event_apocalypse_death": "天启-死亡",
@@ -220,5 +218,6 @@
   "item.teshe.kean_antonla_spawn_egg": "基恩安东拉刷怪蛋",
   "message.teshe.mutagenic_inducer.invalid_biome": "异变诱剂只能在沙漠或恶地使用",
   "message.teshe.mutagenic_inducer.enabled": "基恩安东拉的世界生成已开启",
-  "message.teshe.mutagenic_inducer.already_enabled": "基恩安东拉的世界生成已经开启"
+  "message.teshe.mutagenic_inducer.already_enabled": "基恩安东拉的世界生成已经开启",
+  "message.teshe.bullibard_event.not_enough_space": "周围空间不够空旷"
 }

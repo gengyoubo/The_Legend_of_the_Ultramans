@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/poppy"
+    "layer0": "teshe:item/star_flower_seed"
   }
 }

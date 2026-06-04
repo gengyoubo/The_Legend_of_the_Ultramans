@@ -5,6 +5,7 @@ import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import github.com.gengyoubo.TeShe.item.BoosterCrystalLiberatorItem;
 import github.com.gengyoubo.TeShe.item.HatredStickItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkGunItem;
+import github.com.gengyoubo.TeShe.network.ModNetwork;
 import github.com.gengyoubo.TeShe.registry.ModEntityTypes;
 import github.com.gengyoubo.TeShe.registry.ModItems;
 import github.com.gengyoubo.TeShe.registry.ModMobEffects;
@@ -31,6 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.thip.entity.projectile.LargeProjectile;
@@ -317,10 +319,13 @@ public final class ModCommonEvents
         if (BULLIBARD_STORIES.containsKey(playerId)) {
             return false;
         }
+        if (!hasOpenBullibardEventSpace(level, player)) {
+            player.displayClientMessage(Component.translatable("message.teshe.bullibard_event.not_enough_space"), true);
+            return false;
+        }
 
         BULLIBARD_STORIES.put(playerId, new BullibardStoryState(level.dimension(), playerId));
         level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, player.getX(), player.getY() + 1.0D, player.getZ(), 48, 0.4D, 0.7D, 0.4D, 0.02D);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
         return true;
     }
 
@@ -354,8 +359,11 @@ public final class ModCommonEvents
         }
 
         player.getCooldowns().addCooldown(ModItems.SMDRTK_TEAM_LOGO.get(), SMDRTK_TEAM_LOGO_COOLDOWN_TICKS);
-        player.level().broadcastEntityEvent(player, (byte)35);
         if (player.level() instanceof ServerLevel serverLevel) {
+            if (player instanceof ServerPlayer serverPlayer) {
+                ItemStack activationStack = mainHand.is(ModItems.SMDRTK_TEAM_LOGO.get()) ? mainHand : offhand;
+                ModNetwork.sendItemActivation(serverPlayer, activationStack.copyWithCount(1));
+            }
             serverLevel.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, player.getX(), player.getY() + 1.0D, player.getZ(), 32, 0.35D, 0.6D, 0.35D, 0.02D);
             serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 0.9F, 1.0F);
         }
@@ -456,7 +464,7 @@ public final class ModCommonEvents
             horizontalLook = new Vec3(-Math.sin(yawRadians), 0.0D, Math.cos(yawRadians));
         }
 
-        Vec3 spawnCenter = player.position().add(horizontalLook.normalize().scale(14.0D));
+        Vec3 spawnCenter = player.position().add(horizontalLook.normalize().scale(4.0D));
         BlockPos spawnColumn = BlockPos.containing(spawnCenter.x, player.getY(), spawnCenter.z);
         BlockPos spawnPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, spawnColumn);
         boss.setSpecialIndividual(CosmicBullibardEntity.BOSS_VARIANT);
@@ -465,6 +473,19 @@ public final class ModCommonEvents
         boss.setSpecialIndividual(CosmicBullibardEntity.BOSS_VARIANT);
         level.addFreshEntity(boss);
         level.playSound(null, boss.getX(), boss.getY(), boss.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.HOSTILE, 1.0F, 1.0F);
+    }
+
+    private static boolean hasOpenBullibardEventSpace(ServerLevel level, Player player)
+    {
+        BlockPos center = player.blockPosition();
+        for (BlockPos pos : BlockPos.betweenClosed(center.offset(-2, 0, -2), center.offset(2, 4, 2))) {
+            BlockState state = level.getBlockState(pos);
+            if (!state.getCollisionShape(level, pos).isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static final class BullibardStoryState

@@ -48,8 +48,6 @@
   "item.teshe.devourer_ruin": "Devourer Ruin",
   "item.teshe.monster_soul": "Monster Soul",
   "item.teshe.star_flower_seed": "Star Flower Seed",
-  "item.teshe.plasma_crystal": "Plasma Crystal",
-  "item.teshe.plasma_core_fragments": "Plasma Core Fragment",
   "item.teshe.event_farewell": "Farewell",
   "item.teshe.event_apocalypse_war": "Apocalypse - War",
   "item.teshe.event_apocalypse_death": "Apocalypse - Death",
@@ -220,5 +218,6 @@
   "item.teshe.kean_antonla_spawn_egg": "Kean Antonla Spawn Egg",
   "message.teshe.mutagenic_inducer.invalid_biome": "Mutagenic Inducer can only be used in deserts or badlands",
   "message.teshe.mutagenic_inducer.enabled": "Kean Antonla world spawning is now enabled",
-  "message.teshe.mutagenic_inducer.already_enabled": "Kean Antonla world spawning is already enabled"
+  "message.teshe.mutagenic_inducer.already_enabled": "Kean Antonla world spawning is already enabled",
+  "message.teshe.bullibard_event.not_enough_space": "Not enough open space nearby"
 }

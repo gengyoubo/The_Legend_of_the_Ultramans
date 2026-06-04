@@ -64,7 +64,7 @@ public class KeanAntonlaEntity extends GenericTesheGeoMob
     public static final double ATTACK_DAMAGE = 60.0D;
     public static final double MOVEMENT_SPEED = 0.24D;
     private static final int BEAM_COOLDOWN_TICKS = 600;
-    private static final int BEAM_CHARGE_TICKS = 35;
+    private static final int BEAM_CHARGE_TICKS = 60;
     private static final int BEAM_SEGMENTS = 30;
     private static final float BEAM_DAMAGE = 50.0F;
     private static final double BEAM_RANGE = 34.0D;
@@ -243,7 +243,7 @@ public class KeanAntonlaEntity extends GenericTesheGeoMob
         chargedTarget = target;
         beamChargeTicks = BEAM_CHARGE_TICKS;
         entityData.set(ACTION_KIND, 1);
-        entityData.set(ACTION_TICKS, BEAM_CHARGE_TICKS + 10);
+        entityData.set(ACTION_TICKS, BEAM_CHARGE_TICKS);
         level().playSound(null, getX(), getY(), getZ(), SoundEvents.BEACON_POWER_SELECT, SoundSource.HOSTILE, 1.0F, 0.6F);
     }
 

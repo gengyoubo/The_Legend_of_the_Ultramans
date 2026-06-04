@@ -139,8 +139,33 @@ public class LerbisNemesisLeaderEntity extends GenericTesheGeoMob
 
         startAttackAnimation();
         getLookControl().setLookAt(target, 30.0F, 30.0F);
-        Vec3 start = getEyePosition();
         Vec3 targetEye = target.getEyePosition();
+        Vec3 center = getEyePosition();
+        Vec3 forward = targetEye.subtract(center).normalize();
+        Vec3 side = new Vec3(-forward.z, 0.0D, forward.x);
+        if (side.lengthSqr() < 0.001D) {
+            side = new Vec3(1.0D, 0.0D, 0.0D);
+        }
+        side = side.normalize().scale(0.28D);
+
+        BeamTrace leftBeam = traceBeam(center.add(side), targetEye);
+        BeamTrace rightBeam = traceBeam(center.subtract(side), targetEye);
+        LivingEntity hitTarget = leftBeam.hitTarget != null ? leftBeam.hitTarget : rightBeam.hitTarget;
+        if (hitTarget != null) {
+            for (int i = 0; i < BEAM_SEGMENTS; i++) {
+                hitTarget.invulnerableTime = 0;
+                hitTarget.hurtTime = 0;
+                hitTarget.hurt(damageSources().mobAttack(this), BEAM_DAMAGE);
+            }
+        }
+
+        spawnBeamParticles(serverLevel, leftBeam.start, leftBeam.end);
+        spawnBeamParticles(serverLevel, rightBeam.start, rightBeam.end);
+        serverLevel.playSound(null, getX(), getY(), getZ(), SoundEvents.BLAZE_SHOOT, SoundSource.HOSTILE, 0.85F, 0.75F);
+    }
+
+    private BeamTrace traceBeam(Vec3 start, Vec3 targetEye)
+    {
         Vec3 direction = targetEye.subtract(start).normalize();
         Vec3 maxEnd = start.add(direction.scale(BEAM_RANGE));
         HitResult blockHit = level().clip(new ClipContext(start, maxEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
@@ -148,19 +173,15 @@ public class LerbisNemesisLeaderEntity extends GenericTesheGeoMob
         double blockDistanceSqr = start.distanceToSqr(end);
         AABB searchBox = getBoundingBox().expandTowards(direction.scale(BEAM_RANGE)).inflate(1.0D);
         EntityHitResult entityHit = ProjectileUtil.getEntityHitResult(level(), this, start, end, searchBox, entity -> entity instanceof LivingEntity && entity.isPickable() && !entity.isSpectator());
+        LivingEntity hitTarget = null;
         if (entityHit != null && start.distanceToSqr(entityHit.getLocation()) <= blockDistanceSqr) {
             end = entityHit.getLocation();
-            if (entityHit.getEntity() instanceof LivingEntity hitTarget) {
-                for (int i = 0; i < BEAM_SEGMENTS; i++) {
-                    hitTarget.invulnerableTime = 0;
-                    hitTarget.hurtTime = 0;
-                    hitTarget.hurt(damageSources().mobAttack(this), BEAM_DAMAGE);
-                }
+            if (entityHit.getEntity() instanceof LivingEntity living) {
+                hitTarget = living;
             }
         }
 
-        spawnBeamParticles(serverLevel, start, end);
-        serverLevel.playSound(null, getX(), getY(), getZ(), SoundEvents.BLAZE_SHOOT, SoundSource.HOSTILE, 0.85F, 0.75F);
+        return new BeamTrace(start, end, hitTarget);
     }
 
     private static void spawnBeamParticles(ServerLevel level, Vec3 start, Vec3 end)
@@ -195,6 +216,10 @@ public class LerbisNemesisLeaderEntity extends GenericTesheGeoMob
     private int getAttackTicks()
     {
         return entityData.get(ATTACK_TICKS);
+    }
+
+    private record BeamTrace(Vec3 start, Vec3 end, LivingEntity hitTarget)
+    {
     }
 
     @Override

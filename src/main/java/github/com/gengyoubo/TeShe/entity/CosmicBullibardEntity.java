@@ -39,6 +39,7 @@ import net.minecraft.world.phys.Vec3;
 import net.thip.entity.projectile.LargeProjectile;
 import net.thip.init.THIPModEntities;
 import net.thip.init.THIPModEffects;
+import net.thip.init.THIPModItems;
 import net.thip.network.Skill;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Vector3f;
@@ -244,15 +245,15 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         if (isBossVariant()) {
             dropStack(Items.NETHERITE_INGOT, 10);
             dropStack(Items.IRON_BLOCK, 5);
-            dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), 6);
+            dropStack(THIPModItems.PLASMA_CORE_FRAGMENTS.get(), 6);
             dropStack(Items.GOLD_BLOCK, 4);
             dropStack(Items.ICE, 16);
             dropStack(ModItems.BULLIBARD_FEATHER_STORY.get(), 1);
             return;
         }
 
-        dropStack(resolveDropItem("thip", "plasma_crystal", ModItems.PLASMA_CRYSTAL.get()), 3 + random.nextInt(2));
-        dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), random.nextInt(3));
+        dropStack(THIPModItems.PLASMA_CRYSTAL.get(), 3 + random.nextInt(2));
+        dropStack(THIPModItems.PLASMA_CORE_FRAGMENTS.get(), random.nextInt(3));
         dropStack(resolveDropItem("thip", "monster_soul", ModItems.MONSTER_SOUL.get()), 1 + random.nextInt(3));
         if (random.nextFloat() < BULLIBARD_FEATHER_DROP_CHANCE) {
             dropStack(ModItems.BULLIBARD_FEATHER.get(), 1);

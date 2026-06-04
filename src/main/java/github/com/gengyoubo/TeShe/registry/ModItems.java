@@ -94,8 +94,6 @@ public final class ModItems
             "star_flower_seed",
             () -> new StarFlowerSeedItem(new Item.Properties().rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> PLASMA_CRYSTAL = registerSimpleItem("plasma_crystal", Rarity.UNCOMMON);
-    public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER_STORY = registerSimpleItem("bullibard_feather_story", Rarity.RARE);
     public static final RegistryObject<Item> KEAN_ANTONLA_BROKEN_HORN = registerSimpleItem("kean_antonla_broken_horn", Rarity.RARE);
