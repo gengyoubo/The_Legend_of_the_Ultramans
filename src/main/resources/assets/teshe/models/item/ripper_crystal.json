@@ -1,54 +1,29 @@
-﻿{
-    "parent":  "builtin/entity",
-    "display":  {
-                    "thirdperson_righthand":  {
-                                                  "scale":  [
-                                                                4,
-                                                                4,
-                                                                4
-                                                            ]
-                                              },
-                    "thirdperson_lefthand":  {
-                                                 "scale":  [
-                                                               4,
-                                                               4,
-                                                               4
-                                                           ]
-                                             },
-                    "firstperson_righthand":  {
-                                                  "scale":  [
-                                                                4,
-                                                                4,
-                                                                4
-                                                            ]
-                                              },
-                    "firstperson_lefthand":  {
-                                                 "scale":  [
-                                                               4,
-                                                               4,
-                                                               4
-                                                           ]
-                                             },
-                    "gui":  {
-                                "scale":  [
-                                              4,
-                                              4,
-                                              4
-                                          ]
-                            },
-                    "ground":  {
-                                   "scale":  [
-                                                 4,
-                                                 4,
-                                                 4
-                                             ]
-                               },
-                    "fixed":  {
-                                  "scale":  [
-                                                4,
-                                                4,
-                                                4
-                                            ]
-                              }
-                }
+{
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "texture_size": [
+    32,
+    32
+  ],
+  "display": {
+    "gui": {
+      "scale": [
+        4,
+        4,
+        4
+      ]
+    },
+    "fixed": {
+      "translation": [
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        4,
+        4,
+        4
+      ]
+    }
+  }
 }

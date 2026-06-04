@@ -35,7 +35,7 @@ public final class ModItems
             "smdrtk_multi_function_pistol",
             () -> new SmdrtkMultiFunctionPistolItem(new Item.Properties().stacksTo(1).durability(320).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", ArmorItem.Type.HELMET);
+    public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", "mdrtk_helmet", ArmorItem.Type.HELMET);
     public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", ArmorItem.Type.CHESTPLATE);
     public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", ArmorItem.Type.LEGGINGS);
     public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", ArmorItem.Type.BOOTS);
@@ -285,8 +285,14 @@ public final class ModItems
 
     private static RegistryObject<Item> registerArmorItem(String name, ArmorItem.Type type)
     {
+        return registerArmorItem(name, "smdrtk_suit", type);
+    }
+
+    private static RegistryObject<Item> registerArmorItem(String name, String itemModelName, ArmorItem.Type type)
+    {
         return ITEMS.register(name, () -> new GeckoArmorItem(
                 "smdrtk_suit",
+                itemModelName,
                 ArmorMaterials.DIAMOND,
                 type,
                 new Item.Properties().rarity(Rarity.RARE)

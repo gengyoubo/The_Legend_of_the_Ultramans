@@ -28,9 +28,6 @@ public final class ModCreativeTabs
                     .title(Component.translatable("itemGroup.teshe.items"))
                     .icon(() -> ModItems.SMDRTK_MULTI_FUNCTION_PISTOL.get().getDefaultInstance())
                     .displayItems((parameters, output) -> ModItems.MODEL_ITEMS.forEach(item -> {
-                        if (item == ModItems.EVENT_FAREWELL) {
-                            acceptThipPlasmaCore(output);
-                        }
                         output.accept(item.get());
                     }))
                     .build()
@@ -39,16 +36,8 @@ public final class ModCreativeTabs
     {
     }
 
-    public static void register(IEventBus bus)
-    {
+    public static void register(IEventBus bus) {
         CREATIVE_MODE_TABS.register(bus);
-    }
 
-    private static void acceptThipPlasmaCore(CreativeModeTab.Output output)
-    {
-        Item plasmaCore = ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath("thip", "plasma_core"));
-        if (plasmaCore != null && plasmaCore != Items.AIR) {
-            output.accept(plasmaCore);
-        }
     }
 }

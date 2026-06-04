@@ -20,19 +20,36 @@ import java.util.function.Consumer;
 
 public class GeckoArmorItem extends ArmorItem implements GeoItem, GeckoModelProvider
 {
-    private final String geckoModelName;
+    private final String armorModelName;
+    private final String itemModelName;
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public GeckoArmorItem(String geckoModelName, ArmorMaterial material, Type type, Properties properties)
     {
+        this(geckoModelName, geckoModelName, material, type, properties);
+    }
+
+    public GeckoArmorItem(String armorModelName, String itemModelName, ArmorMaterial material, Type type, Properties properties)
+    {
         super(material, type, properties);
-        this.geckoModelName = geckoModelName;
+        this.armorModelName = armorModelName;
+        this.itemModelName = itemModelName;
     }
 
     @Override
     public String getGeckoModelName()
     {
-        return geckoModelName;
+        return armorModelName;
+    }
+
+    public String getGeckoItemModelName()
+    {
+        return itemModelName;
+    }
+
+    public boolean hasSeparateItemModel()
+    {
+        return !armorModelName.equals(itemModelName);
     }
 
     @Override

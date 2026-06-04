@@ -2,10 +2,12 @@ package github.com.gengyoubo.TeShe.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import github.com.gengyoubo.TeShe.client.model.GenericGeoArmorModel;
+import com.mojang.math.Axis;
+import github.com.gengyoubo.TeShe.client.model.GenericGeoArmorItemModel;
 import github.com.gengyoubo.TeShe.item.GeckoArmorItem;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemDisplayContext;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoItemRenderer;
@@ -14,7 +16,7 @@ public class GenericGeoArmorItemRenderer extends GeoItemRenderer<GeckoArmorItem>
 {
     public GenericGeoArmorItemRenderer()
     {
-        super(new GenericGeoArmorModel<>());
+        super(new GenericGeoArmorItemModel());
     }
 
     @Override
@@ -35,6 +37,13 @@ public class GenericGeoArmorItemRenderer extends GeoItemRenderer<GeckoArmorItem>
     )
     {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        if (animatable.hasSeparateItemModel()) {
+            return;
+        }
+
+        if (renderPerspective == ItemDisplayContext.GUI) {
+            poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+        }
         poseStack.translate(0.0D, getItemYOffset(animatable.getType()), 0.0D);
         applyItemVisibility(model, animatable.getType());
     }
