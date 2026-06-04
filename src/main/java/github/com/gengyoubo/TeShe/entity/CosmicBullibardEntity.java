@@ -53,6 +53,8 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     public static final int BOSS_VARIANT = 1;
     public static final double NORMAL_MAX_HEALTH = 500.0D;
     public static final double BOSS_MAX_HEALTH = 5000.0D;
+    public static final double NORMAL_ARMOR = 20.0D;
+    public static final double BOSS_ARMOR = 50.0D;
 
     private static final int BEAM_SEGMENTS = 20;
     private static final int BEAM_TICKS_PER_SEGMENT = 1;
@@ -70,9 +72,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private static final double DASH_MAX_DISTANCE_SQR = 576.0D;
     private static final double PROJECTILE_REFLECT_RANGE = 3.5D;
     private static final int BEAM_REFLECTION_DISABLE_TICKS = 300;
-    private static final int REFLECTION_BREAK_MIN_HITS = 5;
-    private static final int REFLECTION_BREAK_MAX_HITS = 10;
-    private static final double REFLECTION_BREAK_START_CHANCE = 0.2D;
+    private static final int REFLECTION_BREAK_HITS = 30;
     private static final double FLIGHT_VERTICAL_TRIGGER_RANGE = 16.0D;
     private static final double FLIGHT_CHASE_SPEED = 0.9D;
     private static final int FLIGHT_HIT_COOLDOWN_TICKS = 40;
@@ -327,7 +327,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     {
         boolean wasFullHealth = getHealth() >= getMaxHealth();
         entityData.set(SPECIAL_INDIVIDUAL, specialIndividual);
-        updateVariantMaxHealth(wasFullHealth);
+        updateVariantAttributes(wasFullHealth);
         if (isBossVariant()) {
             setPersistenceRequired();
             bossInfo.setName(getDisplayName());
@@ -346,22 +346,28 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         return getSpecialIndividual() == BOSS_VARIANT;
     }
 
-    private void updateVariantMaxHealth(boolean healToFull)
+    private void updateVariantAttributes(boolean healToFull)
     {
         AttributeInstance maxHealth = getAttribute(Attributes.MAX_HEALTH);
-        if (maxHealth == null) {
-            return;
-        }
-
-        double targetMaxHealth = isBossVariant() ? BOSS_MAX_HEALTH : NORMAL_MAX_HEALTH;
-        if (maxHealth.getBaseValue() != targetMaxHealth) {
-            maxHealth.setBaseValue(targetMaxHealth);
+        if (maxHealth != null) {
+            double targetMaxHealth = isBossVariant() ? BOSS_MAX_HEALTH : NORMAL_MAX_HEALTH;
+            if (maxHealth.getBaseValue() != targetMaxHealth) {
+                maxHealth.setBaseValue(targetMaxHealth);
+            }
         }
 
         if (healToFull) {
             setHealth(getMaxHealth());
         } else if (getHealth() > getMaxHealth()) {
             setHealth(getMaxHealth());
+        }
+
+        AttributeInstance armor = getAttribute(Attributes.ARMOR);
+        if (armor != null) {
+            double targetArmor = isBossVariant() ? BOSS_ARMOR : NORMAL_ARMOR;
+            if (armor.getBaseValue() != targetArmor) {
+                armor.setBaseValue(targetArmor);
+            }
         }
     }
 
@@ -742,24 +748,8 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private void recordMeleeHit()
     {
         meleeHitsTaken++;
-        if (meleeHitsTaken < REFLECTION_BREAK_MIN_HITS) {
-            return;
-        }
-
-        double chance = getReflectionBreakChance();
-        if (random.nextDouble() < chance) {
+        if (meleeHitsTaken >= REFLECTION_BREAK_HITS) {
             projectileReflectionBroken = true;
         }
-    }
-
-    private double getReflectionBreakChance()
-    {
-        if (meleeHitsTaken >= REFLECTION_BREAK_MAX_HITS) {
-            return 1.0D;
-        }
-
-        double progress = (double)(meleeHitsTaken - REFLECTION_BREAK_MIN_HITS)
-                / (double)(REFLECTION_BREAK_MAX_HITS - REFLECTION_BREAK_MIN_HITS);
-        return REFLECTION_BREAK_START_CHANCE + progress * (1.0D - REFLECTION_BREAK_START_CHANCE);
     }
 }

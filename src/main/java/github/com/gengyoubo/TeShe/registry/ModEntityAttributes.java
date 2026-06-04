@@ -1,6 +1,7 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -50,8 +51,8 @@ public final class ModEntityAttributes
         event.put(ModEntityTypes.CAT.get(), Cat.createAttributes().build());
         event.put(ModEntityTypes.COW.get(), Cow.createAttributes().build());
         event.put(ModEntityTypes.COSMIC_BULLIBARD.get(), Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 500.0D)
-                .add(Attributes.ARMOR, 20.0D)
+                .add(Attributes.MAX_HEALTH, CosmicBullibardEntity.NORMAL_MAX_HEALTH)
+                .add(Attributes.ARMOR, CosmicBullibardEntity.NORMAL_ARMOR)
                 .add(Attributes.MOVEMENT_SPEED, 0.28D)
                 .add(Attributes.ATTACK_DAMAGE, 40.0D)
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
