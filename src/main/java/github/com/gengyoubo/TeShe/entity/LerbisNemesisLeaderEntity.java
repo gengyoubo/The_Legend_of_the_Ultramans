@@ -1,6 +1,6 @@
 package github.com.gengyoubo.TeShe.entity;
 
-import net.minecraft.core.particles.DustParticleOptions;
+import github.com.gengyoubo.TeShe.registry.ModParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -34,7 +34,6 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.thip.init.THIPModItems;
-import org.joml.Vector3f;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -55,7 +54,6 @@ public class LerbisNemesisLeaderEntity extends GenericTesheGeoMob
     private static final EntityDataAccessor<Integer> ATTACK_TICKS = SynchedEntityData.defineId(LerbisNemesisLeaderEntity.class, EntityDataSerializers.INT);
     private static final RawAnimation WALK = RawAnimation.begin().thenLoop("walk");
     private static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("attack");
-    private static final DustParticleOptions RED_BEAM_PARTICLE = new DustParticleOptions(new Vector3f(1.0F, 0.05F, 0.02F), 1.35F);
     private int beamCooldown;
 
     public LerbisNemesisLeaderEntity(EntityType<? extends PathfinderMob> entityType, Level level)
@@ -176,9 +174,9 @@ public class LerbisNemesisLeaderEntity extends GenericTesheGeoMob
         Vec3 step = path.normalize().scale(BEAM_STEP);
         for (double distance = 0.0D; distance <= length; distance += BEAM_STEP) {
             Vec3 position = start.add(step.scale(distance / BEAM_STEP));
-            level.sendParticles(RED_BEAM_PARTICLE, position.x, position.y, position.z, 1, 0.015D, 0.015D, 0.015D, 0.0D);
+            level.sendParticles(ModParticleTypes.RED_SPARK.get(), position.x, position.y, position.z, 1, 0.015D, 0.015D, 0.015D, 0.0D);
         }
-        level.sendParticles(RED_BEAM_PARTICLE, end.x, end.y, end.z, 16, 0.18D, 0.18D, 0.18D, 0.02D);
+        level.sendParticles(ModParticleTypes.RED_SPARK.get(), end.x, end.y, end.z, 16, 0.18D, 0.18D, 0.18D, 0.02D);
     }
 
     private float getWalkAnimationSpeed()

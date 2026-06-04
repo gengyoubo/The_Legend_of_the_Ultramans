@@ -79,6 +79,7 @@ public final class ClientModEvents
     {
         event.registerSpriteSet(ModParticleTypes.SPARK.get(), SparkParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.SPARKBLUE.get(), SparkParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.RED_SPARK.get(), SparkParticle.BeamProvider::new);
         event.registerSpriteSet(ModParticleTypes.SPARK_TO_SPARKBLUE.get(), SparkParticle.BeamProvider::new);
         event.registerSpriteSet(ModParticleTypes.SPARKBLUE_TO_SPARK.get(), SparkParticle.BeamProvider::new);
     }

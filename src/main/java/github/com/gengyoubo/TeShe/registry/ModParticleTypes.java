@@ -14,6 +14,7 @@ public final class ModParticleTypes
 
     public static final RegistryObject<SimpleParticleType> SPARK = PARTICLE_TYPES.register("spark", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SPARKBLUE = PARTICLE_TYPES.register("sparkblue", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> RED_SPARK = PARTICLE_TYPES.register("red_spark", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SPARK_TO_SPARKBLUE = PARTICLE_TYPES.register("spark_to_sparkblue", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SPARKBLUE_TO_SPARK = PARTICLE_TYPES.register("sparkblue_to_spark", () -> new SimpleParticleType(false));
 
