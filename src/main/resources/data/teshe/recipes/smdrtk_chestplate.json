@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "DCD",
+    "ILI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "minecraft:iron_chestplate"
+    },
+    "L": {
+      "item": "teshe:smdrtk_team_logo"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_chestplate"
+  }
+}

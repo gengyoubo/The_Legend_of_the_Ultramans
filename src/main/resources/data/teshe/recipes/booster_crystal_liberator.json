@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "SPS",
+    "FDF",
+    "GCG"
+  ],
+  "key": {
+    "S": {
+      "item": "teshe:spacium_substance"
+    },
+    "P": {
+      "item": "teshe:plasma_crystal"
+    },
+    "F": {
+      "item": "thip:plasma_fragments"
+    },
+    "D": {
+      "item": "teshe:star_flower_seed"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "teshe:booster_crystal_liberator"
+  }
+}

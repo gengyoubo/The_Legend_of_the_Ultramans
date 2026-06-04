@@ -54,7 +54,7 @@ public final class ModEntityAttributes
                 .add(Attributes.MAX_HEALTH, CosmicBullibardEntity.NORMAL_MAX_HEALTH)
                 .add(Attributes.ARMOR, CosmicBullibardEntity.NORMAL_ARMOR)
                 .add(Attributes.MOVEMENT_SPEED, 0.28D)
-                .add(Attributes.ATTACK_DAMAGE, 40.0D)
+                .add(Attributes.ATTACK_DAMAGE, CosmicBullibardEntity.NORMAL_ATTACK_DAMAGE)
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .build());
         registerGenericAttributes(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING);

@@ -2,11 +2,17 @@ package github.com.gengyoubo.TeShe.client;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.client.renderer.BossBarRanderContext;
+import github.com.gengyoubo.TeShe.item.SmdrtkGunItem;
+import github.com.gengyoubo.TeShe.network.ModNetwork;
+import github.com.gengyoubo.TeShe.network.SmdrtkGunFirePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.CustomizeGuiOverlayEvent;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -17,7 +23,7 @@ import java.util.List;
 public final class ClientForgeEvents
 {
     private static final List<BossBarBinding> BOSS_BAR_BINDINGS = List.of(
-            bossBar("entity.teshe.cosmic_bullibard.boss", "cosmic_bullibard_boss.png"),
+            bossBar("entity.teshe.bullibard.boss", "cosmic_bullibard_boss.png"),
             bossBar("entity.teshe.animated_meteor_blazmet.boss", "animated_meteor_blazmet_boss.png"),
             bossBar("entity.teshe.crystallize_black_king.boss", "crystallize_black_king_boss.png"),
             bossBar("entity.teshe.crystallizeblackking.boss", "crystallize_black_king_boss.png"),
@@ -55,6 +61,42 @@ public final class ClientForgeEvents
         } catch (IOException ignored) {
             event.setCanceled(false);
         }
+    }
+
+    @SubscribeEvent
+    public static void fireSmdrtkGun(InputEvent.InteractionKeyMappingTriggered event)
+    {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (!event.isAttack()
+                || event.getHand() != InteractionHand.MAIN_HAND
+                || minecraft.player == null
+                || !(minecraft.player.getMainHandItem().getItem() instanceof SmdrtkGunItem)) {
+            return;
+        }
+
+        event.setCanceled(true);
+        event.setSwingHand(true);
+        ModNetwork.CHANNEL.sendToServer(new SmdrtkGunFirePacket());
+    }
+
+    @SubscribeEvent
+    public static void fireAutomaticSmdrtkGun(TickEvent.ClientTickEvent event)
+    {
+        if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
+
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.player == null
+                || minecraft.screen != null
+                || !minecraft.options.keyAttack.isDown()
+                || !(minecraft.player.getMainHandItem().getItem() instanceof SmdrtkGunItem gun)
+                || !gun.isAutomatic()
+                || minecraft.player.getCooldowns().isOnCooldown(gun)) {
+            return;
+        }
+
+        ModNetwork.CHANNEL.sendToServer(new SmdrtkGunFirePacket());
     }
 
     private static BossBarBinding findBossBarBinding(CustomizeGuiOverlayEvent.BossEventProgress event)

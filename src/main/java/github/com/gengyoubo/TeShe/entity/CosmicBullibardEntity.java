@@ -54,25 +54,32 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     public static final double NORMAL_MAX_HEALTH = 500.0D;
     public static final double BOSS_MAX_HEALTH = 5000.0D;
     public static final double NORMAL_ARMOR = 20.0D;
-    public static final double BOSS_ARMOR = 50.0D;
+    public static final double BOSS_ARMOR = 80.0D;
+    public static final double NORMAL_ATTACK_DAMAGE = 20.0D;
+    public static final double BOSS_ATTACK_DAMAGE = 40.0D;
 
     private static final int BEAM_SEGMENTS = 20;
     private static final int BEAM_TICKS_PER_SEGMENT = 1;
-    private static final float BEAM_DAMAGE = 10.0F;
-    private static final int BEAM_COOLDOWN_TICKS = 80;
+    private static final int BEAM_COOLDOWN_TICKS = 300;
     private static final double BEAM_RANGE = 32.0D;
     private static final float BEAM_PROJECTILE_SPEED = 1.0F;
     private static final String BULLIBARD_BEAM_FORWARD = "spark_to_sparkblue";
     private static final String BULLIBARD_BEAM_REVERSE = "sparkblue_to_spark";
     private static final String BULLIBARD_BEAM_ABILITY = "PaleHeatWave";
-    private static final float DASH_DAMAGE = 100.0F;
+    private static final float NORMAL_BEAM_DAMAGE = 10.0F;
+    private static final float BOSS_BEAM_DAMAGE = 20.0F;
+    private static final float NORMAL_DASH_DAMAGE = 50.0F;
+    private static final float BOSS_DASH_DAMAGE = 100.0F;
     private static final int DASH_COOLDOWN_TICKS = 120;
     private static final int DASH_MAX_TICKS = 18;
     private static final double DASH_MIN_DISTANCE_SQR = 25.0D;
     private static final double DASH_MAX_DISTANCE_SQR = 576.0D;
     private static final double PROJECTILE_REFLECT_RANGE = 3.5D;
     private static final int BEAM_REFLECTION_DISABLE_TICKS = 300;
-    private static final int REFLECTION_BREAK_HITS = 30;
+    private static final int NORMAL_REFLECTION_BREAK_MIN_HITS = 10;
+    private static final int NORMAL_REFLECTION_BREAK_MAX_HITS = 20;
+    private static final int BOSS_REFLECTION_BREAK_MIN_HITS = 30;
+    private static final int BOSS_REFLECTION_BREAK_MAX_HITS = 40;
     private static final double FLIGHT_VERTICAL_TRIGGER_RANGE = 16.0D;
     private static final double FLIGHT_CHASE_SPEED = 0.9D;
     private static final int FLIGHT_HIT_COOLDOWN_TICKS = 40;
@@ -94,6 +101,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private int reflectionDisableTicks;
     private int flightHitCooldown;
     private int meleeHitsTaken;
+    private int reflectionBreakHits;
     private boolean projectileReflectionBroken;
     private boolean sustainedFlightMode;
     private LivingEntity dashTarget;
@@ -236,8 +244,8 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         if (isBossVariant()) {
             dropStack(Items.NETHERITE_INGOT, 10);
             dropStack(Items.IRON_BLOCK, 5);
-            dropStack(resolveDropItem("thip", "plasma_core", Items.AIR), 4);
-            dropStack(Items.GOLD_BLOCK, 2);
+            dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), 6);
+            dropStack(Items.GOLD_BLOCK, 4);
             dropStack(Items.ICE, 16);
             dropStack(ModItems.BULLIBARD_FEATHER_STORY.get(), 1);
             return;
@@ -245,6 +253,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
 
         dropStack(resolveDropItem("thip", "plasma_crystal", ModItems.PLASMA_CRYSTAL.get()), 3 + random.nextInt(2));
         dropStack(resolveDropItem("thip", "plasma_core_fragments", ModItems.PLASMA_CORE_FRAGMENTS.get()), random.nextInt(3));
+        dropStack(resolveDropItem("thip", "monster_soul", ModItems.MONSTER_SOUL.get()), 1 + random.nextInt(3));
         if (random.nextFloat() < BULLIBARD_FEATHER_DROP_CHANCE) {
             dropStack(ModItems.BULLIBARD_FEATHER.get(), 1);
         }
@@ -256,6 +265,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         super.addAdditionalSaveData(tag);
         tag.putInt("SpecialIndividual", getSpecialIndividual());
         tag.putInt("MeleeHitsTaken", meleeHitsTaken);
+        tag.putInt("ReflectionBreakHits", reflectionBreakHits);
         tag.putBoolean("ProjectileReflectionBroken", projectileReflectionBroken);
         tag.putInt("ReflectionDisableTicks", reflectionDisableTicks);
     }
@@ -268,6 +278,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         super.readAdditionalSaveData(tag);
         setSpecialIndividual(specialIndividual);
         meleeHitsTaken = tag.getInt("MeleeHitsTaken");
+        reflectionBreakHits = tag.getInt("ReflectionBreakHits");
         projectileReflectionBroken = tag.getBoolean("ProjectileReflectionBroken");
         reflectionDisableTicks = tag.getInt("ReflectionDisableTicks");
     }
@@ -276,7 +287,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     public Component getDisplayName()
     {
         if (isBossVariant()) {
-            return Component.translatable("entity.teshe.cosmic_bullibard.boss");
+            return Component.translatable("entity.teshe.bullibard.boss");
         }
 
         return super.getDisplayName();
@@ -367,6 +378,14 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
             double targetArmor = isBossVariant() ? BOSS_ARMOR : NORMAL_ARMOR;
             if (armor.getBaseValue() != targetArmor) {
                 armor.setBaseValue(targetArmor);
+            }
+        }
+
+        AttributeInstance attackDamage = getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attackDamage != null) {
+            double targetAttackDamage = isBossVariant() ? BOSS_ATTACK_DAMAGE : NORMAL_ATTACK_DAMAGE;
+            if (attackDamage.getBaseValue() != targetAttackDamage) {
+                attackDamage.setBaseValue(targetAttackDamage);
             }
         }
     }
@@ -495,7 +514,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
                 (EntityType<LargeProjectile>)THIPModEntities.LARGE.get(),
                 serverLevel,
                 this,
-                BEAM_DAMAGE,
+                getBeamDamage(),
                 1,
                 (byte)0,
                 largeProjectile -> {
@@ -562,7 +581,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
         }
 
         if (flightHitCooldown <= 0 && getBoundingBox().inflate(0.35D).intersects(target.getBoundingBox())) {
-            hurtWithNoInvulnerability(target, DASH_DAMAGE);
+            hurtWithNoInvulnerability(target, getDashDamage());
             flightHitCooldown = FLIGHT_HIT_COOLDOWN_TICKS;
         }
     }
@@ -595,7 +614,7 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
 
         AABB hitBox = getBoundingBox().inflate(0.35D);
         if (hitBox.intersects(target.getBoundingBox())) {
-            hurtWithNoInvulnerability(target, DASH_DAMAGE);
+            hurtWithNoInvulnerability(target, getDashDamage());
             finishDash();
             return;
         }
@@ -748,8 +767,29 @@ public class CosmicBullibardEntity extends GenericTesheGeoMob
     private void recordMeleeHit()
     {
         meleeHitsTaken++;
-        if (meleeHitsTaken >= REFLECTION_BREAK_HITS) {
+        if (meleeHitsTaken >= getReflectionBreakHits()) {
             projectileReflectionBroken = true;
         }
+    }
+
+    private float getBeamDamage()
+    {
+        return isBossVariant() ? BOSS_BEAM_DAMAGE : NORMAL_BEAM_DAMAGE;
+    }
+
+    private float getDashDamage()
+    {
+        return isBossVariant() ? BOSS_DASH_DAMAGE : NORMAL_DASH_DAMAGE;
+    }
+
+    private int getReflectionBreakHits()
+    {
+        int minHits = isBossVariant() ? BOSS_REFLECTION_BREAK_MIN_HITS : NORMAL_REFLECTION_BREAK_MIN_HITS;
+        int maxHits = isBossVariant() ? BOSS_REFLECTION_BREAK_MAX_HITS : NORMAL_REFLECTION_BREAK_MAX_HITS;
+        if (reflectionBreakHits < minHits || reflectionBreakHits > maxHits) {
+            reflectionBreakHits = minHits + random.nextInt(maxHits - minHits + 1);
+        }
+
+        return reflectionBreakHits;
     }
 }

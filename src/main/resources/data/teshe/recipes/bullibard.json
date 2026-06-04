@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "IFI",
+    "IBI",
+    "CLS"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:ice"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "B": {
+      "item": "teshe:bullibard_feather"
+    },
+    "C": {
+      "item": "teshe:basic_crystal"
+    },
+    "L": {
+      "item": "teshe:booster_crystal_liberator"
+    },
+    "S": {
+      "item": "teshe:smdrtk_team_logo"
+    }
+  },
+  "result": {
+    "item": "teshe:bullibard"
+  }
+}

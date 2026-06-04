@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "teshe:blank_crystal"
+  },
+  "base": {
+    "item": "teshe:star_flower_seed"
+  },
+  "addition": {
+    "item": "teshe:plasma_core_fragments"
+  },
+  "result": {
+    "item": "teshe:basic_crystal"
+  }
+}

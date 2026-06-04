@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IHI",
+    "BLB"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "H": {
+      "item": "minecraft:iron_helmet"
+    },
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "L": {
+      "item": "teshe:smdrtk_team_logo"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_helmet"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PLP",
+    "SPS",
+    "MFM"
+  ],
+  "key": {
+    "P": {
+      "item": "teshe:plasma_crystal"
+    },
+    "L": {
+      "item": "minecraft:lily_of_the_valley"
+    },
+    "S": {
+      "item": "teshe:spacium_substance"
+    },
+    "M": {
+      "item": "teshe:monster_soul"
+    },
+    "F": {
+      "item": "minecraft:poppy"
+    }
+  },
+  "result": {
+    "item": "teshe:star_flower_seed"
+  }
+}

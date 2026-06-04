@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BLB",
+    "D D",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "L": {
+      "item": "minecraft:iron_leggings"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_leggings"
+  }
+}

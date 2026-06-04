@@ -79,11 +79,11 @@ public final class ModEntityTypes
                     .build(TE.MODID + ":cow")
     );
     public static final RegistryObject<EntityType<CosmicBullibardEntity>> COSMIC_BULLIBARD = ENTITY_TYPES.register(
-            "cosmic_bullibard",
+            "bullibard",
             () -> EntityType.Builder.of(CosmicBullibardEntity::new, MobCategory.MONSTER)
                     .sized(1.0F, 1.6F)
                     .clientTrackingRange(10)
-                    .build(TE.MODID + ":cosmic_bullibard")
+                    .build(TE.MODID + ":bullibard")
     );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING = registerGeoMob("crystallize_black_king", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CRYSTALLIZE_BLACK_KING_BOSS =

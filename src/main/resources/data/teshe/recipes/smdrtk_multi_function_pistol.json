@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "ELB",
+    "SC "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "item": "minecraft:repeater"
+    },
+    "L": {
+      "item": "teshe:smdrtk_team_logo"
+    },
+    "B": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "minecraft:stone_button"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_multi_function_pistol"
+  }
+}

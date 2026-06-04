@@ -1,17 +1,21 @@
 package github.com.gengyoubo.TeShe.registry;
 
 import github.com.gengyoubo.TeShe.TE;
+import github.com.gengyoubo.TeShe.item.BoosterCrystalLiberatorItem;
+import github.com.gengyoubo.TeShe.item.BullibardEventItem;
 import github.com.gengyoubo.TeShe.item.CosmicBullibardBossSpawnEggItem;
 import github.com.gengyoubo.TeShe.item.GeckoArmorItem;
 import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
 import github.com.gengyoubo.TeShe.item.GeckoSwordItem;
 import github.com.gengyoubo.TeShe.item.HatredStickItem;
+import github.com.gengyoubo.TeShe.item.SmdrtkArmorMaterial;
+import github.com.gengyoubo.TeShe.item.SmdrtkGunItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
+import github.com.gengyoubo.TeShe.item.StarFlowerSeedItem;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
@@ -35,12 +39,20 @@ public final class ModItems
             "smdrtk_multi_function_pistol",
             () -> new SmdrtkMultiFunctionPistolItem(new Item.Properties().stacksTo(1).durability(320).rarity(Rarity.RARE))
     );
-    public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", "mdrtk_helmet", ArmorItem.Type.HELMET);
-    public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", "mdrtk_chestplate", ArmorItem.Type.CHESTPLATE);
-    public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", "mdrtk_leggings", ArmorItem.Type.LEGGINGS);
-    public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", "mdrtk_boots", ArmorItem.Type.BOOTS);
-    public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = registerModelItem("smdrtk_energy_smg");
-    public static final RegistryObject<Item> SMDRTK_ENERGY_RIFLE = registerModelItem("smdrtk_energy_rifle");
+    public static final RegistryObject<Item> SMDRTK_HELMET = registerArmorItem("smdrtk_helmet", "mdrtk_helmet", SmdrtkArmorMaterial.HELMET, ArmorItem.Type.HELMET);
+    public static final RegistryObject<Item> SMDRTK_CHESTPLATE = registerArmorItem("smdrtk_chestplate", "mdrtk_chestplate", SmdrtkArmorMaterial.CHESTPLATE, ArmorItem.Type.CHESTPLATE);
+    public static final RegistryObject<Item> SMDRTK_LEGGINGS = registerArmorItem("smdrtk_leggings", "mdrtk_leggings", SmdrtkArmorMaterial.LEGGINGS, ArmorItem.Type.LEGGINGS);
+    public static final RegistryObject<Item> SMDRTK_BOOTS = registerArmorItem("smdrtk_boots", "mdrtk_boots", SmdrtkArmorMaterial.BOOTS, ArmorItem.Type.BOOTS);
+    public static final RegistryObject<Item> SMDRTK_TEAM_LOGO = registerSimpleItem("smdrtk_team_logo", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> SPACIUM_SUBSTANCE = registerSimpleItem("spacium_substance", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> SMDRTK_ENERGY_SMG = ITEMS.register(
+            "smdrtk_energy_smg",
+            () -> new SmdrtkGunItem("smdrtk_energy_smg", SmdrtkGunItem.GunKind.SMG, new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
+    public static final RegistryObject<Item> SMDRTK_ENERGY_RIFLE = ITEMS.register(
+            "smdrtk_energy_rifle",
+            () -> new SmdrtkGunItem("smdrtk_energy_rifle", SmdrtkGunItem.GunKind.RIFLE, new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
     public static final RegistryObject<Item> COURAGE_CUTTER = registerSwordItem("courage_cutter");
     public static final RegistryObject<Item> COURAGE_CUTTER_INCOMPLETE = registerSwordItem("courage_cutter_incomplete");
     public static final RegistryObject<Item> KE_E_BO_JUDGEMENT_BLADE = registerSwordItem("ke_e_bo_judgement_blade");
@@ -54,7 +66,10 @@ public final class ModItems
     public static final RegistryObject<Item> BOOSTER_CUTTER_ALPHA = registerModelItem("booster_cutter_alpha");
     public static final RegistryObject<Item> BOOSTER_CUTTER_BETA = registerModelItem("booster_cutter_beta");
     public static final RegistryObject<Item> BOOSTER_RIPPER = registerModelItem("booster_ripper");
-    public static final RegistryObject<Item> BOOSTER_CRYSTAL_LIBERATOR = registerModelItem("booster_crystal_liberator");
+    public static final RegistryObject<Item> BOOSTER_CRYSTAL_LIBERATOR = ITEMS.register(
+            "booster_crystal_liberator",
+            () -> new BoosterCrystalLiberatorItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
     public static final RegistryObject<Item> BLACK_KING_CRYSTAL = registerModelItem("black_king_crystal");
     public static final RegistryObject<Item> DIAMOND_CRYSTAL_SMASHER = registerModelItem("diamond_crystal_smasher");
     public static final RegistryObject<Item> TRUE_DIAMOND_CRYSTAL_SMASHER = registerModelItem("true_diamond_crystal_smasher");
@@ -74,6 +89,11 @@ public final class ModItems
     public static final RegistryObject<Item> BLACK_KING_SLAUGHTER = registerSwordItem("black_king_slaughter");
     public static final RegistryObject<Item> CAMORRA = registerModelItem("camorra");
     public static final RegistryObject<Item> DEVOURER_RUIN = registerSwordItem("devourer_ruin");
+    public static final RegistryObject<Item> MONSTER_SOUL = registerSimpleItem("monster_soul", Rarity.UNCOMMON);
+    public static final RegistryObject<Item> STAR_FLOWER_SEED = ITEMS.register(
+            "star_flower_seed",
+            () -> new StarFlowerSeedItem(new Item.Properties().rarity(Rarity.RARE))
+    );
     public static final RegistryObject<Item> PLASMA_CRYSTAL = registerSimpleItem("plasma_crystal", Rarity.UNCOMMON);
     public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
@@ -84,7 +104,10 @@ public final class ModItems
     public static final RegistryObject<Item> EVENT_CHIMERA = registerEventItem("event_chimera");
     public static final RegistryObject<Item> EVENT_SISTER_AND_SINNER = registerEventItem("event_sister_and_sinner");
     public static final RegistryObject<Item> EVENT_SOUL_OF_MOUNTAINS = registerEventItem("event_soul_of_mountains");
-    public static final RegistryObject<Item> EVENT_BULLIBARD = registerEventItem("event_bullibard");
+    public static final RegistryObject<Item> EVENT_BULLIBARD = ITEMS.register(
+            "bullibard",
+            () -> new BullibardEventItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
     public static final RegistryObject<Item> EVENT_WEAPON_OF_HOPE = registerEventItem("event_weapon_of_hope");
     public static final RegistryObject<Item> EVENT_MUTATED_DEMON = registerEventItem("event_mutated_demon");
     public static final RegistryObject<Item> EVENT_DEMON_LAKE = registerEventItem("event_demon_lake");
@@ -113,9 +136,9 @@ public final class ModItems
     public static final RegistryObject<Item> CERBERUS_SPAWN_EGG = registerSpawnEgg("cerberus_spawn_egg", ModEntityTypes.CERBERUS, 0x2C2B32, 0xC0703A);
     public static final RegistryObject<Item> CAT_SPAWN_EGG = registerSpawnEgg("cat_spawn_egg", ModEntityTypes.CAT, 0xA37B5B, 0xE7C9A9);
     public static final RegistryObject<Item> COW_SPAWN_EGG = registerSpawnEgg("cow_spawn_egg", ModEntityTypes.COW, 0x443626, 0xD8C4A8);
-    public static final RegistryObject<Item> COSMIC_BULLIBARD_SPAWN_EGG = registerSpawnEgg("cosmic_bullibard_spawn_egg", ModEntityTypes.COSMIC_BULLIBARD, 0x242B42, 0xA8D8FF);
+    public static final RegistryObject<Item> COSMIC_BULLIBARD_SPAWN_EGG = registerSpawnEgg("bullibard_spawn_egg", ModEntityTypes.COSMIC_BULLIBARD, 0x242B42, 0xA8D8FF);
     public static final RegistryObject<Item> COSMIC_BULLIBARD_BOSS_SPAWN_EGG = ITEMS.register(
-            "cosmic_bullibard_boss_spawn_egg",
+            "bullibard_boss_spawn_egg",
             () -> new CosmicBullibardBossSpawnEggItem(new Item.Properties().rarity(Rarity.UNCOMMON))
     );
     public static final RegistryObject<Item> CRYSTALLIZE_BLACK_KING_SPAWN_EGG = registerSpawnEgg("crystallize_black_king_spawn_egg", ModEntityTypes.CRYSTALLIZE_BLACK_KING, 0x2B2431, 0xA5D8FF);
@@ -159,6 +182,8 @@ public final class ModItems
             SMDRTK_CHESTPLATE,
             SMDRTK_LEGGINGS,
             SMDRTK_BOOTS,
+            SMDRTK_TEAM_LOGO,
+            SPACIUM_SUBSTANCE,
             SMDRTK_MULTI_FUNCTION_PISTOL,
             SMDRTK_ENERGY_SMG,
             SMDRTK_ENERGY_RIFLE,
@@ -180,6 +205,8 @@ public final class ModItems
             KING_JOE_SMASHER,
             BLACK_KING_SLAUGHTER,
             DEVOURER_RUIN,
+            MONSTER_SOUL,
+            STAR_FLOWER_SEED,
 
             BASIC_CRYSTAL,
             BLANK_CRYSTAL,
@@ -285,15 +312,15 @@ public final class ModItems
 
     private static RegistryObject<Item> registerArmorItem(String name, ArmorItem.Type type)
     {
-        return registerArmorItem(name, "smdrtk_suit", type);
+        return registerArmorItem(name, "smdrtk_suit", SmdrtkArmorMaterial.HELMET, type);
     }
 
-    private static RegistryObject<Item> registerArmorItem(String name, String itemModelName, ArmorItem.Type type)
+    private static RegistryObject<Item> registerArmorItem(String name, String itemModelName, SmdrtkArmorMaterial material, ArmorItem.Type type)
     {
         return ITEMS.register(name, () -> new GeckoArmorItem(
                 "smdrtk_suit",
                 itemModelName,
-                ArmorMaterials.DIAMOND,
+                material,
                 type,
                 new Item.Properties().rarity(Rarity.RARE)
         ));

@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DLS",
+    "CPD",
+    "BT "
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "L": {
+      "item": "teshe:smdrtk_team_logo"
+    },
+    "S": {
+      "item": "teshe:spacium_substance"
+    },
+    "C": {
+      "item": "minecraft:copper_block"
+    },
+    "P": {
+      "item": "teshe:plasma_crystal"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone"
+    },
+    "T": {
+      "item": "teshe:smdrtk_multi_function_pistol"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_energy_smg"
+  }
+}

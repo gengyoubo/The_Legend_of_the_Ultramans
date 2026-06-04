@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "YYY",
+    "BSB",
+    "OOO"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_dye"
+    },
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "S": {
+      "item": "teshe:spacium_substance"
+    },
+    "O": {
+      "item": "minecraft:orange_dye"
+    }
+  },
+  "result": {
+    "item": "teshe:smdrtk_team_logo"
+  }
+}
