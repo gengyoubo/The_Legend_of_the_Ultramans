@@ -5,6 +5,7 @@ import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import github.com.gengyoubo.TeShe.entity.CrystallizeBlackKingEntity;
 import github.com.gengyoubo.TeShe.entity.GenericTesheGeoMob;
 import github.com.gengyoubo.TeShe.entity.GuardianElderEntity;
+import github.com.gengyoubo.TeShe.entity.KeanAntonlaEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueAllayEntity;
@@ -183,6 +184,13 @@ public final class ModEntityTypes
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RINGUA_IGONOTA_BOSS =
             registerGeoMobBoss("ringua_igonota_boss", "ringua_igonota", 1.2F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_CHIMERA = registerGeoMob("ruin_chimera", 1.8F, 2.8F);
+    public static final RegistryObject<EntityType<KeanAntonlaEntity>> KEAN_ANTONLA = ENTITY_TYPES.register(
+            "kean_antonla",
+            () -> EntityType.Builder.of(KeanAntonlaEntity::new, MobCategory.MONSTER)
+                    .sized(1.4F, 2.6F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":kean_antonla")
+    );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_ANTONLA = registerAnimatedGeoMob("ruin_antonla", 1.4F, 2.6F, "\u884c\u8d70");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> RUIN_ANTONLA_BOSS =
             registerAnimatedGeoMobBoss("ruin_antonla_boss", "ruin_antonla", 1.4F, 2.6F, "\u884c\u8d70");

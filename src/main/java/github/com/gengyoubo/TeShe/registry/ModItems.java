@@ -9,6 +9,7 @@ import github.com.gengyoubo.TeShe.item.GeckoModelItem;
 import github.com.gengyoubo.TeShe.item.GeckoShieldItem;
 import github.com.gengyoubo.TeShe.item.GeckoSwordItem;
 import github.com.gengyoubo.TeShe.item.HatredStickItem;
+import github.com.gengyoubo.TeShe.item.MutagenicInducerItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkArmorMaterial;
 import github.com.gengyoubo.TeShe.item.SmdrtkGunItem;
 import github.com.gengyoubo.TeShe.item.SmdrtkMultiFunctionPistolItem;
@@ -97,6 +98,11 @@ public final class ModItems
     public static final RegistryObject<Item> PLASMA_CORE_FRAGMENTS = registerSimpleItem("plasma_core_fragments", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER = registerSimpleItem("bullibard_feather", Rarity.UNCOMMON);
     public static final RegistryObject<Item> BULLIBARD_FEATHER_STORY = registerSimpleItem("bullibard_feather_story", Rarity.RARE);
+    public static final RegistryObject<Item> KEAN_ANTONLA_BROKEN_HORN = registerSimpleItem("kean_antonla_broken_horn", Rarity.RARE);
+    public static final RegistryObject<Item> MUTAGENIC_INDUCER = ITEMS.register(
+            "mutagenic_inducer",
+            () -> new MutagenicInducerItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE))
+    );
     public static final RegistryObject<Item> EVENT_FAREWELL = registerEventItem("event_farewell");
     public static final RegistryObject<Item> EVENT_APOCALYPSE_WAR = registerEventItem("event_apocalypse_war");
     public static final RegistryObject<Item> EVENT_APOCALYPSE_DEATH = registerEventItem("event_apocalypse_death");
@@ -168,6 +174,7 @@ public final class ModItems
     public static final RegistryObject<Item> RINGUA_IGONOTA_SPAWN_EGG = registerSpawnEgg("ringua_igonota_spawn_egg", ModEntityTypes.RINGUA_IGONOTA, 0x3B3152, 0xB890FF);
     public static final RegistryObject<Item> RINGUA_IGONOTA_BOSS_SPAWN_EGG = registerSpawnEgg("ringua_igonota_boss_spawn_egg", ModEntityTypes.RINGUA_IGONOTA_BOSS, 0x3B3152, 0xB890FF);
     public static final RegistryObject<Item> RUIN_CHIMERA_SPAWN_EGG = registerSpawnEgg("ruin_chimera_spawn_egg", ModEntityTypes.RUIN_CHIMERA, 0x34252B, 0xD84A34);
+    public static final RegistryObject<Item> KEAN_ANTONLA_SPAWN_EGG = registerSpawnEgg("kean_antonla_spawn_egg", ModEntityTypes.KEAN_ANTONLA, 0xAC7B3D, 0xE8D34C);
     public static final RegistryObject<Item> RUIN_ANTONLA_SPAWN_EGG = registerSpawnEgg("ruin_antonla_spawn_egg", ModEntityTypes.RUIN_ANTONLA, 0xA77D4E, 0x533927);
     public static final RegistryObject<Item> RUIN_ANTONLA_BOSS_SPAWN_EGG = registerSpawnEgg("ruin_antonla_boss_spawn_egg", ModEntityTypes.RUIN_ANTONLA_BOSS, 0xA77D4E, 0x533927);
     public static final RegistryObject<Item> SATAN_HAND_SPAWN_EGG = registerSpawnEgg("satan_hand_spawn_egg", ModEntityTypes.SATAN_HAND, 0x342222, 0xC83C3C);
@@ -243,6 +250,8 @@ public final class ModItems
             EVENT_GREEDY_CITY,
             BULLIBARD_FEATHER,
             BULLIBARD_FEATHER_STORY,
+            KEAN_ANTONLA_BROKEN_HORN,
+            MUTAGENIC_INDUCER,
 
             ALLAY_SPAWN_EGG,
             BLAZE_SPAWN_EGG,
@@ -288,6 +297,7 @@ public final class ModItems
             RINGUA_IGONOTA_SPAWN_EGG,
             RINGUA_IGONOTA_BOSS_SPAWN_EGG,
             RUIN_CHIMERA_SPAWN_EGG,
+            KEAN_ANTONLA_SPAWN_EGG,
             RUIN_ANTONLA_SPAWN_EGG,
             RUIN_ANTONLA_BOSS_SPAWN_EGG,
             SATAN_HAND_SPAWN_EGG,

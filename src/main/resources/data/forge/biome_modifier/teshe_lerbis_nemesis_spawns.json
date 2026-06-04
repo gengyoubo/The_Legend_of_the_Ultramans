@@ -1,0 +1,18 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#teshe:has_monster/lerbis_nemesis",
+  "spawners": [
+    {
+      "type": "teshe:lerbis_nemesis_the_sidekick",
+      "weight": 8,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "teshe:lerbis_nemesis_the_leader",
+      "weight": 2,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

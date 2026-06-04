@@ -65,6 +65,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.RINGUA_IGONOTA, "ringua_igonota", 0.8F);
         registerRenderer(event, ModEntityTypes.RINGUA_IGONOTA_BOSS, "ringua_igonota", 0.8F);
         registerRenderer(event, ModEntityTypes.RUIN_CHIMERA, "ruin_chimera", 1.0F);
+        registerRenderer(event, ModEntityTypes.KEAN_ANTONLA, "kean_antonla", "kean_antonla", 0.8F);
         registerRenderer(event, ModEntityTypes.RUIN_ANTONLA, "ruin_antonla", "ruin_antonla", 0.8F);
         registerRenderer(event, ModEntityTypes.RUIN_ANTONLA_BOSS, "ruin_antonla", "ruin_antonla", 0.8F);
         registerRenderer(event, ModEntityTypes.SATAN_HAND, "satan_hand", 0.7F);

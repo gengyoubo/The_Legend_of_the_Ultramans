@@ -213,5 +213,12 @@
   "item.teshe.soul_of_mountains_spawn_egg": "山峦之魂刷怪蛋",
   "item.teshe.special_ex_eleking_spawn_egg": "特殊EX艾雷王刷怪蛋",
   "item.teshe.youzhushou_spawn_egg": "幼蛛兽刷怪蛋",
-  "item.teshe.zombie_spawn_egg": "瘟疫感染僵尸刷怪蛋"
+  "item.teshe.zombie_spawn_egg": "瘟疫感染僵尸刷怪蛋",
+  "item.teshe.kean_antonla_broken_horn": "基恩安东拉断角",
+  "item.teshe.mutagenic_inducer": "异变诱剂",
+  "entity.teshe.kean_antonla": "基恩安东拉",
+  "item.teshe.kean_antonla_spawn_egg": "基恩安东拉刷怪蛋",
+  "message.teshe.mutagenic_inducer.invalid_biome": "异变诱剂只能在沙漠或恶地使用",
+  "message.teshe.mutagenic_inducer.enabled": "基恩安东拉的世界生成已开启",
+  "message.teshe.mutagenic_inducer.already_enabled": "基恩安东拉的世界生成已经开启"
 }

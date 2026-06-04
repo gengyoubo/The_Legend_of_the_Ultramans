@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "teshe:item/event/event_mutated_demon"
+  }
+}

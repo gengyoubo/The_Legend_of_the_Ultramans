@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#teshe:has_monster/bullibard",
+  "spawners": {
+    "type": "teshe:bullibard",
+    "weight": 3,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

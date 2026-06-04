@@ -3,6 +3,7 @@ package github.com.gengyoubo.TeShe.registry;
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.CosmicBullibardEntity;
 import github.com.gengyoubo.TeShe.entity.CrystallizeBlackKingEntity;
+import github.com.gengyoubo.TeShe.entity.KeanAntonlaEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
 import net.minecraft.world.entity.EntityType;
@@ -110,6 +111,13 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.RINGUA_IGONOTA);
         registerGenericAttributes(event, ModEntityTypes.RINGUA_IGONOTA_BOSS);
         registerGenericAttributes(event, ModEntityTypes.RUIN_CHIMERA);
+        event.put(ModEntityTypes.KEAN_ANTONLA.get(), Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, KeanAntonlaEntity.MAX_HEALTH)
+                .add(Attributes.ARMOR, KeanAntonlaEntity.ARMOR)
+                .add(Attributes.MOVEMENT_SPEED, KeanAntonlaEntity.MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, KeanAntonlaEntity.ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, 48.0D)
+                .build());
         registerGenericAttributes(event, ModEntityTypes.RUIN_ANTONLA);
         registerGenericAttributes(event, ModEntityTypes.RUIN_ANTONLA_BOSS);
         registerGenericAttributes(event, ModEntityTypes.SATAN_HAND);

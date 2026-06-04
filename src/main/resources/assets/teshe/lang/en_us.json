@@ -213,5 +213,12 @@
   "item.teshe.soul_of_mountains_spawn_egg": "Soul of Mountains Spawn Egg",
   "item.teshe.special_ex_eleking_spawn_egg": "Special EX Eleking Spawn Egg",
   "item.teshe.youzhushou_spawn_egg": "Youzhushou Spawn Egg",
-  "item.teshe.zombie_spawn_egg": "Plague Zombie Spawn Egg"
+  "item.teshe.zombie_spawn_egg": "Plague Zombie Spawn Egg",
+  "item.teshe.kean_antonla_broken_horn": "Kean Antonla Broken Horn",
+  "item.teshe.mutagenic_inducer": "Mutagenic Inducer",
+  "entity.teshe.kean_antonla": "Kean Antonla",
+  "item.teshe.kean_antonla_spawn_egg": "Kean Antonla Spawn Egg",
+  "message.teshe.mutagenic_inducer.invalid_biome": "Mutagenic Inducer can only be used in deserts or badlands",
+  "message.teshe.mutagenic_inducer.enabled": "Kean Antonla world spawning is now enabled",
+  "message.teshe.mutagenic_inducer.already_enabled": "Kean Antonla world spawning is already enabled"
 }

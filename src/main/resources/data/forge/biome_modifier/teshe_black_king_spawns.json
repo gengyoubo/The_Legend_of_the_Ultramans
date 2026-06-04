@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#teshe:has_monster/black_king",
+  "spawners": {
+    "type": "teshe:crystallize_black_king",
+    "weight": 4,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}
