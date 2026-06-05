@@ -5,10 +5,12 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.CatRenderer;
 import net.minecraft.client.renderer.entity.AxolotlRenderer;
 import net.minecraft.client.renderer.entity.CowRenderer;
+import net.minecraft.client.renderer.entity.EnderDragonRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.FoxRenderer;
 import net.minecraft.client.renderer.entity.GhastRenderer;
 import net.minecraft.client.renderer.entity.GuardianRenderer;
+import net.minecraft.client.renderer.entity.HoglinRenderer;
 import net.minecraft.client.renderer.entity.PhantomRenderer;
 import net.minecraft.client.renderer.entity.PigRenderer;
 import net.minecraft.client.renderer.entity.PiglinRenderer;
@@ -19,9 +21,11 @@ import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.hoglin.Hoglin;
 
 public final class PlagueVanillaRenderers
 {
@@ -115,6 +119,22 @@ public final class PlagueVanillaRenderers
         }
     }
 
+    public static class EnderDragonMob extends EnderDragonRenderer
+    {
+        private static final ResourceLocation TEXTURE = texture("moyinglong");
+
+        public EnderDragonMob(EntityRendererProvider.Context context)
+        {
+            super(context);
+        }
+
+        @Override
+        public ResourceLocation getTextureLocation(EnderDragon entity)
+        {
+            return TEXTURE;
+        }
+    }
+
     public static class GuardianMob extends GuardianRenderer
     {
         private static final ResourceLocation TEXTURE = texture("guardian");
@@ -126,6 +146,22 @@ public final class PlagueVanillaRenderers
 
         @Override
         public ResourceLocation getTextureLocation(Guardian entity)
+        {
+            return TEXTURE;
+        }
+    }
+
+    public static class HoglinMob extends HoglinRenderer
+    {
+        private static final ResourceLocation TEXTURE = texture("youzhushou");
+
+        public HoglinMob(EntityRendererProvider.Context context)
+        {
+            super(context);
+        }
+
+        @Override
+        public ResourceLocation getTextureLocation(Hoglin entity)
         {
             return TEXTURE;
         }

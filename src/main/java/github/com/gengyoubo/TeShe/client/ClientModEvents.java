@@ -26,9 +26,11 @@ import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -77,7 +79,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS, "lebic_demon_form", 0.8F);
         registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", "general", 0.8F);
         registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_LEADER, "lerbis_nemesis_the_leader", "general", 0.8F);
-        registerRenderer(event, ModEntityTypes.MOYINGLONG, "moyinglong", 1.2F);
+        event.<EnderDragon>registerEntityRenderer(ModEntityTypes.MOYINGLONG.get(), PlagueVanillaRenderers.EnderDragonMob::new);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD, "modified_bullibard", "modified_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS, "modified_bullibard", "modified_bullibard", 0.6F);
         event.<Phantom>registerEntityRenderer(ModEntityTypes.PHANTOM.get(), PlagueVanillaRenderers.PhantomMob::new);
@@ -95,7 +97,7 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.SATAN_HAND, "satan_hand", 0.7F);
         registerRenderer(event, ModEntityTypes.SOUL_OF_MOUNTAINS, "soul_of_mountains", 0.8F);
         registerRenderer(event, ModEntityTypes.SPECIAL_EX_ELEKING, "special_ex_eleking", 0.8F);
-        registerRenderer(event, ModEntityTypes.YOUZHUSHOU, "youzhushou", 0.7F);
+        event.<Hoglin>registerEntityRenderer(ModEntityTypes.YOUZHUSHOU.get(), PlagueVanillaRenderers.HoglinMob::new);
         event.registerEntityRenderer(ModEntityTypes.ZOMBIE.get(), context -> new ZombiePlagueSymbiosisRenderer<>(context, "zombie", false));
         event.registerEntityRenderer(ModEntityTypes.DROWNED.get(), context -> new ZombiePlagueSymbiosisRenderer<>(context, "drowned", true));
     }

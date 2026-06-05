@@ -15,9 +15,11 @@ import github.com.gengyoubo.TeShe.entity.PlagueCatEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueCowEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueDrownedEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueEndermanEntity;
+import github.com.gengyoubo.TeShe.entity.PlagueEnderDragonEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueFoxEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueGhastEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueGuardianEntity;
+import github.com.gengyoubo.TeShe.entity.PlagueHoglinEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueHuskEntity;
 import github.com.gengyoubo.TeShe.entity.PlaguePhantomEntity;
 import github.com.gengyoubo.TeShe.entity.PlaguePigEntity;
@@ -176,7 +178,14 @@ public final class ModEntityTypes
                     .clientTrackingRange(10)
                     .build(TE.MODID + ":lerbis_nemesis_the_leader")
     );
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> MOYINGLONG = registerGeoMob("moyinglong", 4.0F, 4.0F);
+    public static final RegistryObject<EntityType<PlagueEnderDragonEntity>> MOYINGLONG = ENTITY_TYPES.register(
+            "moyinglong",
+            () -> EntityType.Builder.of(PlagueEnderDragonEntity::new, MobCategory.MONSTER)
+                    .fireImmune()
+                    .sized(16.0F, 8.0F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":moyinglong")
+    );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD = registerAnimatedGeoMob("modified_bullibard", 1.0F, 1.6F, "fly");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> MODIFIED_BULLIBARD_BOSS =
             registerAnimatedGeoMobBoss("modified_bullibard_boss", "modified_bullibard", 1.0F, 1.6F, "fly");
@@ -228,7 +237,13 @@ public final class ModEntityTypes
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SATAN_HAND = registerGeoMob("satan_hand", 1.0F, 2.0F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SOUL_OF_MOUNTAINS = registerGeoMob("soul_of_mountains", 1.4F, 2.6F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> SPECIAL_EX_ELEKING = registerGeoMob("special_ex_eleking", 1.4F, 2.6F);
-    public static final RegistryObject<EntityType<GenericTesheGeoMob>> YOUZHUSHOU = registerGeoMob("youzhushou", 1.0F, 2.0F);
+    public static final RegistryObject<EntityType<PlagueHoglinEntity>> YOUZHUSHOU = ENTITY_TYPES.register(
+            "youzhushou",
+            () -> EntityType.Builder.of(PlagueHoglinEntity::new, MobCategory.MONSTER)
+                    .sized(1.4F, 1.4F)
+                    .clientTrackingRange(10)
+                    .build(TE.MODID + ":youzhushou")
+    );
     public static final RegistryObject<EntityType<PlagueZombieEntity>> ZOMBIE = ENTITY_TYPES.register(
             "zombie",
             () -> EntityType.Builder.of(PlagueZombieEntity::new, MobCategory.MONSTER)

@@ -16,6 +16,7 @@ import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -99,7 +101,7 @@ public final class ModEntityAttributes
                 .add(Attributes.ATTACK_DAMAGE, LerbisNemesisLeaderEntity.ATTACK_DAMAGE)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .build());
-        registerGenericAttributes(event, ModEntityTypes.MOYINGLONG);
+        event.put(ModEntityTypes.MOYINGLONG.get(), EnderDragon.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS);
         event.put(ModEntityTypes.PHANTOM.get(), Mob.createMobAttributes()
@@ -127,7 +129,7 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.SATAN_HAND);
         registerGenericAttributes(event, ModEntityTypes.SOUL_OF_MOUNTAINS);
         registerGenericAttributes(event, ModEntityTypes.SPECIAL_EX_ELEKING);
-        registerGenericAttributes(event, ModEntityTypes.YOUZHUSHOU);
+        event.put(ModEntityTypes.YOUZHUSHOU.get(), Hoglin.createAttributes().build());
         event.put(ModEntityTypes.ZOMBIE.get(), Zombie.createAttributes().build());
         event.put(ModEntityTypes.DROWNED.get(), Drowned.createAttributes().build());
     }
