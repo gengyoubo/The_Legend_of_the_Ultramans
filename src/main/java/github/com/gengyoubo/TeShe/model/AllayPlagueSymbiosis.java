@@ -15,8 +15,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.animal.allay.Allay;
 
-public class AllayInfection<T extends Allay> extends HierarchicalModel<T> implements ArmedModel {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "allay_infection"), "main");
+public class AllayPlagueSymbiosis<T extends Allay> extends HierarchicalModel<T> implements ArmedModel {
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "allay_plague_symbiosis"), "main");
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart body;
@@ -25,7 +25,7 @@ public class AllayInfection<T extends Allay> extends HierarchicalModel<T> implem
 	private final ModelPart left_wing;
 	private final ModelPart right_wing;
 
-	public AllayInfection(ModelPart root) {
+	public AllayPlagueSymbiosis(ModelPart root) {
 		super(RenderType::entityTranslucent);
 		this.root = root.getChild("root");
 		this.head = this.root.getChild("head");
@@ -121,3 +121,4 @@ public class AllayInfection<T extends Allay> extends HierarchicalModel<T> implem
 		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 }
+

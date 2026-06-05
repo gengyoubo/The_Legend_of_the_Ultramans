@@ -3,18 +3,18 @@ package github.com.gengyoubo.TeShe.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.entity.GuardianElderEntity;
-import github.com.gengyoubo.TeShe.model.Guardian_elderInfection;
+import github.com.gengyoubo.TeShe.model.GuardianElderPlagueSymbiosis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
-public class GuardianElderInfectionRenderer extends MobRenderer<GuardianElderEntity, Guardian_elderInfection<GuardianElderEntity>>
+public class GuardianElderPlagueSymbiosisRenderer extends MobRenderer<GuardianElderEntity, GuardianElderPlagueSymbiosis<GuardianElderEntity>>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation(TE.MODID, "textures/entity/guardian_elder.png");
 
-    public GuardianElderInfectionRenderer(EntityRendererProvider.Context context)
+    public GuardianElderPlagueSymbiosisRenderer(EntityRendererProvider.Context context)
     {
-        super(context, new Guardian_elderInfection<>(context.bakeLayer(Guardian_elderInfection.LAYER_LOCATION)), 0.8F);
+        super(context, new GuardianElderPlagueSymbiosis<>(context.bakeLayer(GuardianElderPlagueSymbiosis.LAYER_LOCATION)), 0.8F);
     }
 
     @Override
@@ -29,3 +29,4 @@ public class GuardianElderInfectionRenderer extends MobRenderer<GuardianElderEnt
         poseStack.scale(2.35F, 2.35F, 2.35F);
     }
 }
+

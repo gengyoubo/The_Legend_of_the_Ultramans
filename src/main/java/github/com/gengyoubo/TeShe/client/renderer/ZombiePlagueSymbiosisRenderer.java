@@ -3,7 +3,7 @@ package github.com.gengyoubo.TeShe.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import github.com.gengyoubo.TeShe.TE;
-import github.com.gengyoubo.TeShe.model.ZombieInfection;
+import github.com.gengyoubo.TeShe.model.ZombiePlagueSymbiosis;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
@@ -12,17 +12,17 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Zombie;
 
-public class ZombieInfectionRenderer<T extends Zombie> extends MobRenderer<T, ZombieInfection<T>>
+public class ZombiePlagueSymbiosisRenderer<T extends Zombie> extends MobRenderer<T, ZombiePlagueSymbiosis<T>>
 {
     private final ResourceLocation texture;
 
-    public ZombieInfectionRenderer(EntityRendererProvider.Context context, String textureName, boolean hasDrownedOuterLayer)
+    public ZombiePlagueSymbiosisRenderer(EntityRendererProvider.Context context, String textureName, boolean hasDrownedOuterLayer)
     {
-        super(context, new ZombieInfection<>(context.bakeLayer(ZombieInfection.LAYER_LOCATION)), 0.5F);
+        super(context, new ZombiePlagueSymbiosis<>(context.bakeLayer(ZombiePlagueSymbiosis.LAYER_LOCATION)), 0.5F);
         this.texture = new ResourceLocation(TE.MODID, "textures/entity/" + textureName + ".png");
         addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
         if (hasDrownedOuterLayer) {
-            addLayer(new ZombieInfectionOuterLayer<>(this, context));
+            addLayer(new ZombiePlagueSymbiosisOuterLayer<>(this, context));
         }
     }
 
@@ -52,3 +52,4 @@ public class ZombieInfectionRenderer<T extends Zombie> extends MobRenderer<T, Zo
         }
     }
 }
+

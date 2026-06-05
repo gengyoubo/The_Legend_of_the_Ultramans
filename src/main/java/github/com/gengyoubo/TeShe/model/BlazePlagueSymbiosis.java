@@ -14,16 +14,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Blaze;
 
-public class BlazeInfection<T extends Blaze> extends HierarchicalModel<T>
+public class BlazePlagueSymbiosis<T extends Blaze> extends HierarchicalModel<T>
 {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "blaze_infection"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "blaze_plague_symbiosis"), "main");
 
     private final ModelPart root;
     private final ModelPart group;
     private final ModelPart[] upperBodyParts = new ModelPart[12];
     private final ModelPart head;
 
-    public BlazeInfection(ModelPart root)
+    public BlazePlagueSymbiosis(ModelPart root)
     {
         this.root = root;
         this.group = root.getChild("group");
@@ -88,3 +88,4 @@ public class BlazeInfection<T extends Blaze> extends HierarchicalModel<T>
         head.xRot = headPitch * Mth.DEG_TO_RAD;
     }
 }
+

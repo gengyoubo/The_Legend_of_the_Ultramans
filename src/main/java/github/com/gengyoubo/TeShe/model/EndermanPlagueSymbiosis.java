@@ -14,9 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.EnderMan;
 
-public class EndermanInfection<T extends EnderMan> extends HierarchicalModel<T>
+public class EndermanPlagueSymbiosis<T extends EnderMan> extends HierarchicalModel<T>
 {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "enderman_infection"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "enderman_plague_symbiosis"), "main");
 
     private final ModelPart root;
     private final ModelPart head;
@@ -26,7 +26,7 @@ public class EndermanInfection<T extends EnderMan> extends HierarchicalModel<T>
     private final ModelPart rightLeg;
     private final ModelPart leftLeg;
 
-    public EndermanInfection(ModelPart root)
+    public EndermanPlagueSymbiosis(ModelPart root)
     {
         this.root = root;
         this.head = root.getChild("Head");
@@ -127,3 +127,4 @@ public class EndermanInfection<T extends EnderMan> extends HierarchicalModel<T>
         }
     }
 }
+
