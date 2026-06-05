@@ -14,9 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.ElderGuardian;
 
-public class Guardian_elderInfection<T extends ElderGuardian> extends HierarchicalModel<T>
+public class GuardianElderPlagueSymbiosis<T extends ElderGuardian> extends HierarchicalModel<T>
 {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "guardian_elder_infection"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "guardian_elder_plague_symbiosis"), "main");
 
     private final ModelPart root;
     private final ModelPart head;
@@ -24,7 +24,7 @@ public class Guardian_elderInfection<T extends ElderGuardian> extends Hierarchic
     private final ModelPart tailpart1;
     private final ModelPart tailpart2;
 
-    public Guardian_elderInfection(ModelPart root)
+    public GuardianElderPlagueSymbiosis(ModelPart root)
     {
         this.root = root;
         this.head = root.getChild("head");
@@ -113,3 +113,4 @@ public class Guardian_elderInfection<T extends ElderGuardian> extends Hierarchic
         tailpart2.yRot = tail * 0.35F;
     }
 }
+

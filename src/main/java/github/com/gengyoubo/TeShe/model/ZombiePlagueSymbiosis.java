@@ -18,10 +18,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.monster.Zombie;
 
-public class ZombieInfection<T extends Zombie> extends HierarchicalModel<T> implements ArmedModel
+public class ZombiePlagueSymbiosis<T extends Zombie> extends HierarchicalModel<T> implements ArmedModel
 {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "zombie_infection"), "main");
-    public static final ModelLayerLocation OUTER_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "zombie_infection_outer"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "zombie_plague_symbiosis"), "main");
+    public static final ModelLayerLocation OUTER_LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("teshe", "zombie_plague_symbiosis_outer"), "main");
     private final ModelPart group4;
     private final ModelPart body;
     private final ModelPart head;
@@ -30,7 +30,7 @@ public class ZombieInfection<T extends Zombie> extends HierarchicalModel<T> impl
     private final ModelPart rightLeg;
     private final ModelPart leftLeg;
 
-    public ZombieInfection(ModelPart root)
+    public ZombiePlagueSymbiosis(ModelPart root)
     {
         this.group4 = root.getChild("group4");
         this.body = group4.getChild("Body");
@@ -111,3 +111,4 @@ public class ZombieInfection<T extends Zombie> extends HierarchicalModel<T> impl
         group4.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }
+

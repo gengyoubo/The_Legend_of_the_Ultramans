@@ -14,9 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.Chicken;
 
-public class ChickenInfection<T extends Chicken> extends HierarchicalModel<T>
+public class ChickenPlagueSymbiosis<T extends Chicken> extends HierarchicalModel<T>
 {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "chicken_infection"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TE.MODID, "chicken_plague_symbiosis"), "main");
 
     private final ModelPart root;
     private final ModelPart head;
@@ -26,7 +26,7 @@ public class ChickenInfection<T extends Chicken> extends HierarchicalModel<T>
     private final ModelPart wing0;
     private final ModelPart wing1;
 
-    public ChickenInfection(ModelPart root)
+    public ChickenPlagueSymbiosis(ModelPart root)
     {
         this.root = root;
         this.head = root.getChild("head");
@@ -100,3 +100,4 @@ public class ChickenInfection<T extends Chicken> extends HierarchicalModel<T>
         wing1.zRot = -ageInTicks;
     }
 }
+

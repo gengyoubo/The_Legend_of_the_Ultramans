@@ -2,23 +2,33 @@ package github.com.gengyoubo.TeShe.client;
 
 import github.com.gengyoubo.TeShe.TE;
 import github.com.gengyoubo.TeShe.client.particle.SparkParticle;
-import github.com.gengyoubo.TeShe.client.renderer.BlazeInfectionRenderer;
-import github.com.gengyoubo.TeShe.client.renderer.ChickenInfectionRenderer;
-import github.com.gengyoubo.TeShe.client.renderer.EndermanInfectionRenderer;
+import github.com.gengyoubo.TeShe.client.renderer.BlazePlagueSymbiosisRenderer;
+import github.com.gengyoubo.TeShe.client.renderer.ChickenPlagueSymbiosisRenderer;
+import github.com.gengyoubo.TeShe.client.renderer.EndermanPlagueSymbiosisRenderer;
 import github.com.gengyoubo.TeShe.client.renderer.GenericGeoEntityRenderer;
-import github.com.gengyoubo.TeShe.client.renderer.GuardianElderInfectionRenderer;
+import github.com.gengyoubo.TeShe.client.renderer.GuardianElderPlagueSymbiosisRenderer;
 import github.com.gengyoubo.TeShe.client.renderer.PlagueAllayRenderer;
-import github.com.gengyoubo.TeShe.client.renderer.ZombieInfectionRenderer;
-import github.com.gengyoubo.TeShe.model.AllayInfection;
-import github.com.gengyoubo.TeShe.model.BlazeInfection;
-import github.com.gengyoubo.TeShe.model.ChickenInfection;
-import github.com.gengyoubo.TeShe.model.EndermanInfection;
-import github.com.gengyoubo.TeShe.model.Guardian_elderInfection;
-import github.com.gengyoubo.TeShe.model.ZombieInfection;
+import github.com.gengyoubo.TeShe.client.renderer.PlagueVanillaRenderers;
+import github.com.gengyoubo.TeShe.client.renderer.ZombiePlagueSymbiosisRenderer;
+import github.com.gengyoubo.TeShe.model.AllayPlagueSymbiosis;
+import github.com.gengyoubo.TeShe.model.BlazePlagueSymbiosis;
+import github.com.gengyoubo.TeShe.model.ChickenPlagueSymbiosis;
+import github.com.gengyoubo.TeShe.model.EndermanPlagueSymbiosis;
+import github.com.gengyoubo.TeShe.model.GuardianElderPlagueSymbiosis;
+import github.com.gengyoubo.TeShe.model.ZombiePlagueSymbiosis;
 import github.com.gengyoubo.TeShe.registry.ModEntityTypes;
 import github.com.gengyoubo.TeShe.registry.ModParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.animal.axolotl.Axolotl;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.entity.monster.Phantom;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -37,18 +47,18 @@ public final class ClientModEvents
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
-        event.registerEntityRenderer(ModEntityTypes.CHICKEN.get(), ChickenInfectionRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.GUARDIAN_ELDER.get(), GuardianElderInfectionRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.CHICKEN.get(), ChickenPlagueSymbiosisRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.GUARDIAN_ELDER.get(), GuardianElderPlagueSymbiosisRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.ALLAY.get(), PlagueAllayRenderer::new);
         registerRenderer(event, ModEntityTypes.ANIMATED_METEOR_BLAZMET, "animated_meteor_blazmet", 0.7F);
         registerRenderer(event, ModEntityTypes.ANIMATED_METEOR_BLAZMET_BOSS, "animated_meteor_blazmet", 0.7F);
-        registerRenderer(event, ModEntityTypes.AXOLOTL_LUCY, "axolotl_lucy", 0.3F);
+        event.<Axolotl>registerEntityRenderer(ModEntityTypes.AXOLOTL_LUCY.get(), PlagueVanillaRenderers.AxolotlMob::new);
         registerRenderer(event, ModEntityTypes.BATTLE_MECH, "battle_mech", 0.8F);
-        event.registerEntityRenderer(ModEntityTypes.BLAZE.get(), context -> new BlazeInfectionRenderer<>(context, "blaze"));
-        event.registerEntityRenderer(ModEntityTypes.BLAZE_ALT.get(), context -> new BlazeInfectionRenderer<>(context, "blaze_alt"));
+        event.registerEntityRenderer(ModEntityTypes.BLAZE.get(), context -> new BlazePlagueSymbiosisRenderer<>(context, "blaze"));
+        event.registerEntityRenderer(ModEntityTypes.BLAZE_ALT.get(), context -> new BlazePlagueSymbiosisRenderer<>(context, "blaze_alt"));
         registerRenderer(event, ModEntityTypes.CERBERUS, "cerberus", 0.7F);
-        registerRenderer(event, ModEntityTypes.CAT, "cat", 0.4F);
-        registerRenderer(event, ModEntityTypes.COW, "cow", 0.5F);
+        event.<Cat>registerEntityRenderer(ModEntityTypes.CAT.get(), PlagueVanillaRenderers.CatMob::new);
+        event.<Cow>registerEntityRenderer(ModEntityTypes.COW.get(), PlagueVanillaRenderers.CowMob::new);
         registerRenderer(event, ModEntityTypes.COSMIC_BULLIBARD, "cosmic_bullibard", "cosmic_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING, "crystallize_black_king", "general", 0.8F);
         registerRenderer(event, ModEntityTypes.CRYSTALLIZE_BLACK_KING_BOSS, "crystallize_black_king", 0.8F);
@@ -57,12 +67,12 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.DARK_SOUL_GESPIKET, "dark_soul_gespiket", 0.8F);
         registerRenderer(event, ModEntityTypes.DARK_SOUL_GESPIKET_BOSS, "dark_soul_gespiket", 0.8F);
         registerRenderer(event, ModEntityTypes.EMBER_GUARDIAN, "ember_guardian", "ember_guardian", 0.8F);
-        event.registerEntityRenderer(ModEntityTypes.ENDERMAN.get(), EndermanInfectionRenderer::new);
-        registerRenderer(event, ModEntityTypes.FOX, "fox", 0.4F);
-        registerRenderer(event, ModEntityTypes.GHAST, "ghast", 1.2F);
-        registerRenderer(event, ModEntityTypes.GUARDIAN, "guardian", 0.6F);
+        event.registerEntityRenderer(ModEntityTypes.ENDERMAN.get(), EndermanPlagueSymbiosisRenderer::new);
+        event.<Fox>registerEntityRenderer(ModEntityTypes.FOX.get(), PlagueVanillaRenderers.FoxMob::new);
+        event.<Ghast>registerEntityRenderer(ModEntityTypes.GHAST.get(), PlagueVanillaRenderers.GhastMob::new);
+        event.<Guardian>registerEntityRenderer(ModEntityTypes.GUARDIAN.get(), PlagueVanillaRenderers.GuardianMob::new);
         registerRenderer(event, ModEntityTypes.HADES_ZAGI, "hades_zagi", "hades_zagi", 0.8F);
-        event.registerEntityRenderer(ModEntityTypes.HUSK.get(), context -> new ZombieInfectionRenderer<>(context, "husk", false));
+        event.registerEntityRenderer(ModEntityTypes.HUSK.get(), context -> new ZombiePlagueSymbiosisRenderer<>(context, "husk", false));
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM, "lebic_demon_form", 0.8F);
         registerRenderer(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS, "lebic_demon_form", 0.8F);
         registerRenderer(event, ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK, "lerbis_nemesis_the_sidekick", "general", 0.8F);
@@ -70,10 +80,10 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.MOYINGLONG, "moyinglong", 1.2F);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD, "modified_bullibard", "modified_bullibard", 0.6F);
         registerRenderer(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS, "modified_bullibard", "modified_bullibard", 0.6F);
-        registerRenderer(event, ModEntityTypes.PHANTOM, "phantom", 0.5F);
-        registerRenderer(event, ModEntityTypes.PIG, "pig", 0.5F);
-        registerRenderer(event, ModEntityTypes.PIGLIN, "piglin", 0.5F);
-        registerRenderer(event, ModEntityTypes.PIGLIN_BRUTE, "piglin_brute", 0.5F);
+        event.<Phantom>registerEntityRenderer(ModEntityTypes.PHANTOM.get(), PlagueVanillaRenderers.PhantomMob::new);
+        event.<Pig>registerEntityRenderer(ModEntityTypes.PIG.get(), PlagueVanillaRenderers.PigMob::new);
+        event.<Mob>registerEntityRenderer(ModEntityTypes.PIGLIN.get(), PlagueVanillaRenderers.PiglinMob::new);
+        event.<Mob>registerEntityRenderer(ModEntityTypes.PIGLIN_BRUTE.get(), PlagueVanillaRenderers.PiglinBruteMob::new);
         registerRenderer(event, ModEntityTypes.RAZOR_DEMAGA, "razor_demaga", 0.8F);
         registerRenderer(event, ModEntityTypes.RAZOR_DEMAGA_BOSS, "razor_demaga", 0.8F);
         registerRenderer(event, ModEntityTypes.RINGUA_IGONOTA, "ringua_igonota", 0.8F);
@@ -86,20 +96,20 @@ public final class ClientModEvents
         registerRenderer(event, ModEntityTypes.SOUL_OF_MOUNTAINS, "soul_of_mountains", 0.8F);
         registerRenderer(event, ModEntityTypes.SPECIAL_EX_ELEKING, "special_ex_eleking", 0.8F);
         registerRenderer(event, ModEntityTypes.YOUZHUSHOU, "youzhushou", 0.7F);
-        event.registerEntityRenderer(ModEntityTypes.ZOMBIE.get(), context -> new ZombieInfectionRenderer<>(context, "zombie", false));
-        event.registerEntityRenderer(ModEntityTypes.DROWNED.get(), context -> new ZombieInfectionRenderer<>(context, "drowned", true));
+        event.registerEntityRenderer(ModEntityTypes.ZOMBIE.get(), context -> new ZombiePlagueSymbiosisRenderer<>(context, "zombie", false));
+        event.registerEntityRenderer(ModEntityTypes.DROWNED.get(), context -> new ZombiePlagueSymbiosisRenderer<>(context, "drowned", true));
     }
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
-        event.registerLayerDefinition(AllayInfection.LAYER_LOCATION, AllayInfection::createBodyLayer);
-        event.registerLayerDefinition(BlazeInfection.LAYER_LOCATION, BlazeInfection::createBodyLayer);
-        event.registerLayerDefinition(ChickenInfection.LAYER_LOCATION, ChickenInfection::createBodyLayer);
-        event.registerLayerDefinition(EndermanInfection.LAYER_LOCATION, EndermanInfection::createBodyLayer);
-        event.registerLayerDefinition(Guardian_elderInfection.LAYER_LOCATION, Guardian_elderInfection::createBodyLayer);
-        event.registerLayerDefinition(ZombieInfection.LAYER_LOCATION, ZombieInfection::createBodyLayer);
-        event.registerLayerDefinition(ZombieInfection.OUTER_LAYER_LOCATION, ZombieInfection::createBodyLayer);
+        event.registerLayerDefinition(AllayPlagueSymbiosis.LAYER_LOCATION, AllayPlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(BlazePlagueSymbiosis.LAYER_LOCATION, BlazePlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(ChickenPlagueSymbiosis.LAYER_LOCATION, ChickenPlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(EndermanPlagueSymbiosis.LAYER_LOCATION, EndermanPlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(GuardianElderPlagueSymbiosis.LAYER_LOCATION, GuardianElderPlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(ZombiePlagueSymbiosis.LAYER_LOCATION, ZombiePlagueSymbiosis::createBodyLayer);
+        event.registerLayerDefinition(ZombiePlagueSymbiosis.OUTER_LAYER_LOCATION, ZombiePlagueSymbiosis::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -133,3 +143,4 @@ public final class ClientModEvents
         event.registerEntityRenderer(entityType.get(), context -> new GenericGeoEntityRenderer<>(context, modelName, animationsName, shadowRadius));
     }
 }
+
