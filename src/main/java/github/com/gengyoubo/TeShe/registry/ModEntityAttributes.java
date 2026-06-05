@@ -10,13 +10,16 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.monster.Blaze;
+import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.monster.piglin.Piglin;
@@ -36,10 +39,7 @@ public final class ModEntityAttributes
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event)
     {
-        event.put(ModEntityTypes.CHICKEN.get(), Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 8.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .build());
+        event.put(ModEntityTypes.CHICKEN.get(), Chicken.createAttributes().build());
         event.put(ModEntityTypes.GUARDIAN_ELDER.get(), Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.18D)
@@ -51,6 +51,7 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.AXOLOTL_LUCY);
         registerGenericAttributes(event, ModEntityTypes.BATTLE_MECH);
         event.put(ModEntityTypes.BLAZE.get(), Blaze.createAttributes().build());
+        event.put(ModEntityTypes.BLAZE_ALT.get(), Blaze.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.CERBERUS);
         event.put(ModEntityTypes.CAT.get(), Cat.createAttributes().build());
         event.put(ModEntityTypes.COW.get(), Cow.createAttributes().build());
@@ -79,6 +80,7 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.GHAST);
         event.put(ModEntityTypes.GUARDIAN.get(), Guardian.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.HADES_ZAGI);
+        event.put(ModEntityTypes.HUSK.get(), Husk.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM);
         registerGenericAttributes(event, ModEntityTypes.LEBIC_DEMON_FORM_BOSS);
         event.put(ModEntityTypes.LERBIS_NEMESIS_THE_SIDEKICK.get(), Mob.createMobAttributes()
@@ -125,6 +127,7 @@ public final class ModEntityAttributes
         registerGenericAttributes(event, ModEntityTypes.SPECIAL_EX_ELEKING);
         registerGenericAttributes(event, ModEntityTypes.YOUZHUSHOU);
         event.put(ModEntityTypes.ZOMBIE.get(), Zombie.createAttributes().build());
+        event.put(ModEntityTypes.DROWNED.get(), Drowned.createAttributes().build());
     }
 
     private static void registerGenericAttributes(

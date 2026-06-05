@@ -135,6 +135,7 @@ public final class ModItems
     public static final RegistryObject<Item> ANIMATED_METEOR_BLAZMET_BOSS_SPAWN_EGG = registerSpawnEgg("animated_meteor_blazmet_boss_spawn_egg", ModEntityTypes.ANIMATED_METEOR_BLAZMET_BOSS, 0x6C5548, 0xD87845);
     public static final RegistryObject<Item> BATTLE_MECH_SPAWN_EGG = registerSpawnEgg("battle_mech_spawn_egg", ModEntityTypes.BATTLE_MECH, 0x4D5965, 0xE74C3C);
     public static final RegistryObject<Item> BLAZE_SPAWN_EGG = registerSpawnEgg("blaze_spawn_egg", ModEntityTypes.BLAZE, 0xF6B33F, 0x5B3216);
+    public static final RegistryObject<Item> BLAZE_ALT_SPAWN_EGG = registerSpawnEgg("blaze_alt_spawn_egg", ModEntityTypes.BLAZE_ALT, 0x8E2E2E, 0xF06A4A);
     public static final RegistryObject<Item> AXOLOTL_LUCY_SPAWN_EGG = registerSpawnEgg("axolotl_lucy_spawn_egg", ModEntityTypes.AXOLOTL_LUCY, 0xF2B8C6, 0x8A5C78);
     public static final RegistryObject<Item> CERBERUS_SPAWN_EGG = registerSpawnEgg("cerberus_spawn_egg", ModEntityTypes.CERBERUS, 0x2C2B32, 0xC0703A);
     public static final RegistryObject<Item> CAT_SPAWN_EGG = registerSpawnEgg("cat_spawn_egg", ModEntityTypes.CAT, 0xA37B5B, 0xE7C9A9);
@@ -155,6 +156,7 @@ public final class ModItems
     public static final RegistryObject<Item> FOX_SPAWN_EGG = registerSpawnEgg("fox_spawn_egg", ModEntityTypes.FOX, 0xD9822B, 0xF0E2C5);
     public static final RegistryObject<Item> GHAST_SPAWN_EGG = registerSpawnEgg("ghast_spawn_egg", ModEntityTypes.GHAST, 0xF0EAE2, 0xB84646);
     public static final RegistryObject<Item> GUARDIAN_SPAWN_EGG = registerSpawnEgg("guardian_spawn_egg", ModEntityTypes.GUARDIAN, 0x5E756C, 0xE1D09B);
+    public static final RegistryObject<Item> HUSK_SPAWN_EGG = registerSpawnEgg("husk_spawn_egg", ModEntityTypes.HUSK, 0x797061, 0xD9C293);
     public static final RegistryObject<Item> HADES_ZAGI_SPAWN_EGG = registerSpawnEgg("hades_zagi_spawn_egg", ModEntityTypes.HADES_ZAGI, 0x171820, 0xC7354A);
     public static final RegistryObject<Item> LEBIC_DEMON_FORM_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM, 0x29212B, 0x7C6CCF);
     public static final RegistryObject<Item> LEBIC_DEMON_FORM_BOSS_SPAWN_EGG = registerSpawnEgg("lebic_demon_form_boss_spawn_egg", ModEntityTypes.LEBIC_DEMON_FORM_BOSS, 0x29212B, 0x7C6CCF);
@@ -180,6 +182,7 @@ public final class ModItems
     public static final RegistryObject<Item> SPECIAL_EX_ELEKING_SPAWN_EGG = registerSpawnEgg("special_ex_eleking_spawn_egg", ModEntityTypes.SPECIAL_EX_ELEKING, 0xB7C057, 0x2F2C33);
     public static final RegistryObject<Item> YOUZHUSHOU_SPAWN_EGG = registerSpawnEgg("youzhushou_spawn_egg", ModEntityTypes.YOUZHUSHOU, 0x4B5660, 0x9DC85A);
     public static final RegistryObject<Item> ZOMBIE_SPAWN_EGG = registerSpawnEgg("zombie_spawn_egg", ModEntityTypes.ZOMBIE, 0x536B45, 0x7B5E45);
+    public static final RegistryObject<Item> DROWNED_SPAWN_EGG = registerSpawnEgg("drowned_spawn_egg", ModEntityTypes.DROWNED, 0x456B6F, 0x5FA8A0);
 
     public static final List<RegistryObject<Item>> MODEL_ITEMS = List.of(
             HATRED_STICK,
@@ -253,16 +256,19 @@ public final class ModItems
 
             ALLAY_SPAWN_EGG,
             BLAZE_SPAWN_EGG,
+            BLAZE_ALT_SPAWN_EGG,
             CAT_SPAWN_EGG,
             COW_SPAWN_EGG,
             ENDERMAN_SPAWN_EGG,
             FOX_SPAWN_EGG,
             GUARDIAN_SPAWN_EGG,
+            HUSK_SPAWN_EGG,
             PHANTOM_SPAWN_EGG,
             PIG_SPAWN_EGG,
             PIGLIN_SPAWN_EGG,
             PIGLIN_BRUTE_SPAWN_EGG,
             ZOMBIE_SPAWN_EGG,
+            DROWNED_SPAWN_EGG,
 
             CHICKEN_SPAWN_EGG,
             GUARDIAN_ELDER_SPAWN_EGG,

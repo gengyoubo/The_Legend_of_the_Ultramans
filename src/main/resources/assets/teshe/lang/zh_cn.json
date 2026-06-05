@@ -96,7 +96,8 @@
   "entity.teshe.axolotl_lucy": "美西螈",
   "entity.teshe.babaru_alien": "巴巴尔星人",
   "entity.teshe.battle_mech": "战争魔骑兽",
-  "entity.teshe.blaze": "瘟疫感染烈焰人",
+  "entity.teshe.blaze": "瘟疫感染烈焰人（紫）",
+  "entity.teshe.blaze_alt": "瘟疫感染烈焰人（红）",
   "entity.teshe.booster_ultraman_basic": "布斯特奥特曼 基础",
   "entity.teshe.booster_ultraman_courage_burning": "布斯特奥特曼 勇气燃烧",
   "entity.teshe.booster_ultraman_hyper": "布斯特奥特曼 海帕",
@@ -158,7 +159,8 @@
   "item.teshe.axolotl_lucy_spawn_egg": "美西螈刷怪蛋",
   "item.teshe.babaru_alien_spawn_egg": "巴巴尔星人刷怪蛋",
   "item.teshe.battle_mech_spawn_egg": "战争魔骑兽刷怪蛋",
-  "item.teshe.blaze_spawn_egg": "瘟疫感染烈焰人刷怪蛋",
+  "item.teshe.blaze_spawn_egg": "瘟疫感染烈焰人（紫）刷怪蛋",
+  "item.teshe.blaze_alt_spawn_egg": "瘟疫感染烈焰人（红）刷怪蛋",
   "item.teshe.booster_ultraman_basic_spawn_egg": "布斯特奥特曼 基础刷怪蛋",
   "item.teshe.booster_ultraman_courage_burning_spawn_egg": "布斯特奥特曼 勇气燃烧刷怪蛋",
   "item.teshe.booster_ultraman_hyper_spawn_egg": "布斯特奥特曼 海帕刷怪蛋",
@@ -219,5 +221,9 @@
   "message.teshe.mutagenic_inducer.invalid_biome": "异变诱剂只能在沙漠或恶地使用",
   "message.teshe.mutagenic_inducer.enabled": "基恩安东拉的世界生成已开启",
   "message.teshe.mutagenic_inducer.already_enabled": "基恩安东拉的世界生成已经开启",
-  "message.teshe.bullibard_event.not_enough_space": "周围空间不够空旷"
+  "message.teshe.bullibard_event.not_enough_space": "周围空间不够空旷",
+  "entity.teshe.husk": "瘟疫感染尸壳",
+  "entity.teshe.drowned": "瘟疫感染溺尸",
+  "item.teshe.husk_spawn_egg": "瘟疫感染尸壳刷怪蛋",
+  "item.teshe.drowned_spawn_egg": "瘟疫感染溺尸刷怪蛋"
 }

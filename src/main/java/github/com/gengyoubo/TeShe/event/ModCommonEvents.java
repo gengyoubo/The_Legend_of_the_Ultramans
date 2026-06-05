@@ -440,7 +440,6 @@ public final class ModCommonEvents
 
             if (state.lineIndex < BULLIBARD_STORY_LINES.length) {
                 player.sendSystemMessage(Component.literal(BULLIBARD_STORY_LINES[state.lineIndex]));
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.NOTE_BLOCK_PLING.value(), SoundSource.PLAYERS, 0.8F, 1.0F);
                 state.lineIndex++;
                 continue;
             }
@@ -472,7 +471,6 @@ public final class ModCommonEvents
         boss.finalizeSpawn(level, level.getCurrentDifficultyAt(spawnPos), MobSpawnType.EVENT, null, null);
         boss.setSpecialIndividual(CosmicBullibardEntity.BOSS_VARIANT);
         level.addFreshEntity(boss);
-        level.playSound(null, boss.getX(), boss.getY(), boss.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     private static boolean hasOpenBullibardEventSpace(ServerLevel level, Player player)

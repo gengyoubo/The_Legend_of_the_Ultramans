@@ -24,9 +24,12 @@ public class StarFlowerSeedItem extends Item
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
         ItemStack stack = player.getItemInHand(hand);
-        if (level instanceof ServerLevel) {
-            player.addEffect(new MobEffectInstance(ModMobEffects.LIGHT_SEED.get(), EFFECT_DURATION_TICKS, 0, false, true, true));
-            player.addEffect(new MobEffectInstance(ModMobEffects.PLUNDER.get(), EFFECT_DURATION_TICKS, 0, false, true, true));
+        if (level instanceof ServerLevel serverLevel) {
+            if (serverLevel.random.nextBoolean()) {
+                player.addEffect(new MobEffectInstance(ModMobEffects.LIGHT_SEED.get(), EFFECT_DURATION_TICKS, 0, false, true, true));
+            } else {
+                player.addEffect(new MobEffectInstance(ModMobEffects.PLUNDER.get(), EFFECT_DURATION_TICKS, 0, false, true, true));
+            }
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {
                 stack.shrink(1);

@@ -12,9 +12,11 @@ import github.com.gengyoubo.TeShe.entity.PlagueAllayEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueBlazeEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueCatEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueCowEntity;
+import github.com.gengyoubo.TeShe.entity.PlagueDrownedEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueEndermanEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueFoxEntity;
 import github.com.gengyoubo.TeShe.entity.PlagueGuardianEntity;
+import github.com.gengyoubo.TeShe.entity.PlagueHuskEntity;
 import github.com.gengyoubo.TeShe.entity.PlaguePhantomEntity;
 import github.com.gengyoubo.TeShe.entity.PlaguePigEntity;
 import github.com.gengyoubo.TeShe.entity.PlaguePiglinBruteEntity;
@@ -65,6 +67,14 @@ public final class ModEntityTypes
                     .sized(0.6F, 1.8F)
                     .clientTrackingRange(8)
                     .build(TE.MODID + ":blaze")
+    );
+    public static final RegistryObject<EntityType<PlagueBlazeEntity>> BLAZE_ALT = ENTITY_TYPES.register(
+            "blaze_alt",
+            () -> EntityType.Builder.of(PlagueBlazeEntity::new, MobCategory.MONSTER)
+                    .fireImmune()
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(8)
+                    .build(TE.MODID + ":blaze_alt")
     );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> AXOLOTL_LUCY = registerGeoMob("axolotl_lucy", 0.75F, 0.42F);
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> CERBERUS = registerGeoMob("cerberus", 1.4F, 1.4F);
@@ -126,6 +136,13 @@ public final class ModEntityTypes
                     .sized(0.85F, 0.85F)
                     .clientTrackingRange(10)
                     .build(TE.MODID + ":guardian")
+    );
+    public static final RegistryObject<EntityType<PlagueHuskEntity>> HUSK = ENTITY_TYPES.register(
+            "husk",
+            () -> EntityType.Builder.of(PlagueHuskEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build(TE.MODID + ":husk")
     );
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> HADES_ZAGI = registerAnimatedGeoMob("hades_zagi", 0.9F, 2.8F, "nova.animation");
     public static final RegistryObject<EntityType<GenericTesheGeoMob>> LEBIC_DEMON_FORM = registerGeoMob("lebic_demon_form", 0.9F, 2.8F);
@@ -204,6 +221,13 @@ public final class ModEntityTypes
                     .sized(0.6F, 1.95F)
                     .clientTrackingRange(8)
                     .build(TE.MODID + ":zombie")
+    );
+    public static final RegistryObject<EntityType<PlagueDrownedEntity>> DROWNED = ENTITY_TYPES.register(
+            "drowned",
+            () -> EntityType.Builder.of(PlagueDrownedEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8)
+                    .build(TE.MODID + ":drowned")
     );
 
     private ModEntityTypes()

@@ -96,7 +96,8 @@
   "entity.teshe.axolotl_lucy": "Lucy Axolotl",
   "entity.teshe.babaru_alien": "Babaru Alien",
   "entity.teshe.battle_mech": "Battle Mech",
-  "entity.teshe.blaze": "Plague Blaze",
+  "entity.teshe.blaze": "Plague Blaze (Purple)",
+  "entity.teshe.blaze_alt": "Plague Blaze (Red)",
   "entity.teshe.booster_ultraman_basic": "Booster Ultraman Basic",
   "entity.teshe.booster_ultraman_courage_burning": "Booster Ultraman Courage Burning",
   "entity.teshe.booster_ultraman_hyper": "Booster Ultraman Hyper",
@@ -158,7 +159,8 @@
   "item.teshe.axolotl_lucy_spawn_egg": "Lucy Axolotl Spawn Egg",
   "item.teshe.babaru_alien_spawn_egg": "Babaru Alien Spawn Egg",
   "item.teshe.battle_mech_spawn_egg": "Battle Mech Spawn Egg",
-  "item.teshe.blaze_spawn_egg": "Plague Blaze Spawn Egg",
+  "item.teshe.blaze_spawn_egg": "Plague Blaze (Purple) Spawn Egg",
+  "item.teshe.blaze_alt_spawn_egg": "Plague Blaze (Red) Spawn Egg",
   "item.teshe.booster_ultraman_basic_spawn_egg": "Booster Ultraman Basic Spawn Egg",
   "item.teshe.booster_ultraman_courage_burning_spawn_egg": "Booster Ultraman Courage Burning Spawn Egg",
   "item.teshe.booster_ultraman_hyper_spawn_egg": "Booster Ultraman Hyper Spawn Egg",
@@ -219,5 +221,9 @@
   "message.teshe.mutagenic_inducer.invalid_biome": "Mutagenic Inducer can only be used in deserts or badlands",
   "message.teshe.mutagenic_inducer.enabled": "Kean Antonla world spawning is now enabled",
   "message.teshe.mutagenic_inducer.already_enabled": "Kean Antonla world spawning is already enabled",
-  "message.teshe.bullibard_event.not_enough_space": "Not enough open space nearby"
+  "message.teshe.bullibard_event.not_enough_space": "Not enough open space nearby",
+  "entity.teshe.husk": "Plague Husk",
+  "entity.teshe.drowned": "Plague Drowned",
+  "item.teshe.husk_spawn_egg": "Plague Husk Spawn Egg",
+  "item.teshe.drowned_spawn_egg": "Plague Drowned Spawn Egg"
 }
