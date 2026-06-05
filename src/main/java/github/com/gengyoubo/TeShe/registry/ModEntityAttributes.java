@@ -6,6 +6,7 @@ import github.com.gengyoubo.TeShe.entity.CrystallizeBlackKingEntity;
 import github.com.gengyoubo.TeShe.entity.KeanAntonlaEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisLeaderEntity;
 import github.com.gengyoubo.TeShe.entity.LerbisNemesisSidekickEntity;
+import github.com.gengyoubo.TeShe.entity.PlagueEnderDragonEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -16,7 +17,6 @@ import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -101,7 +101,7 @@ public final class ModEntityAttributes
                 .add(Attributes.ATTACK_DAMAGE, LerbisNemesisLeaderEntity.ATTACK_DAMAGE)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .build());
-        event.put(ModEntityTypes.MOYINGLONG.get(), EnderDragon.createAttributes().build());
+        event.put(ModEntityTypes.MOYINGLONG.get(), PlagueEnderDragonEntity.createAttributes().build());
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD);
         registerGenericAttributes(event, ModEntityTypes.MODIFIED_BULLIBARD_BOSS);
         event.put(ModEntityTypes.PHANTOM.get(), Mob.createMobAttributes()
